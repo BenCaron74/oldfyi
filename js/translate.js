@@ -14,13 +14,10 @@ switch (userLang) {
 }
 
 function loadTxt(file) {
-  $.get(file, {}, function(data) {
+  $.getJSON(transFile, function(json) {
     var template = $('#tpl').html();
     Mustache.parse(template);
-    var rendered = Mustache.render(template, data);
+    var rendered = Mustache.render(template, json);
     $('#tpl').html(rendered);
-  }, 'json');
+  });
 }
-$(document).ready(function() {
-
-});

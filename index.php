@@ -251,7 +251,7 @@ src="https://www.facebook.com/tr?id=536462993188270&ev=PageView&noscript=1"
         <div class="module-group right">
           <div class="module left">
             <ul class=menu>
-              <li><a href="#Home" style=color:#777;font-weight:900;opacity:1>{{ menu.home }}</a>
+              <li><a href="#Home" style=color:#777;font-weight:900;opacity:1>{{ home }}</a>
               </li>
               <li><a href="#Plus" style=color:#777;font-weight:900;opacity:1>{{ menu.about }}</a>
               </li>
@@ -349,13 +349,13 @@ src="https://www.facebook.com/tr?id=536462993188270&ev=PageView&noscript=1"
       </div>
     </footer>
     <script src=js/jquery.min.js></script>
+    <script src=js/mustache.js></script>
+    <script src=js/translate.js></script>
     <script src=js/flexslider.min.js></script>
     <script src=js/bootstrap.min.js></script>
     <script src=js/smooth-scroll.min.js></script>
     <script src=js/parallax.js></script>
     <script src=js/scripts.js></script>
-    <script src=js/mustache.js></script>
-    <script src=js/translate.js></script>
     <!-- Start of Intercom Code -->
     <script>
       window.intercomSettings = {
