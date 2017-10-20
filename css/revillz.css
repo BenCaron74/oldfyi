@@ -1,0 +1,117 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+/*
+date: 20.10.17
+file: Revillz UI Kit
+creator: Matthieu 'HIZEN' Lapalus
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700');
+body {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.card {
+  background: #fff;
+  border-radius: .8em .8em .6em .6em;
+  display: inline-block;
+  height: 12em;
+  margin: 1rem;
+  position: relative;
+  width: 22em;
+  color: #fff;
+}
+
+.card-shadow-soft {
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.card-shadow-hard {
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+.card-shadow {
+  transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.22);
+}
+
+.card-shadow:hover, .card-shadow-soft:hover, .card-shadow-hard:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.card-top {
+  background: #c94b4b;
+  background: -webkit-linear-gradient(to right, #4b134f, #c94b4b);
+  background: linear-gradient(to right, #4b134f, #c94b4b);
+  max-height: 4em;
+  border-radius: .6em .6em 0 0;
+  padding: 1em;
+  display: flex;
+}
+
+.card-top img {
+  height: 2.8em;
+  width: 2.8em;
+  background-color: #777;
+  border: 3px solid #fff;
+  border-radius: 40em;
+}
+
+.card-top h2 {
+  line-height: 2.6em;
+  margin-left: .6em;
+  font-size: 1.2em;
+}
+
+.card-content {
+  padding: 1em;
+  color: #777;
+  /*border-bottom: 1px solid #d1d1d1;*/
+}
+
+.card-content h3 {
+  font-size: 1.2em;
+  margin-bottom: .5em;
+}
+
+.card-content hr {
+  opacity: .5;
+  padding: 0;
+  margin: 0;
+}
