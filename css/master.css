@@ -1,0 +1,247 @@
+::-webkit-scrollbar {
+  width: 8px;
+  background: #fff;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e88e5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #fff;
+  visibility: hidden;
+}
+
+body {
+  background: #1e88e5;
+  color: #fff;
+}
+
+.login-logo {
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 4em;
+}
+
+.login-title {
+  font-size: 2.4em;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+}
+
+.login-subtitle {
+  font-size: 2em;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 2em;
+  text-align: center;
+}
+
+.login-page {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-panel {
+  padding: 2em;
+  border-radius: .4em;
+  text-align: center;
+  background-color: #fff;
+  color: #777;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  transition: all .2s;
+}
+
+.login-panel:hover {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  transition: all .2s;
+}
+
+.login-gmail, .login-outlook, .login-yahoo {
+  background-color: red;
+  color: #fff;
+  padding: 1em;
+  margin: 1em;
+  border-radius: .4em;
+  font-weight: 600;
+  font-size: 1.1em;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.login-panel img {
+  width: 2.4em;
+  height: 2.4em;
+  margin-right: 1em;
+}
+
+.login-gmail p, .login-outlook p, .login-yahoo p {
+  margin: 0;
+  margin-left: 1em;
+  line-height: 2.4em;
+}
+
+.login-gmail {
+  background-color: #d14836;
+  transition: all .5s;
+}
+
+.login-gmail:hover {
+  background-color: #992617;
+}
+
+.login-outlook {
+  background-color: #0072c6;
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.login-yahoo {
+  background-color: #731a8e;
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.login-other {
+  margin-top: 4em;
+  cursor: not-allowed;
+}
+
+.hidden-load {visibility: hidden;}
+.hidden-load.animated {visibility: visible !important;}
+
+#home {
+  clear:both;
+  text-align: center;
+  padding-top: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+  display: none;
+}
+
+#home a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+#home a:hover {
+  text-decoration: none;
+}
+
+.info-modal {
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  z-index: 999;
+  color: #777;
+  border-radius: .4em;
+  position: absolute;
+  background-color: #fff;
+  font-size: 1.2em;
+  padding: 1.4em 3em;
+  top: 1em;
+  right: 1em;
+  display: flex;
+  justify-content: space-around;
+  background-color: #ebd128;
+}
+
+.info-modal span {
+  font-size: 1.8em;
+  padding-right: .4em;
+  color: #fff;
+}
+
+.info-modal p {
+  margin: 0;
+  line-height: 2em;
+  margin-top: .6em;
+  font-weight: 600;
+  color: #fff;
+}
+
+svg {
+  margin-top: 1em;
+  width: 100px;
+  height: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+}
+
+.sub-panel {
+  padding: 2em;
+  border-radius: .4em;
+  background-color: #fff;
+  color: #777;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  /*min-height: 28vh;*/
+  transition: all .2s;
+}
+
+.sub-panel i {
+  float: right;
+  line-height: 2.8em;
+}
+
+.btn-facebook {
+  background-color: #3b5998;
+  color: #fff;
+  font-size: 1.6em;
+  min-width: 2.8em;
+}
+
+.btn-twitter {
+  background-color: #55acee;
+  color: #fff;
+  font-size: 1.6em;
+  min-width: 2.8em;
+}
+
+.btn-instagram {
+  background-color: #e95950;
+  color: #fff;
+  font-size: 1.6em;
+  min-width: 2.8em;
+}
+
+.sub-panel h3 {
+  font-size: 1.6em;
+  text-align: center;
+  line-height: 1.4em;
+  padding-bottom: .5em;
+}
+
+.sub-panel p {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+#after {
+  display: none;
+}
+
+.btn-group-wrap {
+  text-align: right;
+}
+
+.btn-group-wrap .share-label {
+  padding-right: 1em;
+  font-size: 1.2em;
+}
+
+div.btn-group {
+  margin: 0 auto;
+  text-align: center;
+  width: inherit;
+  display: inline-block;
+}
+
+.btn:focus {
+  outline: none;
+}

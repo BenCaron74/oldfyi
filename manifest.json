@@ -1,0 +1,7 @@
+{
+  "name": "Free Your Inbox | Supprimer ses newsletters en 1 clic",
+  "short_name": "Free Your Inbox",
+  "start_url": "/",
+  "display": "standalone",
+  "gcm_sender_id": "965105191636"
+}

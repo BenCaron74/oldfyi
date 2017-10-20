@@ -1,0 +1,51 @@
+body {
+	padding-top: 70px;
+	padding-bottom: 30px;
+}
+/*
+thead > tr > td {
+	font-weight: bold;
+}
+*/
+.theme-dropdown .dropdown-menu {
+	position: static;
+	display: block;
+	margin-bottom: 20px;
+}
+
+.navbar {
+	width: auto;
+}
+
+.container {
+	margin-left: 5px;
+}
+
+.comp-url {
+  overflow: hidden;
+  -o-text-overflow: ellipsis; /* pour Opera 9 */
+  text-overflow: ellipsis; /* pour le reste du monde */
+  white-space: nowrap;
+}
+
+.table-nonfluid {
+   width: auto !important;
+}
+
+.bg-white {
+	background-color: white !important;
+}
+
+.form-edit {
+	margin: 0 !important;
+}
+
+.no-bottom-radius {
+	border-bottom-left-radius: 0 !important;
+	border-bottom-right-radius: 0 !important;
+}
+
+.text-up {
+	vertical-align: top;
+	font-size: 75%;
+}

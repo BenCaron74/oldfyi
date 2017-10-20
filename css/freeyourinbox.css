@@ -1,0 +1,92 @@
+@font-face {
+    font-family: 'rubikregular';
+    src: url('/fonts/rubik-regular-webfont.woff2') format('woff2'),
+         url('/fonts/rubik-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.rubik {
+	font-family: 'rubikregular' !important;
+}
+
+.tooltip-primary + .tooltip .tooltip-inner {
+  color: #ffffff;
+  background-color: #2196f3;
+}
+.tooltip-primary + .tooltip.top .tooltip-arrow {
+  border-top-color: #2196f3;
+}
+.tooltip-primary + .tooltip.right .tooltip-arrow {
+  border-right-color: #2196f3;
+}
+.tooltip-primary + .tooltip.bottom .tooltip-arrow {
+  border-bottom-color: #2196f3;
+}
+.tooltip-primary + .tooltip.left .tooltip-arrow {
+  border-left-color: #2196f3;
+}
+.tooltip-success + .tooltip .tooltip-inner {
+  color: #ffffff;
+  background-color: #4caf50;
+}
+.tooltip-success + .tooltip.top .tooltip-arrow {
+  border-top-color: #4caf50;
+}
+.tooltip-success + .tooltip.right .tooltip-arrow {
+  border-right-color: #4caf50;
+}
+.tooltip-success + .tooltip.bottom .tooltip-arrow {
+  border-bottom-color: #4caf50;
+}
+.tooltip-success + .tooltip.left .tooltip-arrow {
+  border-left-color: #4caf50;
+}
+.tooltip-info + .tooltip .tooltip-inner {
+  color: #ffffff;
+  background-color: #00bcd4;
+}
+.tooltip-info + .tooltip.top .tooltip-arrow {
+  border-top-color: #00bcd4;
+}
+.tooltip-info + .tooltip.right .tooltip-arrow {
+  border-right-color: #00bcd4;
+}
+.tooltip-info + .tooltip.bottom .tooltip-arrow {
+  border-bottom-color: #00bcd4;
+}
+.tooltip-info + .tooltip.left .tooltip-arrow {
+  border-left-color: #00bcd4;
+}
+.tooltip-warning + .tooltip .tooltip-inner {
+  color: #ffffff;
+  background-color: #ff9800;
+}
+.tooltip-warning + .tooltip.top .tooltip-arrow {
+  border-top-color: #ff9800;
+}
+.tooltip-warning + .tooltip.right .tooltip-arrow {
+  border-right-color: #ff9800;
+}
+.tooltip-warning + .tooltip.bottom .tooltip-arrow {
+  border-bottom-color: #ff9800;
+}
+.tooltip-warning + .tooltip.left .tooltip-arrow {
+  border-left-color: #ff9800;
+}
+.tooltip-danger + .tooltip .tooltip-inner {
+  color: #ffffff;
+  background-color: #f44336;
+}
+.tooltip-danger + .tooltip.top .tooltip-arrow {
+  border-top-color: #f44336;
+}
+.tooltip-danger + .tooltip.right .tooltip-arrow {
+  border-right-color: #f44336;
+}
+.tooltip-danger + .tooltip.bottom .tooltip-arrow {
+  border-bottom-color: #f44336;
+}
+.tooltip-danger + .tooltip.left .tooltip-arrow {
+  border-left-color: #f44336;
+}

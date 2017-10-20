@@ -1,0 +1,12 @@
+# Add any directories, files, or patterns you don't want to be tracked by version control
+Ben
+doc
+mail
+logs
+lib
+variant
+vendor
+*.txt
+*.xml
+*.zip
+process.php
