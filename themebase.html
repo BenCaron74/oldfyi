@@ -7,12 +7,9 @@
   <title>Revillz</title>
   <link rel="stylesheet" href="css/ionicons.min.css">
   <link rel="stylesheet" href="css/revillz.css">
-  <style media="screen">
-    body {
-      background: #fff;
-      /*background: linear-gradient(to right, #292E49, #536976);*/
-    }
-  </style>
+  <script src="js/jquery.min.js" charset="utf-8"></script>
+  <script src="js/colorify.min.js" charset="utf-8"></script>
+  <script src="js/revillz.js" charset="utf-8"></script>
 </head>
 
 <body>
@@ -20,99 +17,284 @@
     <div class="header-brand">
       <div class="header-logo">
         <a href="#"><img class="brand-img" src="testPic/brand.png" alt=""></a>
-        
+        <ul class="header-nav">
+          <li class="nav-item nav-active"><a href="#">New</a></li>
+          <li class="nav-item"><a href="#">Allowed</a></li>
+          <li class="nav-item"><a href="#">Digest</a></li>
+          <li class="nav-item"><a href="#">Blacklist</a></li>
+        </ul>
       </div>
       <div class="header-user">
         <ul>
-          <li><i class="ion-android-more-vertical"></i></li>
+          <li class="more-nav"><i class="ion-android-more-vertical"></i></li>
           <li><i class="ion-android-notifications"></i></li>
           <li><img class="user-img" src="testPic/user.png" alt=""></li>
         </ul>
       </div>
     </div>
     <div class="header-navbar">
-      <ul>
-        <li class="active"><a href="">New</a></li>
-        <li><a href="">Allowed</a></li>
-        <li><a href="">Digest</a></li>
-        <li><a href="">Blacklist</a></li>
+      <ul class="header-nav">
+        <li class="nav-item nav-active"><a href="#">New</a></li>
+        <li class="nav-item"><a href="#">Allowed</a></li>
+        <li class="nav-item"><a href="#">Digest</a></li>
+        <li class="nav-item"><a href="#">Blacklist</a></li>
       </ul>
+      <div class="webflow-style-input">
+        <input id="seek" class="" type="text" placeholder="Search..."></input>
+        <button type="submit"><i class="icon ion-android-arrow-forward"></i></button>
+      </div>
     </div>
   </header>
-  <div class="container">
-    <div class="col-md-4">
-      <div class="card card-shadow-soft">
-        <div class="card-top">
-          <h4>Newsletter</h4>
-        </div>
-        <div class="card-content">
-          <div class="card-img">
-            <img src="testPic/logo.png" alt="">
+  <div class="content">
+    <div class="container">
+      <section>
+        <h4 class="context-title">Newsletters</h4>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card card-shadow-soft">
+              <div id="twc-1" class="card-top">
+                <h4>Amazon</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-img">
+                  <img src="testPic/amz.jpg" alt="">
+                </div>
+                <div class="card-txt">
+                  <h3>Email Title</h3>
+                  <p>Email content text usualy p...</p>
+                </div>
+              </div>
+              <div class="card-bottom">
+                <ul>
+                  <li><a href="#"><i class="ion-ios-bell"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-filing"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-trash"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-more"></i></a></li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="card-txt">
-            <h3>Swift.io</h3>
-            <p>Apple discover the new ios...</p>
+          <div class="col-md-4">
+            <div class="card card-shadow-soft">
+              <div id="twc-2" class="card-top">
+                <h4>New-York Time</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-img">
+                  <img src="testPic/time.png" alt="">
+                </div>
+                <div class="card-txt">
+                  <h3>Email Title</h3>
+                  <p>Email content text usualy p...</p>
+                </div>
+              </div>
+              <div class="card-bottom">
+                <ul>
+                  <li><a href="#"><i class="ion-ios-bell"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-filing"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-trash"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-more"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card card-shadow-soft">
+              <div id="twc-3" class="card-top">
+                <h4>ESL France</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-img">
+                  <img src="testPic/esl.png" alt="">
+                </div>
+                <div class="card-txt">
+                  <h3>Email Title</h3>
+                  <p>Email content text usualy p...</p>
+                </div>
+              </div>
+              <div class="card-bottom">
+                <ul>
+                  <li><a href="#"><i class="ion-ios-bell"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-filing"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-trash"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-more"></i></a></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="card-bottom">
-          <ul>
-            <li><a href="#"><i class="ion-ios-bell"></i></a></li>
-            <li><a href="#"><i class="ion-ios-filing"></i></a></li>
-            <li><a href="#"><i class="ion-ios-trash"></i></a></li>
-            <li><a href="#"><i class="ion-ios-more"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card card-shadow-soft">
-        <div class="card-top">
-          <h4>Newsletter</h4>
-        </div>
-        <div class="card-content">
-          <div class="card-img">
-            <img src="testPic/logo.png" alt="">
+      </section>
+      <section>
+        <hr>
+        <h4 class="context-title">Spams</h4>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card card-shadow-soft">
+              <div id="twc-4" class="card-top">
+                <h4>Twitter</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-img">
+                  <img src="testPic/twtr.png" alt="">
+                </div>
+                <div class="card-txt">
+                  <h3>Email Title</h3>
+                  <p>Email content text usualy p...</p>
+                </div>
+              </div>
+              <div class="card-bottom">
+                <ul>
+                  <li><a href="#"><i class="ion-ios-bell"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-filing"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-trash"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-more"></i></a></li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="card-txt">
-            <h3>Swift.io</h3>
-            <p>Apple discover the new ios...</p>
+          <div class="col-md-4">
+            <div class="card card-shadow-soft">
+              <div id="twc-5" class="card-top">
+                <h4>MacDonald</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-img">
+                  <img src="testPic/mcdo.jpg" alt="">
+                </div>
+                <div class="card-txt">
+                  <h3>Email Title</h3>
+                  <p>Email content text usualy p...</p>
+                </div>
+              </div>
+              <div class="card-bottom">
+                <ul>
+                  <li><a href="#"><i class="ion-ios-bell"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-filing"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-trash"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-more"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card card-shadow-soft">
+              <div id="twc-6" class="card-top">
+                <h4>Dribble</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-img">
+                  <img src="testPic/drbl.png" alt="">
+                </div>
+                <div class="card-txt">
+                  <h3>Email Title</h3>
+                  <p>Email content text usualy p...</p>
+                </div>
+              </div>
+              <div class="card-bottom">
+                <ul>
+                  <li><a href="#"><i class="ion-ios-bell"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-filing"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-trash"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-more"></i></a></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="card-bottom">
-          <ul>
-            <li><a href="#"><i class="ion-ios-bell"></i></a></li>
-            <li><a href="#"><i class="ion-ios-filing"></i></a></li>
-            <li><a href="#"><i class="ion-ios-trash"></i></a></li>
-            <li><a href="#"><i class="ion-ios-more"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card card-shadow-soft">
-        <div class="card-top">
-          <h4>Newsletter</h4>
-        </div>
-        <div class="card-content">
-          <div class="card-img">
-            <img src="testPic/logo.png" alt="">
+      </section>
+      <section>
+        <hr>
+        <h4 class="context-title">Unknow</h4>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card card-shadow-soft">
+              <div id="twc-7" class="card-top">
+                <h4>Swift</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-img">
+                  <img src="testPic/logo.png" alt="">
+                </div>
+                <div class="card-txt">
+                  <h3>Email Title</h3>
+                  <p>Email content text usualy p...</p>
+                </div>
+              </div>
+              <div class="card-bottom">
+                <ul>
+                  <li><a href="#"><i class="ion-ios-bell"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-filing"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-trash"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-more"></i></a></li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div class="card-txt">
-            <h3>Swift.io</h3>
-            <p>Apple discover the new ios...</p>
+          <div class="col-md-4">
+            <div class="card card-shadow-soft">
+              <div id="twc-8" class="card-top">
+                <h4>GitHub</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-img">
+                  <img src="testPic/git.png" alt="">
+                </div>
+                <div class="card-txt">
+                  <h3>Email Title</h3>
+                  <p>Email content text usualy p...</p>
+                </div>
+              </div>
+              <div class="card-bottom">
+                <ul>
+                  <li><a href="#"><i class="ion-ios-bell"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-filing"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-trash"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-more"></i></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card card-shadow-soft">
+              <div id="twc-9" class="card-top">
+                <h4>VueJS</h4>
+              </div>
+              <div class="card-content">
+                <div class="card-img">
+                  <img src="testPic/vue.png" alt="">
+                </div>
+                <div class="card-txt">
+                  <h3>Email Title</h3>
+                  <p>Email content text usualy p...</p>
+                </div>
+              </div>
+              <div class="card-bottom">
+                <ul>
+                  <li><a href="#"><i class="ion-ios-bell"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-filing"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-trash"></i></a></li>
+                  <li><a href="#"><i class="ion-ios-more"></i></a></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="card-bottom">
-          <ul>
-            <li><a href="#"><i class="ion-ios-bell"></i></a></li>
-            <li><a href="#"><i class="ion-ios-filing"></i></a></li>
-            <li><a href="#"><i class="ion-ios-trash"></i></a></li>
-            <li><a href="#"><i class="ion-ios-more"></i></a></li>
-          </ul>
-        </div>
-      </div>
+      </section>
     </div>
   </div>
+  <footer>
+    <div class="container">
+      <hr>
+    </div>
+  </footer>
+  <!-- <div class="xs-nav">
+    <ul class="xs-item">
+      <li class="nav-item"><a href="#">New</a></li>
+      <li class="nav-item"><a href="#">Allowed</a></li>
+      <li class="nav-item"><a href="#">Digest</a></li>
+      <li class="nav-item"><a href="#">Blacklist</a></li>
+    </ul>
+  </div> -->
 </body>
 
 </html>
