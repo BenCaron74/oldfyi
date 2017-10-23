@@ -15,9 +15,7 @@ function randGrad() {
   var x = Math.floor((Math.random() * 10) + 0);
   return gradientCard[x];
 }
-// $("#seek").on("click", function() {
-//   console.log('aa');
-// });
+
 (function($) {
   $(document).ready(function() {
     // $('.card-top').each(function() {
@@ -44,3 +42,37 @@ function randGrad() {
 
   });
 })(jQuery);
+
+
+$('a').click(function(){
+  if ($(this).parent().hasClass('nav-item')) {
+    var active = '#'+ $("[class*='nav-active']").attr('id');
+    var id = $(this).parent().attr('id');
+    var idNav = '#'+ id;
+    var idContent = '#p'+ id.substr(1);
+    var id = {nav:idNav, content:idContent};
+    sectionSwitch(id, active);
+  } else {
+    return false;
+  }
+});
+
+function sectionSwitch(id, active){
+  var selectedId = $(id.content);
+  var pActive = '#p' + active.substr(2);
+  var pActive = $(pActive);
+  var nActive = $(active);
+  $( "li" ).each(function( index ) {
+    if ($(this).hasClass('nav-active')) {
+      $(this).removeClass('nav-active');;
+    }
+  });
+  pActive.fadeOut('fast', function(){
+    selectedId.fadeIn();
+    $( "li" ).each(function( index ) {
+      if ($(this).is(id.nav)) {
+        $(this).addClass( "nav-active" );
+      }
+    });
+  });
+}

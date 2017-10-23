@@ -1737,6 +1737,10 @@ button {
   font-size: 1.6em;
 }
 
+#pWhitelist,#pDigest,#pBlacklist{
+  display: none;
+}
+
 #twc-1 {
   background: #f8a61d;
 }
