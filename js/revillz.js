@@ -58,7 +58,21 @@ $('a').click(function() {
     return false;
   }
 });
-
+$('.more-nav .ion-android-more-vertical').click(function() {
+  if ($('.xs-nav').is(":visible")) {
+    $('.xs-item').hide();
+    $('.xs-nav').animate({
+      bottom: '100%'
+    }, 200, function(){
+      $('.xs-nav').hide();
+    })
+  } else {
+    $('.xs-nav').show();
+    $('.xs-item').show().parent().animate({
+      bottom: 0
+    }, 200)
+  }
+});
 function sectionSwitch(id, active) {
   var selectedId = $(id.content);
   var pActive = '#p' + active.substr(2);
@@ -160,7 +174,7 @@ $('#whitelistSelected').click(function() {
     });
   });
 });
-$('#digestSelected').click(function() { 
+$('#digestSelected').click(function() {
   $('.card input:checkbox:checked').each(function() {
     $(this).parents('.col-md-4').fadeOut('fast', function(){
       $(this).remove();
