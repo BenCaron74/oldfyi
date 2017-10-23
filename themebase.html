@@ -25,7 +25,8 @@
       <div class="header-user">
         <ul>
           <li class="more-nav"><i class="ion-android-more-vertical"></i></li>
-          <li><i class="ion-android-notifications"></i></li>
+          <li><i id="setting" class="ion-android-settings"></i></li>
+          <li><i id="notif" class="ion-android-notifications"></i></li>
           <li><img class="user-img" src="testPic/user.png" alt=""></li>
         </ul>
       </div>
@@ -44,6 +45,12 @@
     </div>
   </header>
   <div class="content">
+    <div id="loader" class="container">
+      <h2>Processing</h2>
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+      </div>
+    </div>
     <div id="pNew" class="container">
       <section>
         <h4 class="context-title">Newsletters</h4>
@@ -563,26 +570,27 @@
     </div>
     <div class="context-menu">
       <ul>
-        <li><span>Whitelist</span><i class="ion-thumbsup"></i></li>
+        <li><span>Whitelist</span><i id="whitelistSelected" class="ion-thumbsup"></i></li>
         <li><span>Blacklist</span><i id="blacklistSelected" class="ion-thumbsdown"></i></li>
-        <li><span>Digest</span><i class="ion-android-clipboard"></i></li>
+        <li><span>Digest</span><i id="digestSelected" class="ion-android-clipboard"></i></li>
         <li><span>Uncheck all</span><i id="uncheckAll" class="ion-close-round"></i></li>
       </ul>
     </div>
   </div>
-  <footer>
-    <div class="container">
-      <hr>
-    </div>
-  </footer>
-  <!-- <div class="xs-nav">
+  <div class="settings-pane card-shadow">
+    TODO
+  </div>
+  <div class="notification-pane card-shadow">
+    TODO
+  </div>
+  <div class="xs-nav">
     <ul class="xs-item">
       <li class="nav-item"><a href="#">New</a></li>
       <li class="nav-item"><a href="#">Blacklist</a></li>
       <li class="nav-item"><a href="#">Whitelist</a></li>
       <li class="nav-item"><a href="#">Digest</a></li>
     </ul>
-  </div> -->
+  </div>
   <script src="js/jquery.min.js" charset="utf-8"></script>
   <script src="js/colorify.min.js" charset="utf-8"></script>
   <script src="js/revillz.js" charset="utf-8"></script>
