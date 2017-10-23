@@ -1425,6 +1425,7 @@ header {
 
 .header-user li i {
   line-height: 2.5em;
+  cursor: pointer;
 }
 
 .user-img {
@@ -1958,4 +1959,16 @@ margin-bottom: 2em;
   width: 3px;
   height: 10px;
   border-radius: 2px;
+}
+.settings-pane, .notification-pane{
+  z-index: 999;
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  padding: 1em;
+  color: #777;
+  border-radius: .4em;
+  border: 1px solid #fff;
+  background-color: #fff;
+  display: none;
 }

@@ -187,6 +187,38 @@ $('#digestSelected').click(function() {
   });
 });
 
+$('#setting').click(function() {
+  var item = $(this);
+  var offset = item.offset();
+  if ($('.settings-pane').is(":visible")) {
+    $('.settings-pane').fadeOut('fast')
+  } else {
+    console.log(offset.top);
+    console.log(offset.left);
+    $('.notification-pane').css({
+      left: offset.left - 310 +'px',
+      top: offset.top + 'px',
+      position:'fixed'
+    }).fadeIn('fast');
+  }
+});
+$('#notif').click(function() {
+  var item = $(this);
+  var offset = item.offset();
+  if ($('.notification-pane').is(":visible")) {
+    $('.notification-pane').fadeOut('fast')
+  } else {
+    console.log(offset.top);
+    console.log(offset.left);
+    $('.notification-pane').css({
+      left: offset.left - 310 +'px',
+      top: offset.top + 'px',
+      position:'fixed'
+    })
+    $('.notification-pane').fadeIn('slow');
+  }
+});
+
 
 function progress() {
     var progr = document.getElementById('progress');
@@ -204,5 +236,4 @@ function progress() {
             }
     }
 }
-
 progress();
