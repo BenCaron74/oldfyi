@@ -214,8 +214,8 @@ $('#notif').click(function() {
       left: offset.left - 310 +'px',
       top: offset.top + 'px',
       position:'fixed'
-    })
-    $('.notification-pane').fadeIn('slow');
+    });
+    $('.notification-pane').fadeIn('fast');
   }
 });
 
