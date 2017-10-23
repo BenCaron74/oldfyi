@@ -76,3 +76,23 @@ function sectionSwitch(id, active){
     });
   });
 }
+
+$('.card-bottom li b').each(function() {
+  var val = $(this);
+  if (val.text().includes('%')) {
+    var percent = val.text().replace("%", '');
+    if (percent < 33) {
+      val.css('color', '#43A047')
+    } else if (percent < 66) {
+      val.css('color', '#FFB300')
+    } else {
+      val.css('color', '#DD2C00')
+    }
+  } else if (val.text() < 33) {
+    val.css('color', '#43A047')
+  } else if (val.text() < 66) {
+    val.css('color', '#FFB300')
+  } else {
+    val.css('color', '#DD2C00')
+  }
+});
