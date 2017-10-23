@@ -137,7 +137,38 @@ $('#uncheckAll').click(function() {
   })
 });
 $('#blacklistSelected').click(function() {
-  $('.card-top').each(function() {
-    $
+  $('.card input:checkbox:checked').each(function() {
+    $(this).parents('.col-md-4').fadeOut('fast', function(){
+      $(this).remove();
+      $('.context-menu').animate({
+        right: '-10%'
+      }, 300, function() {
+        $('.context-menu').hide()
+      })
+    });
+  });
+});
+$('#whitelistSelected').click(function() {
+  $('.card input:checkbox:checked').each(function() {
+    $(this).parents('.col-md-4').fadeOut('fast', function(){
+      $(this).remove();
+      $('.context-menu').animate({
+        right: '-10%'
+      }, 300, function() {
+        $('.context-menu').hide()
+      })
+    });
+  });
+});
+$('#digestSelected').click(function() { 
+  $('.card input:checkbox:checked').each(function() {
+    $(this).parents('.col-md-4').fadeOut('fast', function(){
+      $(this).remove();
+      $('.context-menu').animate({
+        right: '-10%'
+      }, 300, function() {
+        $('.context-menu').hide()
+      })
+    });
   });
 });
