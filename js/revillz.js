@@ -186,3 +186,23 @@ $('#digestSelected').click(function() {
     });
   });
 });
+
+
+function progress() {
+    var progr = document.getElementById('progress');
+    var progress = 0;
+    var id = setInterval(frame, 50);
+    function frame() {
+        if (progress > $('#loader').width()) {
+            clearInterval(id);
+            $("#loader").fadeOut('fast', function(){
+              $("#pNew").fadeIn('fast');
+            });
+        } else {
+                progress += 5;
+                progr.style.width = progress + 'px';
+            }
+    }
+}
+
+progress();
