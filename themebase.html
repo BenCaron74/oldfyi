@@ -130,7 +130,7 @@
         <h4 class="context-title">Spams</h4>
         <div class="row">
           <div class="col-md-4">
-            <div class="card card-shadow-soft">
+            <div id="twitter" class="card card-shadow-soft">
               <div id="twc-4" class="card-top">
                 <h4>Twitter</h4>
                 <label>
@@ -155,7 +155,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <div class="card card-shadow-soft">
+            <div id="macDonald" class="card card-shadow-soft">
               <div id="twc-5" class="card-top">
                 <h4>MacDonald</h4>
                 <label>
@@ -180,7 +180,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <div class="card card-shadow-soft">
+            <div id="driblbe" class="card card-shadow-soft">
               <div id="twc-6" class="card-top">
                 <h4>Dribble</h4>
                 <label>
@@ -211,7 +211,7 @@
         <h4 class="context-title">Unknow</h4>
         <div class="row">
           <div class="col-md-4">
-            <div class="card card-shadow-soft">
+            <div id="swift" class="card card-shadow-soft">
               <div id="twc-7" class="card-top">
                 <h4>Swift</h4>
                 <label>
@@ -236,7 +236,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <div class="card card-shadow-soft">
+            <div id="github" class="card card-shadow-soft">
               <div id="twc-8" class="card-top">
                 <h4>GitHub</h4>
                 <label>
@@ -261,7 +261,7 @@
             </div>
           </div>
           <div class="col-md-4">
-            <div class="card card-shadow-soft">
+            <div id="vueJS" class="card card-shadow-soft">
               <div id="twc-9" class="card-top">
                 <h4>VueJS</h4>
                 <label>
@@ -560,6 +560,14 @@
     </div>
     <div id="pBlacklist" class="container">
       <h4 class="context-title">Blacklist</h4>
+    </div>
+    <div class="context-menu">
+      <ul>
+        <li><span>Whitelist</span><i class="ion-thumbsup"></i></li>
+        <li><span>Blacklist</span><i id="blacklistSelected" class="ion-thumbsdown"></i></li>
+        <li><span>Digest</span><i class="ion-android-clipboard"></i></li>
+        <li><span>Uncheck all</span><i id="uncheckAll" class="ion-close-round"></i></li>
+      </ul>
     </div>
   </div>
   <footer>

@@ -1,17 +1,19 @@
 @font-face {
- font-family: "Comfortaa";
- src: url("../fonts/Comfortaa-Bold.ttf");
- font-weight: 600;
+  font-family: "Comfortaa";
+  src: url("../fonts/Comfortaa-Bold.ttf");
+  font-weight: 600;
 }
+
 @font-face {
- font-family: "Comfortaa";
- src: url("../fonts/Comfortaa-Regular.ttf");
- font-weight: 400;
+  font-family: "Comfortaa";
+  src: url("../fonts/Comfortaa-Regular.ttf");
+  font-weight: 400;
 }
+
 @font-face {
- font-family: "Comfortaa";
- src: url("../fonts/Comfortaa-Light.ttf");
- font-weight: 300;
+  font-family: "Comfortaa";
+  src: url("../fonts/Comfortaa-Light.ttf");
+  font-weight: 300;
 }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
@@ -1360,7 +1362,6 @@ table {
   border-spacing: 0;
 }
 
-
 /*
 date: 20.10.17
 file: Revillz UI Kit
@@ -1368,7 +1369,9 @@ creator: Matthieu 'HIZEN' Lapalus
 */
 
 /*@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700');*/
+
 /*@import url('https://fonts.googleapis.com/css?family=Comfortaa:300,400,700');*/
+
 body {
   font-family: 'Comfortaa', sans-serif;
 }
@@ -1731,18 +1734,20 @@ button {
   padding: .1em;
   font-size: .8em;
 }
+
 .card-bottom b {
   color: #777;
   font-size: 1.2em;
   font-weight: 600;
   padding-left: .2em;
 }
+
 .card-bottom a {
   color: #292E49;
   font-size: 1.6em;
 }
 
-#pWhitelist,#pDigest,#pBlacklist{
+#pWhitelist, #pDigest, #pBlacklist {
   display: none;
 }
 
@@ -1802,12 +1807,15 @@ button {
   position: relative;
   z-index: 1000;
 }
+
 .option-input:hover {
   background: rgba(255, 255, 255, 0.42);
 }
+
 .option-input:checked {
   background: #fff;
 }
+
 .option-input:checked::before {
   height: 20px;
   width: 20px;
@@ -1815,6 +1823,7 @@ button {
   content: '';
   text-align: center;
 }
+
 .option-input.radio {
   z-index: 1;
   position: absolute;
@@ -1827,7 +1836,7 @@ button {
   border: 2px solid #fff;
 }
 
-.arch-pane{
+.arch-pane {
   display: flex;
   justify-content: space-between;
   padding: 1em;
@@ -1835,15 +1844,18 @@ button {
   border-bottom: 1px solid #eeeeef;
   transition: .3s
 }
-.arch-pane:hover{
+
+.arch-pane:hover {
   background-color: #eeeeef;
 }
-.arch-content{
+
+.arch-content {
   color: #777;
   display: flex;
   line-height: 1em;
 }
-.arch-content .arch-img img{
+
+.arch-content .arch-img img {
   height: 3em;
   width: 3em;
   border-radius: 3em;
@@ -1854,22 +1866,70 @@ button {
   color: #fff;
   object-fit: cover;
 }
+
 .arch-txt {
   padding-top: .1em;
 }
-.arch-txt h2{
+
+.arch-txt h2 {
   color: #6c6c6c;
   font-weight: 600;
   font-size: 1.1em;
   line-height: 1.5em;
 }
-.arch-action ul{
+
+.arch-action ul {
   margin-top: .6em;
 }
-.arch-action li{
+
+.arch-action li {
   margin-left: 1em;
   display: inline;
   font-size: 1.4em;
   color: #777;
   cursor: pointer;
+}
+
+.context-menu {
+  z-index: 999;
+  position: fixed;
+  right: -10%;
+  bottom: 2%;
+  padding: .5em;
+  color: #777;
+  border-radius: 1em;
+  display: none;
+}
+
+.context-menu li {
+  padding: 1em;
+  text-align: right;
+}
+
+.context-menu li span {
+  display: none;
+}
+
+.context-menu li i {
+  cursor: pointer;
+  color: #666666;
+  font-size: 2em;
+  vertical-align: middle;
+  padding-left: .5em;
+}
+
+.ion-thumbsup:hover {
+  color: blue;
+}
+
+.ion-thumbsdown:hover {
+  color: red;
+}
+
+.ion-android-clipboard:hover {
+  color: brown;
+}
+
+.ion-close-round:hover {
+  color: #000;
 }

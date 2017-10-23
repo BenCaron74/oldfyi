@@ -29,7 +29,6 @@ function randGrad() {
     if (offset > 140) {
       $(".header-brand .header-nav").show();
     }
-    console.log(offset);
     $(document).scroll(function() {
       var scrollTop = $(document).scrollTop();
       if (scrollTop > 140 && winWidth > 824) {
@@ -44,34 +43,37 @@ function randGrad() {
 })(jQuery);
 
 
-$('a').click(function(){
+$('a').click(function() {
   if ($(this).parent().hasClass('nav-item')) {
-    var active = '#'+ $("[class*='nav-active']").attr('id');
+    var active = '#' + $("[class*='nav-active']").attr('id');
     var id = $(this).parent().attr('id');
-    var idNav = '#'+ id;
-    var idContent = '#p'+ id.substr(1);
-    var id = {nav:idNav, content:idContent};
+    var idNav = '#' + id;
+    var idContent = '#p' + id.substr(1);
+    var id = {
+      nav: idNav,
+      content: idContent
+    };
     sectionSwitch(id, active);
   } else {
     return false;
   }
 });
 
-function sectionSwitch(id, active){
+function sectionSwitch(id, active) {
   var selectedId = $(id.content);
   var pActive = '#p' + active.substr(2);
   var pActive = $(pActive);
   var nActive = $(active);
-  $( "li" ).each(function( index ) {
+  $("li").each(function(index) {
     if ($(this).hasClass('nav-active')) {
       $(this).removeClass('nav-active');;
     }
   });
-  pActive.fadeOut('fast', function(){
+  pActive.fadeOut('fast', function() {
     selectedId.fadeIn();
-    $( "li" ).each(function( index ) {
+    $("li").each(function(index) {
       if ($(this).is(id.nav)) {
-        $(this).addClass( "nav-active" );
+        $(this).addClass("nav-active");
       }
     });
   });
@@ -98,18 +100,44 @@ $('.card-bottom li b').each(function() {
 });
 var cardArray = [];
 $(".card input").change(function() {
-  if (cardArray.length > 0) {
-    //Empty -> Hide Menu
+  if (this.checked) {
+    cardArray.push($(this).parents('.card').attr('id'))
   } else {
-    //Filled -> Show Menu
-  }
-  console.log('aa');
-    if(this.checked) {
-      cardArray.push($(this).parents('.card').attr('id'))
-    } else {
-      var i = cardArray.indexOf($(this).parents('.card').attr('id'));
-      if(i != -1) {
-      	cardArray.splice(i, 1);
-      }
+    var i = cardArray.indexOf($(this).parents('.card').attr('id'));
+    if (i != -1) {
+      cardArray.splice(i, 1);
     }
+  }
+  if (jQuery.isEmptyObject(cardArray)) {
+    $('.context-menu').animate({
+      right: '-10%'
+    }, 200, function() {
+      $(this).hide();
+    });
+
+  } else {
+    $('.context-menu').show().animate({
+      right: '2%'
+    }, 200);
+  }
+});
+
+$('.context-menu i').mouseenter(function() {
+  $(this).prev().fadeIn('fast');
+}).mouseleave(function() {
+  $(this).prev().fadeOut();
+});
+
+$('#uncheckAll').click(function() {
+  $('input:checkbox:checked').prop('checked', false);
+  $('.context-menu').animate({
+    right: '-10%'
+  }, 300, function() {
+    $('.context-menu').hide()
+  })
+});
+$('#blacklistSelected').click(function() {
+  $('.card-top').each(function() {
+    $
+  });
 });
