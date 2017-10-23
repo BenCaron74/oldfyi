@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
   new WOW().init();
   setTimeout(function() {
@@ -20,7 +19,7 @@ $('#gmail').click(function() {
   $('#yahoo').animateCss('zoomOut');
   $('#other').animateCss('fadeOut');
   $('svg').fadeIn();
-  document.location.href="/newsletters";
+  document.location.href = "/newsletters";
 });
 
 $.fn.extend({
@@ -38,9 +37,8 @@ $('#submit').click(function() {
   isEmail();
 });
 
-$('#email').keyup(function(e){
-  if(e.keyCode == 13)
-  {
+$('#email').keyup(function(e) {
+  if (e.keyCode == 13) {
     isEmail();
   }
 });

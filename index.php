@@ -236,14 +236,15 @@ src="https://www.facebook.com/tr?id=536462993188270&ev=PageView&noscript=1"
   <link href='https://fonts.googleapis.com/css?family=Lato:300,400%7CRaleway:100,400,300,500,600,700%7COpen+Sans:400,500,600' rel=stylesheet type=text/css>
 </head>
 
-<body id="tpl">
+<body>
+  <template id="tpl">
   <div class=nav-container>
     <a id=top></a>
     <nav>
       <div class="nav-bar">
         <div class="module left">
           <a href=index.html>
-<img class=logo alt="Logo Free Your Inbox-Newsletters" src="img/logowebvitrine.png"/></a>
+            <img class=logo alt="Logo Free Your Inbox-Newsletters" src="img/logowebvitrine.png"/></a>
         </div>
         <div class="module widget-handle mobile-toggle right visible-sm visible-xs">
           <i class=ti-menu></i>
@@ -348,6 +349,7 @@ src="https://www.facebook.com/tr?id=536462993188270&ev=PageView&noscript=1"
         <a href="#" class="social-icons"><i class="fa fa-twitter"></i></a>
       </div>
     </footer>
+  </template>
     <script src=js/jquery.min.js></script>
     <script src=js/mustache.js></script>
     <script src=js/translate.js></script>
