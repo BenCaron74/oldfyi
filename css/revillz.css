@@ -1826,3 +1826,50 @@ button {
   padding: 0;
   border: 2px solid #fff;
 }
+
+.arch-pane{
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  background-color: #fff;
+  border-bottom: 1px solid #eeeeef;
+  transition: .3s
+}
+.arch-pane:hover{
+  background-color: #eeeeef;
+}
+.arch-content{
+  color: #777;
+  display: flex;
+  line-height: 1em;
+}
+.arch-content .arch-img img{
+  height: 3em;
+  width: 3em;
+  border-radius: 3em;
+  background: red;
+  margin-right: 1em;
+  text-align: center;
+  vertical-align: middle;
+  color: #fff;
+  object-fit: cover;
+}
+.arch-txt {
+  padding-top: .1em;
+}
+.arch-txt h2{
+  color: #6c6c6c;
+  font-weight: 600;
+  font-size: 1.1em;
+  line-height: 1.5em;
+}
+.arch-action ul{
+  margin-top: .6em;
+}
+.arch-action li{
+  margin-left: 1em;
+  display: inline;
+  font-size: 1.4em;
+  color: #777;
+  cursor: pointer;
+}
