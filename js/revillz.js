@@ -96,3 +96,20 @@ $('.card-bottom li b').each(function() {
     val.css('color', '#DD2C00')
   }
 });
+var cardArray = [];
+$(".card input").change(function() {
+  if (cardArray.length > 0) {
+    //Empty -> Hide Menu
+  } else {
+    //Filled -> Show Menu
+  }
+  console.log('aa');
+    if(this.checked) {
+      cardArray.push($(this).parents('.card').attr('id'))
+    } else {
+      var i = cardArray.indexOf($(this).parents('.card').attr('id'));
+      if(i != -1) {
+      	cardArray.splice(i, 1);
+      }
+    }
+});
