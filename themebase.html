@@ -39,7 +39,7 @@
         <li id="nDigest" class="nav-item"><a href="#">Digest</a></li>
       </ul>
       <div class="webflow-style-input">
-        <input id="seek" class="" type="text" placeholder="Search..."></input>
+        <input id="seek" class="search" type="text" placeholder="Search..."></input>
         <button type="submit"><i class="icon ion-android-arrow-forward"></i></button>
       </div>
     </div>
@@ -55,7 +55,7 @@
       <section>
         <h4 class="context-title">Newsletters</h4>
         <div class="row">
-          <div class="col-md-4">
+          <div id="cardList" class="col-md-4">
             <div id="amazon" class="card card-shadow-soft">
               <div id="twc-1" class="card-top">
                 <h4>Amazon</h4>
@@ -80,7 +80,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div id="cardList" class="col-md-4">
             <div id="newYorkTime" class="card card-shadow-soft">
               <div id="twc-2" class="card-top">
                 <h4>New-York Time</h4>
@@ -105,7 +105,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div id="cardList" class="col-md-4">
             <div id="ESLFrance" class="card card-shadow-soft">
               <div id="twc-3" class="card-top">
                 <h4>ESL France</h4>
@@ -136,7 +136,7 @@
         <hr>
         <h4 class="context-title">Spams</h4>
         <div class="row">
-          <div class="col-md-4">
+          <div id="cardList" class="col-md-4">
             <div id="twitter" class="card card-shadow-soft">
               <div id="twc-4" class="card-top">
                 <h4>Twitter</h4>
@@ -161,7 +161,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div id="cardList" class="col-md-4">
             <div id="macDonald" class="card card-shadow-soft">
               <div id="twc-5" class="card-top">
                 <h4>MacDonald</h4>
@@ -186,7 +186,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div id="cardList" class="col-md-4">
             <div id="driblbe" class="card card-shadow-soft">
               <div id="twc-6" class="card-top">
                 <h4>Dribble</h4>
@@ -217,7 +217,7 @@
         <hr>
         <h4 class="context-title">Unknow</h4>
         <div class="row">
-          <div class="col-md-4">
+          <div id="cardList" class="col-md-4">
             <div id="swift" class="card card-shadow-soft">
               <div id="twc-7" class="card-top">
                 <h4>Swift</h4>
@@ -242,7 +242,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div id="cardList" class="col-md-4">
             <div id="github" class="card card-shadow-soft">
               <div id="twc-8" class="card-top">
                 <h4>GitHub</h4>
@@ -267,7 +267,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-4">
+          <div id="cardList" class="col-md-4">
             <div id="vueJS" class="card card-shadow-soft">
               <div id="twc-9" class="card-top">
                 <h4>VueJS</h4>
@@ -578,10 +578,100 @@
     </div>
   </div>
   <div class="settings-pane card-shadow">
-    TODO
+    <h4>Settings</h4>
+    <div>
+      <ul>
+        <li>Do Something</li>
+        <li>
+          <label class="form-switch">
+            <input type="checkbox" checked>
+            <i></i>
+          </label>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li>Something Else</li>
+        <li>
+          <label class="form-switch">
+            <input type="checkbox">
+            <i></i>
+          </label>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li>Allow Notification</li>
+        <li>
+          <label class="form-switch">
+            <input type="checkbox" checked>
+            <i></i>
+          </label>
+        </li>
+      </ul>
+    </div>
+    <hr>
+    <div class="set-select">
+      Filter Experience
+      <div class="select select--white">
+        <span class="placeholder">Default</span>
+        <ul>
+          <li data-value="es">Default</li>
+          <li data-value="en">Full Control</li>
+          <li data-value="fr">Inteligent</li>
+          <li data-value="de">User Control</li>
+        </ul>
+        <input type="hidden" name="changemetoo"/>
+      </div>
+      <div class="select select--white">
+        <span class="placeholder">en - US</span>
+        <ul>
+          <li data-value="es">en - US</li>
+          <li data-value="en">fr - FR</li>
+          <li data-value="fr">es - ES</li>
+          <li data-value="de">es - AS</li>
+        </ul>
+        <input type="hidden" name="changemetoo"/>
+      </div>
+    </div>
+
+
   </div>
+
   <div class="notification-pane card-shadow">
-    TODO
+    <h4>Notification</h4>
+    <div class="notif">
+      <div class="notif-icon">
+        <i class="ion-speedometer"></i>
+      </div>
+      <div class="notif-content">
+        <h5>Time Saved</h5>
+        <p>Congratulation, since 2017 y...</p>
+      </div>
+      <span>24/10/2017</span>
+    </div>
+    <div class="notif">
+      <div class="notif-icon">
+        <i class="ion-speedometer"></i>
+      </div>
+      <div class="notif-content">
+        <h5>Time Saved</h5>
+        <p>Congratulation, since 2017 y...</p>
+      </div>
+      <span>24/10/2017</span>
+    </div>
+    <div class="notif">
+      <div class="notif-icon">
+        <i class="ion-speedometer"></i>
+      </div>
+      <div class="notif-content">
+        <h5>Time Saved</h5>
+        <p>Congratulation, since 2017 y...</p>
+      </div>
+      <span>24/10/2017</span>
+    </div>
   </div>
   <div class="xs-nav">
     <ul class="xs-item">
@@ -592,6 +682,7 @@
     </ul>
   </div>
   <script src="js/jquery.min.js" charset="utf-8"></script>
+  <script src="js/list.js" charset="utf-8"></script>
   <script src="js/colorify.min.js" charset="utf-8"></script>
   <script src="js/revillz.js" charset="utf-8"></script>
 </body>

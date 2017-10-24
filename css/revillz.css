@@ -1968,7 +1968,210 @@ margin-bottom: 2em;
   padding: 1em;
   color: #777;
   border-radius: .4em;
-  border: 1px solid #fff;
   background-color: #fff;
   display: none;
+}
+.notification-pane{
+  padding: 1em 0;
+}
+.settings-pane h4{
+  margin-bottom: 1em;
+  font-weight: 600;
+}
+
+.settings-pane ul{
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 0;
+}
+.settings-pane hr{
+  margin: 0;
+  margin-top: .5em;
+}
+.form-switch {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.form-switch i {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 16px;
+  background-color: #e6e6e6;
+  border-radius: 23px;
+  vertical-align: text-bottom;
+  transition: all 0.3s linear;
+}
+.form-switch i::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 32px;
+  height: 12px;
+  background-color: #fff;
+  border-radius: 11px;
+  transform: translate3d(2px, 2px, 0) scale3d(1, 1, 1);
+  transition: all 0.25s linear;
+}
+.form-switch i::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  border-radius: 11px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24);
+  transform: translate3d(2px, 2px, 0);
+  transition: all 0.2s ease-in-out;
+}
+.form-switch:active i::after {
+  width: 28px;
+  transform: translate3d(2px, 2px, 0);
+}
+.form-switch:active input:checked + i::after {
+  transform: translate3d(16px, 2px, 0);
+}
+.form-switch input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.form-switch input:checked + i {
+  background-color: #516775;
+}
+.form-switch input:checked + i::before {
+  transform: translate3d(18px, 2px, 0) scale3d(0, 0, 0);
+}
+.form-switch input:checked + i::after {
+  transform: translate3d(22px, 2px, 0);
+}
+.select {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  margin-top: .5em;
+  width: 100%;
+  max-width: 325px;
+  color: #cccccc;
+  vertical-align: middle;
+  text-align: left;
+  border: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-touch-callout: none;
+}
+.select .placeholder {
+  position: relative;
+  display: block;
+  background-color: #393d41;
+  z-index: 1;
+  padding: 1em;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.select .placeholder:hover {
+  background: #34383c;
+}
+.select .placeholder:after {
+  position: absolute;
+  right: 1em;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  font-family: 'FontAwesome';
+  content: '\f078';
+  z-index: 10;
+}
+.select.is-open .placeholder:after {
+  content: '\f123';
+}
+.select.is-open ul {
+  display: block;
+}
+.select.select--white .placeholder {
+  background: #fff;
+  color: #999;
+  font-size: .9em;
+}
+.select.select--white .placeholder:hover {
+  background: #fafafa;
+}
+.select ul {
+  display: none;
+  position: absolute;
+  overflow: hidden;
+  overflow-y: auto;
+  width: 100%;
+  background: #fff;
+  border-radius: 2px;
+  top: 100%;
+  left: 0;
+  list-style: none;
+  margin: 5px 0 0 0;
+  padding: 0;
+  z-index: 100;
+  max-height: 120px;
+}
+.select ul li {
+  display: block;
+  text-align: left;
+  padding: 0.8em 1em 0.8em 1em;
+  color: #999;
+  cursor: pointer;
+  font-size: .8em;
+}
+.select ul li:hover {
+  background: #4ebbf0;
+  color: #fff;
+}
+.set-select{
+  text-align: center;
+  padding-top: 1.5em;
+}
+.notification-pane h4{
+  padding-bottom: 1em;
+  font-weight: 600;
+  padding-left: 1em;
+  border-bottom: 1px solid #d6d5d5;
+}
+.notif {
+  font-size: .9em;
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 1px solid #d6d5d5;
+  cursor: pointer;
+  transition: .3s;
+}
+.notif:hover {
+  background-color: #e2e2e2;
+}
+.notif-icon{
+  font-size: 2.4em;
+  padding-right: .4em;
+  padding-left: .4em;
+  padding-top: .36em;
+  color: #616060;
+  background-color: #e2e2e2;
+}
+.notif-content{
+  padding-left: .8em;
+  line-height: 1.4em;
+  padding-bottom: .8em;
+}
+.notif h5{
+  padding-top: .8em;
+  font-weight: 600;
+}
+.notif span{
+  position: absolute;
+  float: right;
+  margin-right: .1em;
+  font-size: .8em;
+  margin-left: 20em;
+  margin-top: .5em;
 }
