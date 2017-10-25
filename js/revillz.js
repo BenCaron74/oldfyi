@@ -252,8 +252,10 @@ $('.select').on('click','.placeholder',function(){
   parent.find('input[type=hidden]').attr('value', $(this).attr('data-value') );
 });
 
-var options = {
-    valueNames: [ 'mail-sender' ]
-};
-
-var cardList = new List('cardList', options);
+$('#suggestAct').mouseenter(function() {
+  $('#whiteAct, #blackAct, #otherAct ').show();
+  // $('#whiteAct, #blackAct, #otherAct ').show().animate({
+  //   opacity: 1,
+  // });
+  console.log('echo');
+});
