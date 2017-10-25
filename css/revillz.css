@@ -1892,7 +1892,7 @@ button {
   cursor: pointer;
 }
 
-.context-menu {
+/*.context-menu {
   z-index: 999;
   position: fixed;
   right: -10%;
@@ -1934,7 +1934,7 @@ button {
 
 .ion-close-round:hover {
   color: #000;
-}
+}*/
 #loader{
 margin-top: 10%;
 }

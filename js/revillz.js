@@ -112,80 +112,80 @@ $('.card-bottom li b').each(function() {
     val.css('color', '#DD2C00')
   }
 });
-var cardArray = [];
-$(".card input").change(function() {
-  if (this.checked) {
-    cardArray.push($(this).parents('.card').attr('id'))
-  } else {
-    var i = cardArray.indexOf($(this).parents('.card').attr('id'));
-    if (i != -1) {
-      cardArray.splice(i, 1);
-    }
-  }
-  if (jQuery.isEmptyObject(cardArray)) {
-    $('.context-menu').animate({
-      right: '-10%'
-    }, 200, function() {
-      $(this).hide();
-    });
-
-  } else {
-    $('.context-menu').show().animate({
-      right: '2%'
-    }, 200);
-  }
-});
-
-$('.context-menu i').mouseenter(function() {
-  $(this).prev().fadeIn('fast');
-}).mouseleave(function() {
-  $(this).prev().fadeOut();
-});
-
-$('#uncheckAll').click(function() {
-  $('input:checkbox:checked').prop('checked', false);
-  $('.context-menu').animate({
-    right: '-10%'
-  }, 300, function() {
-    $('.context-menu').hide()
-  })
-});
-$('#blacklistSelected').click(function() {
-  $('.card input:checkbox:checked').each(function() {
-    $(this).parents('.col-md-4').fadeOut('fast', function(){
-      $(this).remove();
-      $('.context-menu').animate({
-        right: '-10%'
-      }, 300, function() {
-        $('.context-menu').hide()
-      })
-    });
-  });
-});
-$('#whitelistSelected').click(function() {
-  $('.card input:checkbox:checked').each(function() {
-    $(this).parents('.col-md-4').fadeOut('fast', function(){
-      $(this).remove();
-      $('.context-menu').animate({
-        right: '-10%'
-      }, 300, function() {
-        $('.context-menu').hide()
-      })
-    });
-  });
-});
-$('#digestSelected').click(function() {
-  $('.card input:checkbox:checked').each(function() {
-    $(this).parents('.col-md-4').fadeOut('fast', function(){
-      $(this).remove();
-      $('.context-menu').animate({
-        right: '-10%'
-      }, 300, function() {
-        $('.context-menu').hide()
-      })
-    });
-  });
-});
+// var cardArray = [];
+// $(".card input").change(function() {
+//   if (this.checked) {
+//     cardArray.push($(this).parents('.card').attr('id'))
+//   } else {
+//     var i = cardArray.indexOf($(this).parents('.card').attr('id'));
+//     if (i != -1) {
+//       cardArray.splice(i, 1);
+//     }
+//   }
+//   if (jQuery.isEmptyObject(cardArray)) {
+//     $('.context-menu').animate({
+//       right: '-10%'
+//     }, 200, function() {
+//       $(this).hide();
+//     });
+//
+//   } else {
+//     $('.context-menu').show().animate({
+//       right: '2%'
+//     }, 200);
+//   }
+// });
+//
+// $('.context-menu i').mouseenter(function() {
+//   $(this).prev().fadeIn('fast');
+// }).mouseleave(function() {
+//   $(this).prev().fadeOut();
+// });
+//
+// $('#uncheckAll').click(function() {
+//   $('input:checkbox:checked').prop('checked', false);
+//   $('.context-menu').animate({
+//     right: '-10%'
+//   }, 300, function() {
+//     $('.context-menu').hide()
+//   })
+// });
+// $('#blacklistSelected').click(function() {
+//   $('.card input:checkbox:checked').each(function() {
+//     $(this).parents('.col-md-4').fadeOut('fast', function(){
+//       $(this).remove();
+//       $('.context-menu').animate({
+//         right: '-10%'
+//       }, 300, function() {
+//         $('.context-menu').hide()
+//       })
+//     });
+//   });
+// });
+// $('#whitelistSelected').click(function() {
+//   $('.card input:checkbox:checked').each(function() {
+//     $(this).parents('.col-md-4').fadeOut('fast', function(){
+//       $(this).remove();
+//       $('.context-menu').animate({
+//         right: '-10%'
+//       }, 300, function() {
+//         $('.context-menu').hide()
+//       })
+//     });
+//   });
+// });
+// $('#digestSelected').click(function() {
+//   $('.card input:checkbox:checked').each(function() {
+//     $(this).parents('.col-md-4').fadeOut('fast', function(){
+//       $(this).remove();
+//       $('.context-menu').animate({
+//         right: '-10%'
+//       }, 300, function() {
+//         $('.context-menu').hide()
+//       })
+//     });
+//   });
+// });
 
 $('#setting').click(function() {
   var item = $(this);
