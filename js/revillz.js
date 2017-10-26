@@ -231,7 +231,8 @@ function progress() {
               $("#pNew").fadeIn('fast');
             });
         } else {
-                progress += 5;
+                progress += 25;
+                //Set progress += 5;
                 progr.style.width = progress + 'px';
             }
     }
@@ -252,10 +253,45 @@ $('.select').on('click','.placeholder',function(){
   parent.find('input[type=hidden]').attr('value', $(this).attr('data-value') );
 });
 
-$('#suggestAct').mouseenter(function() {
-  $('#whiteAct, #blackAct, #otherAct ').show();
-  // $('#whiteAct, #blackAct, #otherAct ').show().animate({
-  //   opacity: 1,
-  // });
-  console.log('echo');
+$('#otherAct').click(function(){
+  $(this).toggleClass('flip-action');
+  if($('.card-content-overlay').css('display') == 'none'){
+    $(this).parents('.card-top').next().find('.card-img').fadeOut();
+    $(this).parents('.card-top').next().find('.card-txt').fadeOut(function(){
+      $(this).parents('.card-content').children().first().slideDown();
+    });
+  } else {
+    $(this).parents('.card-top').next().find('.card-content-overlay').slideUp(function(){
+      $(this).nextAll().fadeIn();
+    });
+  }
+});
+$.fn.extend({
+    revealAction: function (animationName) {
+        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+        this.addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).removeClass('animated ' + animationName);
+        });
+        return this;
+    }
+});
+$('#blacklistAct').click(function() {
+  $(this).parents('.card').fadeOut(function(){
+    $(this).parent().remove();
+  })
+});
+$('#whitelistAct').click(function() {
+  $(this).parents('.card').fadeOut(function(){
+    $(this).parent().remove();
+  })
+});
+$('#digestAct').click(function() {
+  $(this).parents('.card').fadeOut(function(){
+    $(this).parent().remove();
+  })
+});
+$('#suggestAct, #deleteAct').click(function() {
+  $(this).parents('.card').fadeOut(function(){
+    $(this).parent().remove();
+  })
 });
