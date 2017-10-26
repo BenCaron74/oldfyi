@@ -1893,6 +1893,30 @@ hr {
     width: 1170px;
   }
 }
+.container-home {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+@media (min-width: 768px) {
+  .container-home {
+    width: 750px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container-home {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container-home {
+    width: 1170px;
+  }
+}
 
 .container-fluid {
   margin-right: auto;
@@ -3217,10 +3241,11 @@ button {
   border-radius: .7em .7em .6em .6em;
   display: inline-block;
   min-height: 12em;
-  margin: 1rem;
+  margin: 1rem 0;
   position: relative;
   min-width: 22em;
   color: #777;
+  text-align: left;
 }
 
 .card-shadow-soft {
