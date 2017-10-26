@@ -69,7 +69,7 @@ $('.more-nav .ion-android-more-vertical').click(function() {
   } else {
     $('.xs-nav').show();
     $('.xs-item').show().parent().animate({
-      bottom: 0
+      bottom: '70%'
     }, 200)
   }
 });

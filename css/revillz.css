@@ -3052,14 +3052,14 @@ header {
 }
 
 .xs-item {
-  margin-top: 50vh;
+  margin-top: 18vh;
   transform: translateY(-50%);
   display: none;
 }
 
 .xs-item li {
   text-align: center;
-  line-height: 5em;
+  line-height: 2.5em;
 }
 
 .xs-item li.nav-item:hover {
