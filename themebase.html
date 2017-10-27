@@ -54,11 +54,12 @@
     <div id="pNew" class="container">
       <section>
         <h4 class="context-title">Newsletters</h4>
-        <div class="">
-          <div id="cardList" class="col-md-4 col-sm-6" align="center">
-            <div id="amazon" class="card card-shadow-soft">
-              <div id="twc-1" class="card-top">
-                <h4>{{ sender }}</h4>
+        <div id="cardList">
+          {{#results}}
+          <div id="" class="col-md-4 col-sm-6" align="center">
+            <div id="" class="card card-shadow-soft">
+              <div id="" class="card-top">
+                <h4>{{ fromname }}</h4>
                 <div class="card-action">
                   <div id="suggestAct" class="">
                     <i class="ion-android-delete" href="#"></i>
@@ -78,322 +79,22 @@
                   </ul>
                 </div>
                 <div class="card-img">
-                  <img src="testPic/amz.jpg" alt="">
+                  <img id="{{ id }}" class="yoloxer" src="{{ img }}" alt="">
                 </div>
                 <div class="card-txt">
-                  <h3>{{ subject }}</h3>
-                  <p>{{ content }}</p>
+                  <h3>{{from}}</h3>
+                  <p>{{subject}}</p>
                 </div>
               </div>
               <div class="card-bottom">
                 <ul>
-                  <li>number: <b>34</b></li>
-                  <li>open rate: <b>98%</b> </li>
+                  <li>received: <b>{{received}}</b></li>
+                  <li>open rate: <b>{{openrate}}%</b> </li>
                 </ul>
               </div>
             </div>
           </div>
-          <div id="cardList" class="col-md-4 col-sm-6" align="center">
-            <div id="newYorkTime" class="card card-shadow-soft">
-              <div id="twc-2" class="card-top">
-                <h4>New-York Time</h4>
-                <label>
-                  <input type="checkbox" class="option-input radio" name="example" />
-                </label>
-              </div>
-              <div class="card-content">
-                <div class="card-img">
-                  <img src="testPic/time.png" alt="">
-                </div>
-                <div class="card-txt">
-                  <h3>Email Title</h3>
-                  <p>Email content text usualy p...</p>
-                </div>
-              </div>
-              <div class="card-bottom">
-                <ul>
-                  <li>number: <b>112</b></li>
-                  <li>open rate: <b>8%</b> </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div id="cardList" class="col-md-4 col-sm-6" align="center">
-            <div id="ESLFrance" class="card card-shadow-soft">
-              <div id="twc-3" class="card-top">
-                <h4>ESL France</h4>
-                <label>
-                  <input type="checkbox" class="option-input radio" name="example" />
-                </label>
-              </div>
-              <div class="card-content">
-                <div class="card-img">
-                  <img src="testPic/esl.png" alt="">
-                </div>
-                <div class="card-txt">
-                  <h3>Email Title</h3>
-                  <p>Email content text usualy p...</p>
-                </div>
-              </div>
-              <div class="card-bottom">
-                <ul>
-                  <li>number: <b>12</b></li>
-                  <li>open rate: <b>51%</b> </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div id="cardList" class="col-md-4 col-sm-6" align="center">
-            <div id="amazon" class="card card-shadow-soft">
-              <div id="twc-1" class="card-top">
-                <h4>Amazon</h4>
-                <div class="card-action">
-                  <div id="suggestAct" class="">
-                    <i class="ion-android-delete" href="#"></i>
-                  </div>
-                  <div id="otherAct">
-                    <i  class="ion-chevron-down" href="#"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="card-content">
-                <div class="card-content-overlay">
-                  <ul>
-                    <li id="whitelistAct" class="ion-checkmark-circled"></li>
-                    <li id="blacklistAct" class="ion-close-circled"></li>
-                    <li id="digestAct" class="ion-android-archive"></li>
-                    <li id="deleteAct" class="ion-android-delete"></li>
-                  </ul>
-                </div>
-                <div class="card-img">
-                  <img src="testPic/amz.jpg" alt="">
-                </div>
-                <div class="card-txt">
-                  <h3>Email Title</h3>
-                  <p>Email content text usualy p...</p>
-                </div>
-              </div>
-              <div class="card-bottom">
-                <ul>
-                  <li>number: <b>34</b></li>
-                  <li>open rate: <b>98%</b> </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div id="cardList" class="col-md-4 col-sm-6" align="center">
-            <div id="newYorkTime" class="card card-shadow-soft">
-              <div id="twc-2" class="card-top">
-                <h4>New-York Time</h4>
-                <label>
-                  <input type="checkbox" class="option-input radio" name="example" />
-                </label>
-              </div>
-              <div class="card-content">
-                <div class="card-img">
-                  <img src="testPic/time.png" alt="">
-                </div>
-                <div class="card-txt">
-                  <h3>Email Title</h3>
-                  <p>Email content text usualy p...</p>
-                </div>
-              </div>
-              <div class="card-bottom">
-                <ul>
-                  <li>number: <b>112</b></li>
-                  <li>open rate: <b>8%</b> </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div id="cardList" class="col-md-4 col-sm-6" align="center">
-            <div id="ESLFrance" class="card card-shadow-soft">
-              <div id="twc-3" class="card-top">
-                <h4>ESL France</h4>
-                <label>
-                  <input type="checkbox" class="option-input radio" name="example" />
-                </label>
-              </div>
-              <div class="card-content">
-                <div class="card-img">
-                  <img src="testPic/esl.png" alt="">
-                </div>
-                <div class="card-txt">
-                  <h3>Email Title</h3>
-                  <p>Email content text usualy p...</p>
-                </div>
-              </div>
-              <div class="card-bottom">
-                <ul>
-                  <li>number: <b>12</b></li>
-                  <li>open rate: <b>51%</b> </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section>
-        <hr>
-        <h4 class="context-title">Spams</h4>
-        <div class="row">
-          <div id="cardList" class="col-md-4 col-sm-6" align="center">
-            <div id="twitter" class="card card-shadow-soft">
-              <div id="twc-4" class="card-top">
-                <h4>Twitter</h4>
-                <label>
-                  <input type="checkbox" class="option-input radio" name="example" />
-                </label>
-              </div>
-              <div class="card-content">
-                <div class="card-img">
-                  <img src="testPic/twtr.png" alt="">
-                </div>
-                <div class="card-txt">
-                  <h3>Email Title</h3>
-                  <p>Email content text usualy p...</p>
-                </div>
-              </div>
-              <div class="card-bottom">
-                <ul>
-                  <li>number: <b>34</b></li>
-                  <li>open rate: <b>98%</b> </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div id="cardList" class="col-md-4 col-sm-6" align="center">
-            <div id="macDonald" class="card card-shadow-soft">
-              <div id="twc-5" class="card-top">
-                <h4>MacDonald</h4>
-                <label>
-                  <input type="checkbox" class="option-input radio" name="example" />
-                </label>
-              </div>
-              <div class="card-content">
-                <div class="card-img">
-                  <img src="testPic/mcdo.jpg" alt="">
-                </div>
-                <div class="card-txt">
-                  <h3>Email Title</h3>
-                  <p>Email content text usualy p...</p>
-                </div>
-              </div>
-              <div class="card-bottom">
-                <ul>
-                  <li>number: <b>34</b></li>
-                  <li>open rate: <b>98%</b> </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div id="cardList" class="col-md-4 col-sm-6" align="center">
-            <div id="driblbe" class="card card-shadow-soft">
-              <div id="twc-6" class="card-top">
-                <h4>Dribble</h4>
-                <label>
-                  <input type="checkbox" class="option-input radio" name="example" />
-                </label>
-              </div>
-              <div class="card-content">
-                <div class="card-img">
-                  <img src="testPic/drbl.png" alt="">
-                </div>
-                <div class="card-txt">
-                  <h3>Email Title</h3>
-                  <p>Email content text usualy p...</p>
-                </div>
-              </div>
-              <div class="card-bottom">
-                <ul>
-                  <li>number: <b>34</b></li>
-                  <li>open rate: <b>98%</b> </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section>
-        <hr>
-        <h4 class="context-title">Unknow</h4>
-        <div class="row">
-          <div id="cardList" class="col-md-4 col-sm-6" align="center">
-            <div id="swift" class="card card-shadow-soft">
-              <div id="twc-7" class="card-top">
-                <h4>Swift</h4>
-                <label>
-                  <input type="checkbox" class="option-input radio" name="example" />
-                </label>
-              </div>
-              <div class="card-content">
-                <div class="card-img">
-                  <img src="testPic/logo.png" alt="">
-                </div>
-                <div class="card-txt">
-                  <h3>Email Title</h3>
-                  <p>Email content text usualy p...</p>
-                </div>
-              </div>
-              <div class="card-bottom">
-                <ul>
-                  <li>number: <b>34</b></li>
-                  <li>open rate: <b>98%</b> </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div id="cardList" class="col-md-4 col-sm-6" align="center">
-            <div id="github" class="card card-shadow-soft">
-              <div id="twc-8" class="card-top">
-                <h4>GitHub</h4>
-                <label>
-                  <input type="checkbox" class="option-input radio" name="example" />
-                </label>
-              </div>
-              <div class="card-content">
-                <div class="card-img">
-                  <img src="testPic/git.png" alt="">
-                </div>
-                <div class="card-txt">
-                  <h3>Email Title</h3>
-                  <p>Email content text usualy p...</p>
-                </div>
-              </div>
-              <div class="card-bottom">
-                <ul>
-                  <li>number: <b>34</b></li>
-                  <li>open rate: <b>98%</b> </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div id="cardList" class="col-md-4 col-sm-6" align="center">
-            <div id="vueJS" class="card card-shadow-soft">
-              <div id="twc-9" class="card-top">
-                <h4>VueJS</h4>
-                <label>
-                  <input type="checkbox" class="option-input radio" name="example" />
-                </label>
-              </div>
-              <div class="card-content">
-                <div class="card-img">
-                  <img src="testPic/vue.png" alt="">
-                </div>
-                <div class="card-txt">
-                  <h3>Email Title</h3>
-                  <p>Email content text usualy p...</p>
-                </div>
-              </div>
-              <div class="card-bottom">
-                <ul>
-                  <li>number: <b>34</b></li>
-                  <li>open rate: <b>98%</b> </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+          {{/results}}
         </div>
       </section>
     </div>
@@ -801,6 +502,7 @@
       <li id="nDigest" class="nav-item"><a href="#">Digest</a></li>
     </ul>
   </div>
+  <script src="js/color-thief.js" charset="utf-8"></script>
   <script src="js/jquery.min.js" charset="utf-8"></script>
   <script src="js/revillz.js" charset="utf-8"></script>
 </body>

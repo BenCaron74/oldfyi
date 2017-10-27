@@ -3243,7 +3243,7 @@ button {
   min-height: 12em;
   margin: 1rem 0;
   position: relative;
-  min-width: 22em;
+  max-width: 22em;
   color: #777;
   text-align: left;
 }
@@ -3274,7 +3274,7 @@ button {
   text-transform: uppercase;
   border-bottom: 1px solid #eee;
   font-size: 1em;
-  background: linear-gradient(to right, #ff5e62, #ff5e62);
+  background: #292E49;
   display: flex;
   justify-content: space-between;
 }
@@ -3308,13 +3308,23 @@ button {
 .card-txt h3 {
   color: #777;
   font-weight: 600;
-  font-size: 1.1em;
+  font-size: 1em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .card-txt p {
   line-height: 1.4em;
   font-size: .9em;
   color: #777;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .card-bottom {}
