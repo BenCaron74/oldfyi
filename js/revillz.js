@@ -1,10 +1,3 @@
-/*!
- * mustache.js - Logic-less {{mustache}} templates with JavaScript
- * http://github.com/janl/mustache.js
- */
-
-/*global define: false Mustache: true*/
-
 (function defineMustache (global, factory) {
   if (typeof exports === 'object' && exports && typeof exports.nodeName !== 'string') {
     factory(exports); // CommonJS
@@ -80,28 +73,6 @@
   var curlyRe = /\s*\}/;
   var tagRe = /#|\^|\/|>|\{|&|=|!/;
 
-  /**
-   * Breaks up the given `template` string into a tree of tokens. If the `tags`
-   * argument is given here it must be an array with two string values: the
-   * opening and closing tags used in the template (e.g. [ "<%", "%>" ]). Of
-   * course, the default is to use mustaches (i.e. mustache.tags).
-   *
-   * A token is an array with at least 4 elements. The first element is the
-   * mustache symbol that was used inside the tag, e.g. "#" or "&". If the tag
-   * did not contain a symbol (i.e. {{myValue}}) this element is "name". For
-   * all text that appears outside a symbol this element is "text".
-   *
-   * The second element of a token is its "value". For mustache tags this is
-   * whatever else was inside the tag besides the opening symbol. For text tokens
-   * this is the text itself.
-   *
-   * The third and fourth elements of the token are the start and end indices,
-   * respectively, of the token in the original template.
-   *
-   * Tokens that are the root node of a subtree contain two more elements: 1) an
-   * array of tokens in the subtree and 2) the index in the original template at
-   * which the closing tag for that section begins.
-   */
   function parseTemplate (template, tags) {
     if (!template)
       return [];
@@ -253,12 +224,6 @@
     return squashedTokens;
   }
 
-  /**
-   * Forms the given array of `tokens` into a nested tree structure where
-   * tokens that represent a section have two additional items: 1) an array of
-   * all tokens that appear in that section and 2) the index in the original
-   * template that represents the end of that section.
-   */
   function nestTokens (tokens) {
     var nestedTokens = [];
     var collector = nestedTokens;
@@ -385,17 +350,6 @@
           names = name.split('.');
           index = 0;
 
-          /**
-           * Using the dot notion path in `name`, we descend through the
-           * nested objects.
-           *
-           * To be certain that the lookup has been successful, we have to
-           * check if the last object in the path actually has the property
-           * we are looking for. We store the result in `lookupHit`.
-           *
-           * This is specially necessary for when the value has been set to
-           * `undefined` and we want to avoid looking up parent contexts.
-           **/
           while (value != null && index < names.length) {
             if (index === names.length - 1)
               lookupHit = hasProperty(value, names[index]);
@@ -422,11 +376,6 @@
     return value;
   };
 
-  /**
-   * A Writer knows how to take a stream of tokens and render them to a
-   * string, given a context. It also maintains a cache of templates to
-   * avoid the need to parse the same template twice.
-   */
   function Writer () {
     this.cache = {};
   }
@@ -452,15 +401,7 @@
     return tokens;
   };
 
-  /**
-   * High-level method that is used to render the given `template` with
-   * the given `view`.
-   *
-   * The optional `partials` argument may be an object that contains the
-   * names and templates of partials that are used in the template. It may
-   * also be a function that is used to load partial templates on the fly
-   * that takes a single argument: the name of the partial.
-   */
+
   Writer.prototype.render = function render (template, view, partials) {
     var tokens = this.parse(template);
     var context = (view instanceof Context) ? view : new Context(view);
@@ -596,6 +537,8 @@
   return mustache;
 }));
 
+
+
 var gradNum = 0;
 var gradientCard = ["#e53935","#d81b60","#8e24aa","#5e35b1","#3949ab",
 "#1e88e5","#039be5","#00acc1","#00897b","#43a047","#7cb342","#c0ca33",
@@ -605,17 +548,82 @@ var gradientCard = ["#e53935","#d81b60","#8e24aa","#5e35b1","#3949ab",
 function randGrad() {
   var x = 1 + Math.floor(Math.random() * 19);
   gradNum++;
-  console.log(gradNum);
   return gradientCard[gradNum];
 }
 
+
+function getAverageRGB(imgEl) {
+
+    var blockSize = 5, // only visit every 5 pixels
+        defaultRGB = {r:0,g:0,b:0}, // for non-supporting envs
+        canvas = document.createElement('canvas'),
+        context = canvas.getContext && canvas.getContext('2d'),
+        data, width, height,
+        i = -4,
+        length,
+        rgb = {r:0,g:0,b:0},
+        count = 0;
+
+    if (!context) {
+        return defaultRGB;
+    }
+
+    height = canvas.height = imgEl.naturalHeight || imgEl.offsetHeight || imgEl.height;
+    width = canvas.width = imgEl.naturalWidth || imgEl.offsetWidth || imgEl.width;
+
+    context.drawImage(imgEl, 0, 0);
+
+    try {
+        data = context.getImageData(0, 0, width, height);
+    } catch(e) {
+        /* security error, img on diff domain */alert('x');
+        return defaultRGB;
+    }
+
+    length = data.data.length;
+
+    while ( (i += blockSize * 4) < length ) {
+        ++count;
+        rgb.r += data.data[i];
+        rgb.g += data.data[i+1];
+        rgb.b += data.data[i+2];
+    }
+
+    // ~~ used to floor values
+    rgb.r = ~~(rgb.r/count);
+    rgb.g = ~~(rgb.g/count);
+    rgb.b = ~~(rgb.b/count);
+
+    return rgb;
+
+}
+
+function cardTopCol(){
+  $('.card-top').each(function() {
+    var img = $(this).parents('.card').find('img').attr('id');
+    var colorThief = new ColorThief();
+    colorThief.getColor(img);
+
+    $(this).css('background', 'rgb('+rgb.r+','+rgb.g+','+rgb.b+')');
+  });
+}
+
 (function($) {
-  $(document).ready(function() {
-    $('.card-top').each(function() {
-      $(this).css({
-        background: randGrad()
-      });
+  var jqxhr = $.getJSON('yolo.json', function(json) {
+    var card = $('#cardList').html();
+    Mustache.parse(card);
+    var rendered = Mustache.render(card, json);
+    $('#cardList').html(rendered).promise().done(function() {
+      numColor();
+      cardTopCol();
     });
+  }).fail(function() {
+    console.log('JSON data loading failed');
+  });
+
+
+
+  $(document).ready(function() {
 
     var winWidth = $(window).width();
     var offset = $(".header-brand").offset().top;
@@ -633,7 +641,7 @@ function randGrad() {
     });
 
   });
-})(jQuery);
+
 
 
 $('a').click(function() {
@@ -691,26 +699,27 @@ function sectionSwitch(id, active) {
     });
   });
 }
-
-$('.card-bottom li b').each(function() {
-  var val = $(this);
-  if (val.text().includes('%')) {
-    var percent = val.text().replace("%", '');
-    if (percent < 33) {
+function numColor(){
+  $('.card-bottom li b').each(function() {
+    var val = $(this);
+    if (val.text().includes('%')) {
+      var percent = val.text().replace("%", '');
+      if (percent < 33) {
+        val.css('color', '#43A047')
+      } else if (percent < 66) {
+        val.css('color', '#FFB300')
+      } else {
+        val.css('color', '#DD2C00')
+      }
+    } else if (val.text() < 33) {
       val.css('color', '#43A047')
-    } else if (percent < 66) {
+    } else if (val.text() < 66) {
       val.css('color', '#FFB300')
     } else {
       val.css('color', '#DD2C00')
     }
-  } else if (val.text() < 33) {
-    val.css('color', '#43A047')
-  } else if (val.text() < 66) {
-    val.css('color', '#FFB300')
-  } else {
-    val.css('color', '#DD2C00')
-  }
-});
+  });
+}
 
 $('#setting').click(function() {
   var item = $(this);
@@ -779,6 +788,7 @@ $('.select').on('click','.placeholder',function(){
 });
 
 $('#otherAct').click(function(){
+  alert('yolo');
   $(this).toggleClass('flip-action');
   if($('.card-content-overlay').css('display') == 'none'){
     $(this).parents('.card-top').next().find('.card-img').fadeOut();
@@ -791,6 +801,7 @@ $('#otherAct').click(function(){
     });
   }
 });
+
 $.fn.extend({
     revealAction: function (animationName) {
         var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
@@ -826,10 +837,4 @@ $('#modalActionActive').click(function(){
 $('.modal-action-overlay').click(function(){
   $('.modal-action-overlay, .modal-action-content').fadeOut('fast');
 })
-
-$.get('yolo.php', {}, function(data){
-  var card = $('#cardList');
-  for (var i in data) {
-    array[i]
-  }
-}, 'json')
+})(jQuery);
