@@ -21,6 +21,7 @@ Redirect 302 /tos /CGU.html
  RewriteRule ^blacklist$ /mailbox.php?page=blacklist [QSA,L]
  RewriteRule ^allowed$ /mailbox.php?page=allowed [QSA,L]
  RewriteRule ^digest$ /mailbox.php?page=digest [QSA,L]
+ RewriteRule ^api/v1/(.*) /lib/api.php?path=$1 [L,QSA]
 </IfModule>
 
 <ifModule mod_gzip.c>

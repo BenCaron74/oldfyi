@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang=fr>
-
 <head>
-  <meta charset="UTF-8">
-  <title>Free Your Inbox | Supprimer ses newsletters en 1 clic</title>
-  <meta name="Free Your Inbox" content="Supprimer ses newsletters en 1 clic | Free Your Inbox">
-  <meta name="description" content="Supprimez toutes vos newsletters en 1 clic gratuitement et faites le ménage dans votre boîte mail en quelques instants.">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <meta property=og:title content="Supprimez vos newsletters en 1 clic !">
-  <meta property=og:image content=https://freeyourinbox.com/img/FB_Newsletters.png>
-  <meta property=og:site_name content="Free Your Inbox ">
-  <meta property=og:url content=https://freeyourinbox.com>
-  <meta property=og:description content="Avec Free Your Inbox, faites le ménage dans vote boîte mail ! 1 clic suffit pour supprimer toutes vos newsletters.">
-  <meta property=fb:app_id content=426124924260298>
-  <meta property=og:type content=website>
-  <meta name=twitter:card content=summary_large_image>
-  <meta name=twitter:site content=@FreeYourInbox>
-  <meta name=twitter:creator content=@FreeYourInbox>
-  <meta name=twitter:title content="Supprimez vos newsletters en 1 clic ! ">
-  <meta name=twitter:description content="Avec Free Your Inbox, faites le ménage dans vote boîte mail ! 1 clic suffit pour supprimer toutes vos newsletters.">
-  <meta name=twitter:image:src content="https://freeyourinbox.com/img/FB_Newsletters.png">
+<meta charset="UTF-8">
+<title>Free Your Inbox | Supprimer ses newsletters en 1 clic</title>
+<meta name="Free Your Inbox" content="Supprimer ses newsletters en 1 clic | Free Your Inbox"><meta name="description" content="Supprimez toutes vos newsletters en 1 clic gratuitement et faites le ménage dans votre boîte mail en quelques instants."><meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+<meta property=og:title content="Supprimez vos newsletters en 1 clic !">
+<meta property=og:image content=https://freeyourinbox.com/img/FB_Newsletters.png>
+<meta property=og:site_name content="Free Your Inbox ">
+<meta property=og:url content=https://freeyourinbox.com>
+<meta property=og:description content="Avec Free Your Inbox, faites le ménage dans vote boîte mail ! 1 clic suffit pour supprimer toutes vos newsletters.">
+<meta property=fb:app_id content=426124924260298>
+<meta property=og:type content=website>
+<meta name=twitter:card content=summary_large_image>
+<meta name=twitter:site content=@FreeYourInbox>
+<meta name=twitter:creator content=@FreeYourInbox>
+<meta name=twitter:title content="Supprimez vos newsletters en 1 clic ! ">
+<meta name=twitter:description content="Avec Free Your Inbox, faites le ménage dans vote boîte mail ! 1 clic suffit pour supprimer toutes vos newsletters.">
+<meta name=twitter:image:src content="https://freeyourinbox.com/img/FB_Newsletters.png"> 
 
   <link rel="canonical" href="https://freeyourinbox.com" />
   <link rel=icon type=image/png href=https://freeyourinbox.com/img/favicon-196x196.png sizes=196x196 />
@@ -162,5 +159,4 @@
     <script src=js/scripts.js></script>
 
 </body>
-
 </html>
