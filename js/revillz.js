@@ -1,28 +1,23 @@
-var gradientCard = [
-  "linear-gradient(to right, #00b09b, #96c93d)",
-  "linear-gradient(to right, #800080, #ffc0cb)",
-  "linear-gradient(to right, #fc4a1a, #f7b733)",
-  "linear-gradient(to right, #e1eec3, #f05053)",
-  "linear-gradient(to right, #74ebd5, #acb6e5)",
-  "linear-gradient(to right, #22c1c3, #fdbb2d)",
-  "linear-gradient(to right, #ff9966, #ff5e62)",
-  "linear-gradient(to right, #7f00ff, #e100ff)",
-  "linear-gradient(to right, #d9a7c7, #fffcdc)",
-  "linear-gradient(to right, #642b73, #c6426e)"
+var gradNum = 0;
+var gradientCard = ["#e53935","#d81b60","#8e24aa","#5e35b1","#3949ab",
+"#1e88e5","#039be5","#00acc1","#00897b","#43a047","#7cb342","#c0ca33",
+"#fdd835","#ffb300","#fb8c00","#f4511e","#6d4c41","#757575","#546e7a"
 ]
 
 function randGrad() {
-  var x = Math.floor((Math.random() * 10) + 0);
-  return gradientCard[x];
+  var x = 1 + Math.floor(Math.random() * 19);
+  gradNum++;
+  console.log(gradNum);
+  return gradientCard[gradNum];
 }
 
 (function($) {
   $(document).ready(function() {
-    // $('.card-top').each(function() {
-    //   $(this).css({
-    //     background: randGrad()
-    //   });
-    // });
+    $('.card-top').each(function() {
+      $(this).css({
+        background: randGrad()
+      });
+    });
 
     var winWidth = $(window).width();
     var offset = $(".header-brand").offset().top;
@@ -69,10 +64,11 @@ $('.more-nav .ion-android-more-vertical').click(function() {
   } else {
     $('.xs-nav').show();
     $('.xs-item').show().parent().animate({
-      bottom: '70%'
+      bottom: '62%'
     }, 200)
   }
 });
+
 function sectionSwitch(id, active) {
   var selectedId = $(id.content);
   var pActive = '#p' + active.substr(2);
@@ -85,6 +81,11 @@ function sectionSwitch(id, active) {
   });
   pActive.fadeOut('fast', function() {
     selectedId.fadeIn();
+    $('.xs-nav').animate({
+      bottom: '100%'
+    }, 200, function(){
+      $('.xs-nav').hide();
+    })
     $("li").each(function(index) {
       if ($(this).is(id.nav)) {
         $(this).addClass("nav-active");
@@ -295,3 +296,9 @@ $('#suggestAct, #deleteAct').click(function() {
     $(this).parent().remove();
   })
 });
+$('#modalActionActive').click(function(){
+  $('.modal-action-overlay, .modal-action-content').fadeIn('fast');
+})
+$('.modal-action-overlay').click(function(){
+  $('.modal-action-overlay, .modal-action-content').fadeOut('fast');
+})

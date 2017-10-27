@@ -25,8 +25,8 @@
       <div class="header-user">
         <ul>
           <li class="more-nav"><i class="ion-android-more-vertical"></i></li>
-          <li><i id="setting" class="ion-android-settings"></i></li>
-          <li><i id="notif" class="ion-android-notifications"></i></li>
+          <li class="hidden-xs"><i id="setting" class="ion-android-settings"></i></li>
+          <li class="hidden-xs"><i id="notif" class="ion-android-notifications"></i></li>
           <li><img class="user-img" src="testPic/user.png" alt=""></li>
         </ul>
       </div>
@@ -51,11 +51,11 @@
         <div class="progress" id="progress"></div>
       </div>
     </div>
-    <div id="pNew" class="container-fluid">
+    <div id="pNew" class="container">
       <section>
         <h4 class="context-title">Newsletters</h4>
-        <div class="row">
-          <div id="cardList" class="col-lg-3 col-md-4 col-sm-6" align="center">
+        <div class="">
+          <div id="cardList" class="col-md-4 col-sm-6" align="center">
             <div id="amazon" class="card card-shadow-soft">
               <div id="twc-1" class="card-top">
                 <h4>Amazon</h4>
@@ -93,45 +93,7 @@
               </div>
             </div>
           </div>
-          <div id="cardList" class="col-lg-3 col-md-4 col-sm-6" align="center">
-            <div id="amazon" class="card card-shadow-soft">
-              <div id="twc-1" class="card-top">
-                <h4>Amazon</h4>
-                <div class="card-action">
-                  <div id="suggestAct" class="">
-                    <i class="ion-android-delete" href="#"></i>
-                  </div>
-                  <div id="otherAct">
-                    <i  class="ion-chevron-down" href="#"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="card-content">
-                <div class="card-content-overlay">
-                  <ul>
-                    <li id="whitelistAct" class="ion-checkmark-circled"></li>
-                    <li id="blacklistAct" class="ion-close-circled"></li>
-                    <li id="digestAct" class="ion-android-archive"></li>
-                    <li id="deleteAct" class="ion-android-delete"></li>
-                  </ul>
-                </div>
-                <div class="card-img">
-                  <img src="testPic/amz.jpg" alt="">
-                </div>
-                <div class="card-txt">
-                  <h3>Email Title</h3>
-                  <p>Email content text usualy p...</p>
-                </div>
-              </div>
-              <div class="card-bottom">
-                <ul>
-                  <li>number: <b>34</b></li>
-                  <li>open rate: <b>98%</b> </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div id="cardList" class="col-lg-3 col-md-4 col-sm-6" align="center">
+          <div id="cardList" class="col-md-4 col-sm-6" align="center">
             <div id="newYorkTime" class="card card-shadow-soft">
               <div id="twc-2" class="card-top">
                 <h4>New-York Time</h4>
@@ -156,7 +118,96 @@
               </div>
             </div>
           </div>
-          <div id="cardList" class="col-lg-3 col-md-4 col-sm-6" align="center">
+          <div id="cardList" class="col-md-4 col-sm-6" align="center">
+            <div id="ESLFrance" class="card card-shadow-soft">
+              <div id="twc-3" class="card-top">
+                <h4>ESL France</h4>
+                <label>
+                  <input type="checkbox" class="option-input radio" name="example" />
+                </label>
+              </div>
+              <div class="card-content">
+                <div class="card-img">
+                  <img src="testPic/esl.png" alt="">
+                </div>
+                <div class="card-txt">
+                  <h3>Email Title</h3>
+                  <p>Email content text usualy p...</p>
+                </div>
+              </div>
+              <div class="card-bottom">
+                <ul>
+                  <li>number: <b>12</b></li>
+                  <li>open rate: <b>51%</b> </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div id="cardList" class="col-md-4 col-sm-6" align="center">
+            <div id="amazon" class="card card-shadow-soft">
+              <div id="twc-1" class="card-top">
+                <h4>Amazon</h4>
+                <div class="card-action">
+                  <div id="suggestAct" class="">
+                    <i class="ion-android-delete" href="#"></i>
+                  </div>
+                  <div id="otherAct">
+                    <i  class="ion-chevron-down" href="#"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="card-content">
+                <div class="card-content-overlay">
+                  <ul>
+                    <li id="whitelistAct" class="ion-checkmark-circled"></li>
+                    <li id="blacklistAct" class="ion-close-circled"></li>
+                    <li id="digestAct" class="ion-android-archive"></li>
+                    <li id="deleteAct" class="ion-android-delete"></li>
+                  </ul>
+                </div>
+                <div class="card-img">
+                  <img src="testPic/amz.jpg" alt="">
+                </div>
+                <div class="card-txt">
+                  <h3>Email Title</h3>
+                  <p>Email content text usualy p...</p>
+                </div>
+              </div>
+              <div class="card-bottom">
+                <ul>
+                  <li>number: <b>34</b></li>
+                  <li>open rate: <b>98%</b> </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div id="cardList" class="col-md-4 col-sm-6" align="center">
+            <div id="newYorkTime" class="card card-shadow-soft">
+              <div id="twc-2" class="card-top">
+                <h4>New-York Time</h4>
+                <label>
+                  <input type="checkbox" class="option-input radio" name="example" />
+                </label>
+              </div>
+              <div class="card-content">
+                <div class="card-img">
+                  <img src="testPic/time.png" alt="">
+                </div>
+                <div class="card-txt">
+                  <h3>Email Title</h3>
+                  <p>Email content text usualy p...</p>
+                </div>
+              </div>
+              <div class="card-bottom">
+                <ul>
+                  <li>number: <b>112</b></li>
+                  <li>open rate: <b>8%</b> </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div id="cardList" class="col-md-4 col-sm-6" align="center">
             <div id="ESLFrance" class="card card-shadow-soft">
               <div id="twc-3" class="card-top">
                 <h4>ESL France</h4>
@@ -366,9 +417,33 @@
           </div>
           <div class="arch-action">
             <ul>
-              <li><i class="ion-star"></i></li>
-              <li><i class="ion-help-buoy"></i></li>
-              <li><i class="ion-flag"></i></li>
+              <li class="hidden-xs"><i class="ion-checkmark-circled"></i></li>
+              <li class="hidden-xs"><i class="ion-close-circled"></i></li>
+              <li class="hidden-xs"><i class="ion-android-archive"></i></li>
+              <li id="modalActionActive" class="visible-xs"><i class="ion-android-more-vertical"></i></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-12">
+        <div class="arch-pane">
+          <div class="arch-content">
+            <div class="arch-img">
+              <img src="testPic/youtube.png" alt="">
+            </div>
+            <div class="arch-txt">
+              <ul>
+                <li><h2>Youtube | Nass just uploaded a video.</h2></li>
+                <li>Nass just shared a video after not posting for a while</li>
+              </ul>
+            </div>
+          </div>
+          <div class="arch-action">
+            <ul>
+              <li><i class="ion-checkmark-circled"></i></li>
+              <li><i class="ion-close-circled"></i></li>
+              <li><i class="ion-android-archive"></i></li>
             </ul>
           </div>
         </div>
@@ -388,9 +463,9 @@
           </div>
           <div class="arch-action">
             <ul>
-              <li><i class="ion-star"></i></li>
-              <li><i class="ion-help-buoy"></i></li>
-              <li><i class="ion-flag"></i></li>
+              <li><i class="ion-checkmark-circled"></i></li>
+              <li><i class="ion-close-circled"></i></li>
+              <li><i class="ion-android-archive"></i></li>
             </ul>
           </div>
         </div>
@@ -410,9 +485,9 @@
           </div>
           <div class="arch-action">
             <ul>
-              <li><i class="ion-star"></i></li>
-              <li><i class="ion-help-buoy"></i></li>
-              <li><i class="ion-flag"></i></li>
+              <li><i class="ion-checkmark-circled"></i></li>
+              <li><i class="ion-close-circled"></i></li>
+              <li><i class="ion-android-archive"></i></li>
             </ul>
           </div>
         </div>
@@ -432,9 +507,9 @@
           </div>
           <div class="arch-action">
             <ul>
-              <li><i class="ion-star"></i></li>
-              <li><i class="ion-help-buoy"></i></li>
-              <li><i class="ion-flag"></i></li>
+              <li><i class="ion-checkmark-circled"></i></li>
+              <li><i class="ion-close-circled"></i></li>
+              <li><i class="ion-android-archive"></i></li>
             </ul>
           </div>
         </div>
@@ -454,9 +529,9 @@
           </div>
           <div class="arch-action">
             <ul>
-              <li><i class="ion-star"></i></li>
-              <li><i class="ion-help-buoy"></i></li>
-              <li><i class="ion-flag"></i></li>
+              <li><i class="ion-checkmark-circled"></i></li>
+              <li><i class="ion-close-circled"></i></li>
+              <li><i class="ion-android-archive"></i></li>
             </ul>
           </div>
         </div>
@@ -476,9 +551,9 @@
           </div>
           <div class="arch-action">
             <ul>
-              <li><i class="ion-star"></i></li>
-              <li><i class="ion-help-buoy"></i></li>
-              <li><i class="ion-flag"></i></li>
+              <li><i class="ion-checkmark-circled"></i></li>
+              <li><i class="ion-close-circled"></i></li>
+              <li><i class="ion-android-archive"></i></li>
             </ul>
           </div>
         </div>
@@ -498,9 +573,9 @@
           </div>
           <div class="arch-action">
             <ul>
-              <li><i class="ion-star"></i></li>
-              <li><i class="ion-help-buoy"></i></li>
-              <li><i class="ion-flag"></i></li>
+              <li><i class="ion-checkmark-circled"></i></li>
+              <li><i class="ion-close-circled"></i></li>
+              <li><i class="ion-android-archive"></i></li>
             </ul>
           </div>
         </div>
@@ -520,9 +595,9 @@
           </div>
           <div class="arch-action">
             <ul>
-              <li><i class="ion-star"></i></li>
-              <li><i class="ion-help-buoy"></i></li>
-              <li><i class="ion-flag"></i></li>
+              <li><i class="ion-checkmark-circled"></i></li>
+              <li><i class="ion-close-circled"></i></li>
+              <li><i class="ion-android-archive"></i></li>
             </ul>
           </div>
         </div>
@@ -542,9 +617,9 @@
           </div>
           <div class="arch-action">
             <ul>
-              <li><i class="ion-star"></i></li>
-              <li><i class="ion-help-buoy"></i></li>
-              <li><i class="ion-flag"></i></li>
+              <li><i class="ion-checkmark-circled"></i></li>
+              <li><i class="ion-close-circled"></i></li>
+              <li><i class="ion-android-archive"></i></li>
             </ul>
           </div>
         </div>
@@ -564,9 +639,9 @@
           </div>
           <div class="arch-action">
             <ul>
-              <li><i class="ion-star"></i></li>
-              <li><i class="ion-help-buoy"></i></li>
-              <li><i class="ion-flag"></i></li>
+              <li><i class="ion-checkmark-circled"></i></li>
+              <li><i class="ion-close-circled"></i></li>
+              <li><i class="ion-android-archive"></i></li>
             </ul>
           </div>
         </div>
@@ -586,35 +661,29 @@
           </div>
           <div class="arch-action">
             <ul>
-              <li><i class="ion-star"></i></li>
-              <li><i class="ion-help-buoy"></i></li>
-              <li><i class="ion-flag"></i></li>
+              <li><i class="ion-checkmark-circled"></i></li>
+              <li><i class="ion-close-circled"></i></li>
+              <li><i class="ion-android-archive"></i></li>
             </ul>
           </div>
         </div>
       </div>
-      <div class="col-sm-12">
-        <div class="arch-pane">
-          <div class="arch-content">
-            <div class="arch-img">
-              <img src="testPic/youtube.png" alt="">
-            </div>
-            <div class="arch-txt">
-              <ul>
-                <li><h2>Youtube | Nass just uploaded a video.</h2></li>
-                <li>Nass just shared a video after not posting for a while</li>
-              </ul>
-            </div>
-          </div>
-          <div class="arch-action">
-            <ul>
-              <li><i class="ion-star"></i></li>
-              <li><i class="ion-help-buoy"></i></li>
-              <li><i class="ion-flag"></i></li>
-            </ul>
-          </div>
+      <div class="modal-action-overlay"></div>
+      <div class="modal-action-content">
+          <ul class="">
+            <li class="ion-checkmark-circled"></li>
+            <li>Whitelist</li>
+          </ul>
+          <ul class="">
+            <li class="ion-close-circled"></li>
+            <li>Blacklist</li>
+          </ul>
+          <ul class="">
+            <li class="ion-android-archive"></li>
+            <li>Digest</li>
+          </ul>
         </div>
-      </div>
+
     </div>
     <div id="pBlacklist" class="container">
       <h4 class="context-title">Blacklist</h4>
@@ -726,10 +795,10 @@
   </div>
   <div class="xs-nav">
     <ul class="xs-item">
-      <li class="nav-item"><a href="#">Home</a></li>
-      <li class="nav-item"><a href="#">Blacklist</a></li>
-      <li class="nav-item"><a href="#">Whitelist</a></li>
-      <li class="nav-item"><a href="#">Digest</a></li>
+      <li id="nNew" class="nav-item"><a href="#">Home</a></li>
+      <li id="nBlacklist" class="nav-item"><a href="#">Blacklist</a></li>
+      <li id="nWhitelist" class="nav-item"><a href="#">Whitelist</a></li>
+      <li id="nDigest" class="nav-item"><a href="#">Digest</a></li>
     </ul>
   </div>
   <script src="js/jquery.min.js" charset="utf-8"></script>

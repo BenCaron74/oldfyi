@@ -3076,7 +3076,7 @@ header {
 }
 
 .xs-item {
-  margin-top: 18vh;
+  margin-top: 24vh;
   transform: translateY(-50%);
   display: none;
 }
@@ -3816,4 +3816,46 @@ margin-bottom: 2em;
 }
 .card-content-overlay li:hover {
   color: #74b6e8;
+}
+.modal-action-overlay{
+  z-index: 999;
+  position: fixed;
+  width: 100%;
+  right: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 2em;
+  background:rgba(0, 0, 0, 0.5);
+  line-height: 100vh;
+  display: none;
+}
+.modal-action-content{
+  z-index: 9999;
+  position: fixed;
+  background-color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 40vh;
+  width: 280px;
+  border-radius: .2em;
+  padding: 1em;
+  display: none;
+}
+.modal-action-content ul{
+  display: flex;
+  padding: 1em 1em;
+}
+.modal-action-content li{
+  font-size: 1.15em;
+}
+.modal-action-content li:first-of-type{
+  font-size: 1.6em;
+}
+.modal-action-content li:last-of-type{
+  padding-top: .3em;
+  margin-left: 1em;
 }
