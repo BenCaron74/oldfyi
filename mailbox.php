@@ -244,6 +244,13 @@ if ($_SESSION['userid'] > 0)
   if (empty($_GET['p'])) { $p = 1; } else { $p = $_GET['p']; }
   $pmin = ($p - 1) * $pmax;
 
+  if (!empty($_GET['box'])) {
+    $box = "AND m.`box` = '".mysqli_real_escape_string($conn, $_GET['box'])."'";
+  } else {
+    $box = "AND (m.`box` = 'INBOX' OR m.`box` = 'TRASH')
+    AND n.`msgtype` = 2";
+  }
+
   if ($header['page'] == "newsletters")
   {
     $sql = "SELECT n.`id`, n.`lastdate`, m.`fromname`, m.`from`, m.`subject`, n.`action`, n.`received`, r.`reads`, ROUND(r.`reads` / n.`received` * 100) as `openrate`
@@ -253,9 +260,8 @@ if ($_SESSION['userid'] > 0)
     WHERE m.`user_id` = ".$_SESSION['userid']."
     AND m.`newsletter_id` = n.`id`
     AND m.`date` = n.`lastdate`
-    AND (m.`box` = 'INBOX' OR m.`box` = 'TRASH')
-    AND n.`msgtype` = 2
     AND n.`action` = 0
+    $box
     $search
     GROUP BY m.`newsletter_id`
     ORDER BY $sqlsort";
@@ -363,7 +369,7 @@ if ($_SESSION['userid'] > 0)
 
       if (!empty($row['fromname']))
       {
-        $letter = preg_replace("/^[^a-z0-9]{0,3}([a-z0-9]).*$/i", '$1', $row['fromname']);
+        $letter = preg_replace("/^[^a-z0-9]*([a-z0-9]).*$/i", '$1', $row['fromname']);
         if (!empty($letter))
         {
           $img = "/img/letters/".strtolower($letter).".png";

@@ -10,53 +10,73 @@
 
   <title>Early access | Free Your Inbox</title>
 
-<link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://freeyourinbox.com/img/apple-touch-icon-57x57.png"/>
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://freeyourinbox.com/img/apple-touch-icon-114x114.png"/>
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://freeyourinbox.com/img/apple-touch-icon-72x72.png"/>
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://freeyourinbox.com/img/apple-touch-icon-144x144.png"/>
-<link rel="apple-touch-icon-precomposed" sizes="60x60" href="https://freeyourinbox.com/img/apple-touch-icon-60x60.png"/>
-<link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://freeyourinbox.com/img/apple-touch-icon-120x120.png"/>
-<link rel="apple-touch-icon-precomposed" sizes="76x76" href="https://freeyourinbox.com/img/apple-touch-icon-76x76.png"/>
-<link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://freemyinbox.co/img/apple-touch-icon-152x152.png"/>
-<link rel="icon" type="image/png" href="https://freeyourinbox.com/img/favicon-196x196.png" sizes="196x196"/>
-<link rel="icon" type="image/png" href="https://freeyourinbox.com/img/favicon-96x96.png" sizes="96x96"/>
-<link rel="icon" type="image/png" href="https://freeyourinbox.com/img/favicon-32x32.png" sizes="32x32"/>
-<link rel="icon" type="image/png" href="https://freeyourinbox.com/img/favicon-16x16.png" sizes="16x16"/>
-<link rel="icon" type="image/png" href="https://freeyourinbox.com/img/favicon-128.png" sizes="128x128"/>
+  <link rel="apple-touch-icon-precomposed" sizes="57x57" href="https://freeyourinbox.com/img/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://freeyourinbox.com/img/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://freeyourinbox.com/img/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://freeyourinbox.com/img/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="60x60" href="https://freeyourinbox.com/img/apple-touch-icon-60x60.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="120x120" href="https://freeyourinbox.com/img/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="76x76" href="https://freeyourinbox.com/img/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon-precomposed" sizes="152x152" href="https://freemyinbox.co/img/apple-touch-icon-152x152.png" />
+  <link rel="icon" type="image/png" href="https://freeyourinbox.com/img/favicon-196x196.png" sizes="196x196" />
+  <link rel="icon" type="image/png" href="https://freeyourinbox.com/img/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/png" href="https://freeyourinbox.com/img/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="https://freeyourinbox.com/img/favicon-16x16.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="https://freeyourinbox.com/img/favicon-128.png" sizes="128x128" />
 
   <link rel="stylesheet" href="css/animate.css">
   <link rel="stylesheet" href="css/bootstrap3.css">
   <link rel="stylesheet" href="css/ionicons.min.css">
-  <link rel="stylesheet" href="css/master.css?v=6">
+  <link rel="stylesheet" href="css/master.css?v=8">
 </head>
 
 <body>
+  <div class="w-work-modal wow bounceInDown" data-wow-delay="1s">
+    <span class="ion-ios-information"></span>
+    <p>Beta only available with Gmail</p>
+  </div>
+
   <div class="container login-page">
-  	<a href="/" title="FreeYourInbox">
-      <img src="img/fyi_blue.png" class="img-responsive login-logo">
+    <a href="/">
+      <img src="img/fyi_blue.png?v=2" alt="FreeYourInbox" class="img-responsive login-logo">
     </a>
     <div>
-      <h1 class="login-title">Early Access</h1>
-      <h3 class="login-subtitle">Subscribe to the beta test program!</h3>
+      <h1 class="login-title">We're almost there!</h1>
+      <h3 class="login-subtitle">Enter your email address to get early access to Free Your Inbox</h3>
     </div>
 
     <div class="col-md-6 col-md-offset-3 hidden-load wow fadeInUp">
       <div class="sub-panel">
+        <div id="sry">
+          <h3 id="rip">Stay in the loop</h3>
+          <hr>
+          <p>We can give you an update when you'll be able to join.</p>
+          <p class="share-label">Want to be notified?</p>
+          <div class="btn-group-conf">
+            <div class="btn-group" role="group" aria-label="...">
+              <button type="button" class="btn btn-primary">Yes</button>
+              <button type="button" class="btn btn-default">No</button>
+            </div>
+          </div>
+          <div class="text-center">
+            <div class="login-other">Subscribe with <a href="https://freeyourinbox.com/early">Gmail</a></div>
+          </div>
+        </div>
         <div id="before">
           <div class="form-group">
-            <label for="email">Email address:</label>
+            <label for="email">Your email address:</label>
             <input type="email" class="form-control" id="email" placeholder="your.email@domain.name">
           </div>
           <input id="submit" type="submit" class="btn btn-primary btn-right" value="Submit">
-          <i>* You will not receive any newsletter</i>
+          <i>* We won't spam you, promise!</i>
         </div>
         <div id="after">
-          <h3>Share on one of these social media and be better placed on the waiting list</h3>
+          <h3>Get priority access by referring your friends. The more you refer, the sooner you'll be able to join.</h3>
           <hr>
-          <p>Your actual place: <b> 18 / 547</b></p>
+          <p>Your current position: <b> 18 / 547</b></p>
           <hr>
           <div class="btn-group-wrap">
-            <span class="share-label">Share <b>FreeYourInbox</b> with:</span>
+            <span class="share-label">Spread the word, don't be shy!</span>
             <div class="btn-group" role="group" aria-label="...">
               <button type="button" class="btn btn-facebook"><span class="ion-social-facebook"></span></button>
               <button type="button" class="btn btn-twitter"><span class="ion-social-twitter"></span></button>
@@ -106,7 +126,7 @@
   <script src="js/jquery.min.js" charset="utf-8"></script>
   <script src="js/bootstrap.min.js" charset="utf-8"></script>
   <script src="js/wow.js" charset="utf-8"></script>
-  <script src="js/app.js" charset="utf-8"></script>
+  <script src="js/app.js?v=10" charset="utf-8"></script>
 </body>
 
 </html>
