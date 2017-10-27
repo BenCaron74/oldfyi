@@ -33,7 +33,7 @@ if (isset($_SESSION['access_token']) && is_array($_SESSION['access_token'])) { h
   <link rel="stylesheet" href="css/animate.css">
   <link rel="stylesheet" href="css/bootstrap3.css">
   <link rel="stylesheet" href="css/ionicons.min.css">
-  <link rel="stylesheet" href="css/master.css">
+  <link rel="stylesheet" href="css/master.css?v=12">
 </head>
 
 <body>
@@ -43,25 +43,33 @@ if (isset($_SESSION['access_token']) && is_array($_SESSION['access_token'])) { h
   </div>
   <div class="container login-page">
   	<a href="https://freeyourinbox.com" title="FreeYourInbox">
-      <img src="img/fyi_blue.png" class="img-responsive login-logo">
+      <img src="img/fyi_blue.png?v=2" class="img-responsive login-logo">
     </a>
     <div>
-      <h1 class="login-title">Congratulations,</h1>
-      <h3 class="login-subtitle">You can now join our beta test program!</h3>
+      <h1 class="login-title">Welcome on board!</h1>
+      <h3 class="login-subtitle">You're just one click away from getting a sane inbox</h3>
     </div>
 
     <div class="col-md-6 col-md-offset-3 wow fadeInUp">
       <div class="login-panel">
-        <div id="gmail" class="login-gmail"><img src="img/icon/google.png" class="img-responsive">
-          <p>Login with Gmail</p>
+        <div id="gmail" class="login-button login-gmail"><img src="img/icon/google.png" class="img-responsive">
+          <p>Signup with Gmail</p>
         </div>
-        <div id="outlook" class="login-outlook"><img src="img/icon/outlook.png" class="img-responsive">
-          <p>Login with Outlook</p>
+        <div id="outlook" class="login-button login-outlook"><img src="img/icon/outlook.png" class="img-responsive">
+          <p>Signup with Outlook</p>
         </div>
-        <div id="yahoo" class="login-yahoo"><img src="img/icon/yahoo.png" class="img-responsive">
-          <p>Login with Yahoo</p>
+        <div id="yahoo" class="login-button login-yahoo"><img src="img/icon/yahoo.png" class="img-responsive">
+          <p>Signup with Yahoo</p>
         </div>
-        <div id="other" class="login-other">Login with an other method</div>
+<!--
+        <div id="yahoo" class="login-button login-yahoo"><img src="img/icon/yahoo.png" class="img-responsive">
+          <p>Signup with AOL</p>
+        </div>
+        <div id="yahoo" class="login-button login-yahoo"><img src="img/icon/yahoo.png" class="img-responsive">
+          <p>Signup with another provider (iCloud, GMX, ...)</p>
+        </div>
+-->
+        <div id="other" class="login-other">Signup with an other provider (iCloud, GMX, ...)</div>
         <div class="loader">
           <svg version="1.1" id="L5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" enable-background="new 0 0 0 0" xml:space="preserve">
             <circle fill="#1e88e5" stroke="none" cx="30" cy="50" r="6">
@@ -100,7 +108,7 @@ if (isset($_SESSION['access_token']) && is_array($_SESSION['access_token'])) { h
   <script src="js/jquery.min.js" charset="utf-8"></script>
   <script src="js/bootstrap.min.js" charset="utf-8"></script>
   <script src="js/wow.js" charset="utf-8"></script>
-  <script src="js/app.js?v=2" charset="utf-8"></script>
+  <script src="js/app.js?v=15" charset="utf-8"></script>
 </body>
 
 </html>
