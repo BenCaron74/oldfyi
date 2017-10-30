@@ -599,32 +599,33 @@ function getAverageRGB(imgEl) {
 }
 
 function cardTopCol(){
-  $('.card-top').each(function() {
-    var img = $(this).parents('.card').find('img').attr('id');
-    var colorThief = new ColorThief();
-    colorThief.getColor(img);
-
-    $(this).css('background', 'rgb('+rgb.r+','+rgb.g+','+rgb.b+')');
-  });
+  // $('.card-top').each(function() {
+  //   var img = $(this).parents('.card').find('img').attr('id');
+  //   var colorThief = new ColorThief();
+  //   colorThief.getColor(img);
+  //
+  //   $(this).css('background', 'rgb('+rgb.r+','+rgb.g+','+rgb.b+')');
+  // });
 }
 
 (function($) {
-  var jqxhr = $.getJSON('yolo.json', function(json) {
-    var card = $('#cardList').html();
-    Mustache.parse(card);
-    var rendered = Mustache.render(card, json);
-    $('#cardList').html(rendered).promise().done(function() {
-      numColor();
-      cardTopCol();
-    });
-  }).fail(function() {
-    console.log('JSON data loading failed');
-  });
+$('.owl-carousel').owlCarousel();
+  // var jqxhr = $.getJSON('yolo.json', function(json) {
+  //   var card = $('#cardList').html();
+  //   Mustache.parse(card);
+  //   var rendered = Mustache.render(card, json);
+  //   $('#cardList').html(rendered).promise().done(function() {
+  //     numColor();
+  //     cardTopCol();
+  //     $('.owl-carousel').owlCarousel();
+  //   });
+  // }).fail(function() {
+  //   console.log('JSON data loading failed');
+  // });
 
 
 
   $(document).ready(function() {
-
     var winWidth = $(window).width();
     var offset = $(".header-brand").offset().top;
     if (offset > 140) {
@@ -837,4 +838,5 @@ $('#modalActionActive').click(function(){
 $('.modal-action-overlay').click(function(){
   $('.modal-action-overlay, .modal-action-content').fadeOut('fast');
 })
+
 })(jQuery);

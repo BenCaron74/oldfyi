@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Revillz</title>
+  <link rel="stylesheet" href="css/ionicons.min.css">
+  <link rel="stylesheet" href="css/owl.carousel.css">
+  <link rel="stylesheet" href="css/owl.theme.default.css">
+  <link rel="stylesheet" href="css/revillz.css">
+  <style media="screen">
+    .carde {
+      max-width: 440px;
+      margin-right: auto;
+      margin-left: auto;
+      background: #fff;
+      border-radius: .8em;
+      border: 1px solid #ECECEC;
+      box-shadow: 0 19px 38px rgba(0, 0, 0, 0.10), 0 15px 12px rgba(0, 0, 0, 0.02);
+    }
+    .carde h3 {
+
+    }
+    .carde div{
+      text-align: left;
+      width: 100%;
+    }
+    .carde img{
+      display: flex;
+      text-align: left;
+      margin-right: .8em;
+      margin-left: .4em;
+    }
+    .carde-header{
+      text-align: left;
+      text-transform: uppercase;
+      background: #f8a61d;
+      color: #fff;
+      padding: .8em .5em;
+      margin-bottom: .5em;
+      border-radius: .4em .4em 0 0;
+      border-bottom: 1px solid #eee;
+      font-size: .9em;
+      font-weight: 600;
+    }
+    .carde-content{
+      line-height: 20px;
+      padding: 1em .4em;
+      display: flex;
+      justify-content: flex-start;
+      min-height: 94px;
+
+    }
+    .carde-content p{
+      font-size: .9em!important;
+    }
+    .carde-footer ul{
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      text-align: left;
+      padding: 1em;
+      background: #fff;
+      border-top: 1px solid #eee;
+      border-radius: 0 0 .4em .4em;
+      color: #777;
+    }
+    #pre-filtering .carde p {
+      font-family: inherit;
+      font-size: 17px;
+      line-height: 1.5;
+      font-weight: 300;
+    }
+
+    #pre-filtering .item {
+      text-align: center;
+      margin-top: 80px;
+      margin-bottom: 80px;
+      opacity: .2;
+      -webkit-transform: scale3d(0.8, 0.8, 1);
+      transform: scale3d(0.8, 0.8, 1);
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+    }
+
+    #pre-filtering .owl-item.active .item {
+      opacity: 1;
+      -webkit-transform: scale3d(1.0, 1.0, 1);
+      transform: scale3d(1.0, 1.0, 1);
+    }
+
+    .owl-carousel .owl-item img {
+      min-height: 50px;
+      min-width: 50px;
+      max-height: 70px;
+      max-width: 70px;
+      object-fit: cover;
+    }
+
+    #pre-filtering.owl-carousel.owl-theme .owl-dots .owl-dot.active span,
+    #pre-filtering.owl-carousel.owl-theme .owl-dots .owl-dot:hover span {
+      background: #28CB75;
+      transform: translate3d(0px, -50%, 0px) scale(0.7);
+    }
+
+    #pre-filtering.owl-carousel.owl-theme .owl-dots .owl-dot span {
+      background: #C4C4CC;
+      display: block;
+      height: 20px;
+      margin: 0 2px 5px;
+      transform: translate3d(0px, -50%, 0px) scale(0.3);
+      transform-origin: 50% 50% 0;
+      transition: all 250ms ease-out 0s;
+      width: 20px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <header>
+    <div class="header-brand">
+      <div class="header-logo">
+        <a href="#"><img class="brand-img" src="testPic/brand.png" alt=""></a>
+        <ul class="header-nav">
+          <li id="nNew" class="nav-item nav-active"><a href="#">Home</a></li>
+          <li id="nBlacklist" class="nav-item"><a href="#">Blacklist</a></li>
+          <li id="nWhitelist" class="nav-item"><a href="#">Whitelist</a></li>
+          <li id="nDigest" class="nav-item"><a href="#">Digest</a></li>
+        </ul>
+      </div>
+      <div class="header-user">
+        <ul>
+          <li class="more-nav"><i class="ion-android-more-vertical"></i></li>
+          <li class="hidden-xs"><i id="setting" class="ion-android-settings"></i></li>
+          <li class="hidden-xs"><i id="notif" class="ion-android-notifications"></i></li>
+          <li><img class="user-img" src="testPic/user.png" alt=""></li>
+        </ul>
+      </div>
+    </div>
+    <div class="header-navbar">
+      <ul class="header-nav">
+        <li id="nNew" class="nav-item nav-active"><a href="#">Home</a></li>
+        <li id="nBlacklist" class="nav-item"><a href="#">Blacklist</a></li>
+        <li id="nWhitelist" class="nav-item"><a href="#">Whitelist</a></li>
+        <li id="nDigest" class="nav-item"><a href="#">Digest</a></li>
+      </ul>
+      <div class="webflow-style-input">
+        <input id="seek" class="search" type="text" placeholder="Search..."></input>
+        <button type="submit"><i class="icon ion-android-arrow-forward"></i></button>
+      </div>
+    </div>
+  </header>
+  <div class="content">
+    <!-- <div id="loader" class="container">
+      <h2>Processing</h2>
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+      </div>
+    </div> -->
+    <div id="pNew" class="">
+    </div>
+
+    <!-- CARDS -->
+    <section class="cards-allowed">
+      <h1>Allowed</h1>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-12">
+            <div id="pre-filtering" class="owl-carousel allowed">
+
+              <!--CARD 1 -->
+              <div class="item">
+                <div class="carde">
+                  <div class="carde-header">
+                    <h3>Amazon</h3>
+                  </div>
+                  <div class="carde-content">
+                    <img class="img-circle" src="img/letters/a.png" alt="">
+                    <ul>
+                      <li><h4>newsletter@amazon.com</h4></li>
+                      <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                    </ul>
+                  </div>
+                  <div class="carde-footer">
+                    <ul>
+                      <li>Received XXX</li>
+                      <li>Open Rate XXX%</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!--END OF CARD 1 -->
+              <!--CARD 2 -->
+              <div class="item">
+                <div class="carde">
+                  <div class="carde-header">
+                    <h3>Amazon</h3>
+                  </div>
+                  <div class="carde-content">
+                    <img class="img-circle" src="img/letters/h.png" alt="">
+                    <ul>
+                      <li><h4>newsletter@amazon.com</h4></li>
+                      <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                    </ul>
+                  </div>
+                  <div class="carde-footer">
+                    <ul>
+                      <li>Received XXX</li>
+                      <li>Open Rate XXX%</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!--END OF CARD 2 -->
+              <!--CARD 3 -->
+              <div class="item">
+                <div class="carde">
+                  <div class="carde-header">
+                    <h3>Amazon</h3>
+                  </div>
+                  <div class="carde-content">
+                    <img class="img-circle" src="img/letters/z.png" alt="">
+                    <ul>
+                      <li><h4>newsletter@amazon.com</h4></li>
+                      <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                    </ul>
+                  </div>
+                  <div class="carde-footer">
+                    <ul>
+                      <li>Received XXX</li>
+                      <li>Open Rate XXX%</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!--END OF CARD 3 -->
+              <!--CARD 4 -->
+              <div class="item">
+                <div class="carde">
+                  <div class="carde-header">
+                    <h3>Amazon</h3>
+                  </div>
+                  <div class="carde-content">
+                    <img class="img-circle" src="img/letters/c.png" alt="">
+                    <ul>
+                      <li><h4>newsletter@amazon.com</h4></li>
+                      <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                    </ul>
+                  </div>
+                  <div class="carde-footer">
+                    <ul>
+                      <li>Received XXX</li>
+                      <li>Open Rate XXX%</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!--END OF CARD 4 -->
+              <!--CARD 5 -->
+              <div class="item">
+                <div class="carde">
+                  <div class="carde-header">
+                    <h3>Amazon</h3>
+                  </div>
+                  <div class="carde-content">
+                    <img class="img-circle" src="img/letters/m.png" alt="">
+                    <ul>
+                      <li><h4>newsletter@amazon.com</h4></li>
+                      <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                    </ul>
+                  </div>
+                  <div class="carde-footer">
+                    <ul>
+                      <li>Received XXX</li>
+                      <li>Open Rate XXX%</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!--END OF CARD 5 -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="cards-blocked">
+      <h1>Blocked</h1>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-12">
+            <div id="pre-filtering" class="owl-carousel blocked">
+
+              <!--CARD 1 -->
+              <div class="item">
+                <div class="carde">
+                  <div class="carde-header">
+                    <h3>Amazon</h3>
+                  </div>
+                  <div class="carde-content">
+                    <img class="img-circle" src="img/letters/a.png" alt="">
+                    <ul>
+                      <li><h4>newsletter@amazon.com</h4></li>
+                      <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                    </ul>
+                  </div>
+                  <div class="carde-footer">
+                    <ul>
+                      <li>Received XXX</li>
+                      <li>Open Rate XXX%</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!--END OF CARD 1 -->
+              <!--CARD 2 -->
+              <div class="item">
+                <div class="carde">
+                  <div class="carde-header">
+                    <h3>Amazon</h3>
+                  </div>
+                  <div class="carde-content">
+                    <img class="img-circle" src="img/letters/h.png" alt="">
+                    <ul>
+                      <li><h4>newsletter@amazon.com</h4></li>
+                      <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                    </ul>
+                  </div>
+                  <div class="carde-footer">
+                    <ul>
+                      <li>Received XXX</li>
+                      <li>Open Rate XXX%</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!--END OF CARD 2 -->
+              <!--CARD 3 -->
+              <div class="item">
+                <div class="carde">
+                  <div class="carde-header">
+                    <h3>Amazon</h3>
+                  </div>
+                  <div class="carde-content">
+                    <img class="img-circle" src="img/letters/z.png" alt="">
+                    <ul>
+                      <li><h4>newsletter@amazon.com</h4></li>
+                      <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                    </ul>
+                  </div>
+                  <div class="carde-footer">
+                    <ul>
+                      <li>Received XXX</li>
+                      <li>Open Rate XXX%</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!--END OF CARD 3 -->
+              <!--CARD 4 -->
+              <div class="item">
+                <div class="carde">
+                  <div class="carde-header">
+                    <h3>Amazon</h3>
+                  </div>
+                  <div class="carde-content">
+                    <img class="img-circle" src="img/letters/c.png" alt="">
+                    <ul>
+                      <li><h4>newsletter@amazon.com</h4></li>
+                      <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                    </ul>
+                  </div>
+                  <div class="carde-footer">
+                    <ul>
+                      <li>Received XXX</li>
+                      <li>Open Rate XXX%</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!--END OF CARD 4 -->
+              <!--CARD 5 -->
+              <div class="item">
+                <div class="carde">
+                  <div class="carde-header">
+                    <h3>Amazon</h3>
+                  </div>
+                  <div class="carde-content">
+                    <img class="img-circle" src="img/letters/m.png" alt="">
+                    <ul>
+                      <li><h4>newsletter@amazon.com</h4></li>
+                      <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                    </ul>
+                  </div>
+                  <div class="carde-footer">
+                    <ul>
+                      <li>Received XXX</li>
+                      <li>Open Rate XXX%</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!--END OF CARD -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- END OF CARDS -->
+  </div>
+  <div class="settings-pane carde-shadow">
+    <h4>Settings</h4>
+    <div>
+      <ul>
+        <li>Do Something</li>
+        <li>
+          <label class="form-switch">
+            <input type="checkbox" checked>
+            <i></i>
+          </label>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li>Something Else</li>
+        <li>
+          <label class="form-switch">
+            <input type="checkbox">
+            <i></i>
+          </label>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li>Allow Notification</li>
+        <li>
+          <label class="form-switch">
+            <input type="checkbox" checked>
+            <i></i>
+          </label>
+        </li>
+      </ul>
+    </div>
+    <hr>
+    <div class="set-select">
+      Filter Experience
+      <div class="select select--white">
+        <span class="placeholder">Default</span>
+        <ul>
+          <li data-value="es">Default</li>
+          <li data-value="en">Full Control</li>
+          <li data-value="fr">Inteligent</li>
+          <li data-value="de">User Control</li>
+        </ul>
+        <input type="hidden" name="changemetoo" />
+      </div>
+      <div class="select select--white">
+        <span class="placeholder">en - US</span>
+        <ul>
+          <li data-value="es">en - US</li>
+          <li data-value="en">fr - FR</li>
+          <li data-value="fr">es - ES</li>
+          <li data-value="de">es - AS</li>
+        </ul>
+        <input type="hidden" name="changemetoo" />
+      </div>
+    </div>
+
+
+  </div>
+  <div class="notification-pane carde-shadow">
+    <h4>Notification</h4>
+    <div class="notif">
+      <div class="notif-icon">
+        <i class="ion-speedometer"></i>
+      </div>
+      <div class="notif-content">
+        <h5>Time Saved</h5>
+        <p>Congratulation, since 2017 y...</p>
+      </div>
+      <span>24/10/2017</span>
+    </div>
+    <div class="notif">
+      <div class="notif-icon">
+        <i class="ion-speedometer"></i>
+      </div>
+      <div class="notif-content">
+        <h5>Time Saved</h5>
+        <p>Congratulation, since 2017 y...</p>
+      </div>
+      <span>24/10/2017</span>
+    </div>
+    <div class="notif">
+      <div class="notif-icon">
+        <i class="ion-speedometer"></i>
+      </div>
+      <div class="notif-content">
+        <h5>Time Saved</h5>
+        <p>Congratulation, since 2017 y...</p>
+      </div>
+      <span>24/10/2017</span>
+    </div>
+  </div>
+  <div class="xs-nav">
+    <ul class="xs-item">
+      <li id="nNew" class="nav-item"><a href="#">Home</a></li>
+      <li id="nBlacklist" class="nav-item"><a href="#">Blacklist</a></li>
+      <li id="nWhitelist" class="nav-item"><a href="#">Whitelist</a></li>
+      <li id="nDigest" class="nav-item"><a href="#">Digest</a></li>
+    </ul>
+  </div>
+  <script src="js/jquery.min.js" charset="utf-8"></script>
+  <script src="js/owl.carousel.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    jQuery(document).ready(function($) {
+      "use strict";
+      //  TESTIMONIALS CAROUSEL HOOK
+      $('#pre-filtering.blocked').owlCarousel({
+        loop: true,
+        items: 3,
+        margin: 0,
+        autoplay: false,
+        dots: true,
+        autoplayTimeout: 500,
+        smartSpeed: 450,
+        responsive: {
+          0: {
+            items: 1
+          },
+          870: {
+            items: 2
+          },
+          1280: {
+            items: 3
+          }
+        }
+      });
+      $('#pre-filtering.allowed').owlCarousel({
+        loop: true,
+        items: 3,
+        margin: 0,
+        autoplay: false,
+        dots: true,
+        autoplayTimeout: 500,
+        smartSpeed: 450,
+        responsive: {
+          0: {
+            items: 1
+          },
+          870: {
+            items: 2
+          },
+          1280: {
+            items: 3
+          }
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
