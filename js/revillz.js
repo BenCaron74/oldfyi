@@ -599,17 +599,18 @@ function getAverageRGB(imgEl) {
 }
 
 function cardTopCol(){
-  // $('.card-top').each(function() {
-  //   var img = $(this).parents('.card').find('img').attr('id');
-  //   var colorThief = new ColorThief();
-  //   colorThief.getColor(img);
-  //
-  //   $(this).css('background', 'rgb('+rgb.r+','+rgb.g+','+rgb.b+')');
-  // });
+  $('.carde-header').each(function() {
+    var imgID = $(this).parents('.carde').find('img').attr('id');
+    var img = document.getElementById(imgID);
+    var colorThief = new ColorThief();
+    var colorThiefPatern = colorThief.getPalette(img)
+    var kObj = colorThief.getColor(img);
+    var array = colorThiefPatern[1];
+    $(this).css('background', 'rgb('+array[0]+','+array[1]+','+array[2]+')');
+  });
 }
 
 (function($) {
-$('.owl-carousel').owlCarousel();
   // var jqxhr = $.getJSON('yolo.json', function(json) {
   //   var card = $('#cardList').html();
   //   Mustache.parse(card);
@@ -617,11 +618,11 @@ $('.owl-carousel').owlCarousel();
   //   $('#cardList').html(rendered).promise().done(function() {
   //     numColor();
   //     cardTopCol();
-  //     $('.owl-carousel').owlCarousel();
   //   });
   // }).fail(function() {
   //   console.log('JSON data loading failed');
   // });
+
 
 
 
@@ -640,7 +641,10 @@ $('.owl-carousel').owlCarousel();
         $(".header-brand .header-nav").fadeOut("fast");
       }
     });
-
+    // TODO: Remove when JQ AJAX
+    numColor();
+    cardTopCol();
+    // ==========================
   });
 
 
@@ -762,14 +766,15 @@ function progress() {
     function frame() {
         if (progress > $('#loader').width()) {
             clearInterval(id);
+            cardTopCol();
             $("#loader").fadeOut('fast', function(){
               $("#pNew").fadeIn('fast');
             });
         } else {
-                progress += 25;
-                //Set progress += 5;
-                progr.style.width = progress + 'px';
-            }
+          progress += 25;
+          //Set progress += 5;
+          progr.style.width = progress + 'px';
+        }
     }
 }
 progress();
@@ -838,5 +843,44 @@ $('#modalActionActive').click(function(){
 $('.modal-action-overlay').click(function(){
   $('.modal-action-overlay, .modal-action-content').fadeOut('fast');
 })
-
+$('#pre-filtering.blocked').owlCarousel({
+  loop: false,
+  items: 3,
+  margin: 0,
+  autoplay: false,
+  dots: true,
+  autoplayTimeout: 500,
+  smartSpeed: 450,
+  responsive: {
+    0: {
+      items: 1
+    },
+    870: {
+      items: 2
+    },
+    1280: {
+      items: 3
+    }
+  }
+});
+$('#pre-filtering.allowed').owlCarousel({
+  loop: false,
+  items: 3,
+  margin: 0,
+  autoplay: false,
+  dots: true,
+  autoplayTimeout: 500,
+  smartSpeed: 450,
+  responsive: {
+    0: {
+      items: 1
+    },
+    870: {
+      items: 2
+    },
+    1280: {
+      items: 3
+    }
+  }
+});
 })(jQuery);

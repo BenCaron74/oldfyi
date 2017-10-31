@@ -3230,7 +3230,7 @@ button {
 }
 
 .context-title {
-  color: #ddd;
+  color: #a5a5a5;
   text-transform: uppercase;
   font-weight: 600;
   padding: 4em 0 1em 0;
@@ -3871,5 +3871,132 @@ margin-bottom: 2em;
 }
 .lol{
   background: red;
+}
+.carde {
+  max-width: 440px;
+  margin-right: auto;
+  margin-left: auto;
+  background: #fff;
+  border-radius: .8em;
+  border: 1px solid #ECECEC;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.10), 0 15px 12px rgba(0, 0, 0, 0.02);
+}
+.carde h3 {
 
+}
+.carde div{
+  text-align: left;
+  width: 100%;
+}
+.carde img{
+  display: flex;
+  text-align: left;
+  margin-right: .8em;
+  margin-left: .4em;
+}
+.carde-header{
+  text-align: left;
+  text-transform: uppercase;
+  background: #f8a61d;
+  color: #fff;
+  padding: .8em 1em;
+  margin-bottom: .5em;
+  border-radius: .4em .4em 0 0;
+  border-bottom: 1px solid #eee;
+  font-size: .9em;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  height: 38px;
+}
+.carde-content{
+  line-height: 20px;
+  padding: 1em .4em;
+  display: flex;
+  justify-content: flex-start;
+  min-height: 94px;
+
+}
+.carde-content p{
+  font-size: .9em!important;
+}
+.carde-footer ul{
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  text-align: left;
+  padding: 1em;
+  background: #fff;
+  border-top: 1px solid #eee;
+  border-radius: 0 0 .4em .4em;
+  color: #bdbdbd;
+}
+.carde-footer b{
+  font-weight: 600;
+  color: #777;
+}
+#pre-filtering .carde p {
+  font-family: inherit;
+  font-size: 17px;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+#pre-filtering .item {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  opacity: .2;
+  -webkit-transform: scale3d(0.8, 0.8, 1);
+  transform: scale3d(0.8, 0.8, 1);
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+#pre-filtering .owl-item.active .item {
+  opacity: 1;
+  -webkit-transform: scale3d(1.0, 1.0, 1);
+  transform: scale3d(1.0, 1.0, 1);
+}
+
+.owl-carousel .owl-item img {
+  min-height: 50px;
+  min-width: 50px;
+  max-height: 70px;
+  max-width: 70px;
+  object-fit: cover;
+}
+
+#pre-filtering.owl-carousel.owl-theme .owl-dots .owl-dot.active span,
+#pre-filtering.owl-carousel.owl-theme .owl-dots .owl-dot:hover span {
+  background: #28CB75;
+  transform: translate3d(0px, -50%, 0px) scale(0.7);
+}
+
+#pre-filtering.owl-carousel.owl-theme .owl-dots .owl-dot span {
+  background: #C4C4CC;
+  display: block;
+  height: 20px;
+  margin: 0 2px 5px;
+  transform: translate3d(0px, -50%, 0px) scale(0.3);
+  transform-origin: 50% 50% 0;
+  transition: all 250ms ease-out 0s;
+  width: 20px;
+}
+.carde-header-action{
+  text-align: right!important;
+  font-size: 1.8em;
+  margin-top: -.2em;
+}
+.carde-header-action i{
+  cursor: pointer;
+}
+@media (max-width: 824px) {
+  .context-title.yolMobile {
+    padding-top: 6em;
+  }
+  #loader h2{
+    margin-top: 6em;
+  }
 }

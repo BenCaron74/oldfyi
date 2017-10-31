@@ -53,29 +53,320 @@
         <div class="progress" id="progress"></div>
       </div>
     </div>
-    <div class="owl-carousel owl-theme owl-loaded">
-      <div class="owl-stage-outer">
-          <div class="owl-stage">
-              <div class="owl-item lol">Item</div>
-              <div class="owl-item lol">Item</div>
-              <div class="owl-item lol">Item</div>
-          </div>
-      </div>
-      <div class="owl-controls">
-          <div class="owl-nav">
-              <div class="owl-prev">prev</div>
-              <div class="owl-next">next</div>
-          </div>
-          <div class="owl-dots">
-              <div class="owl-dot active"><span></span></div>
-              <div class="owl-dot"><span></span></div>
-              <div class="owl-dot"><span></span></div>
-          </div>
-      </div>
-  </div>
     <div id="pNew" class="">
-      <section>
-        <h4 class="context-title">Blocked</h4>
+      <!-- CARDS -->
+      <section class="cards-allowed">
+        <div class="container">
+          <h4 class="context-title yolMobile">Allowed</h4>
+        </div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <div id="pre-filtering" class="owl-carousel allowed">
+                <!--CARD 1 -->
+                <!-- {{#results}} -->
+                <div class="item">
+                  <div class="carde">
+                    <div class="carde-header">
+                      <h3>{{fromname}}</h3>
+                    </div>
+                    <div class="carde-content">
+                      <img id="1" class="img-circle" src="img/letters/a.png" alt="">
+                      <ul>
+                        <li><h4>{{from}}</h4></li>
+                        <li><p>{{subject}}</p></li>
+                      </ul>
+                    </div>
+                    <div class="carde-footer">
+                      <ul>
+                        <li>Received <b>{{received}}</b></li>
+                        <li>Open Rate <b>{{openrate}}%</b></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!-- {{/results}} -->
+                <!--END OF CARD 1 -->
+                <!--CARD 2 -->
+                <div class="item">
+                  <div class="carde">
+                    <div class="carde-header">
+                      <div class="carde-header-title">
+                        <h3>Amazon</h3>
+                      </div>
+                      <div class="carde-header-action">
+                        <i class="ion-thumbsup"></i>
+                        <i class="ion-thumbsdown"></i>
+                      </div>
+                    </div>
+                    <div class="carde-content">
+                      <img id="2" class="img-circle" src="img/letters/h.png" alt="">
+                      <ul>
+                        <li><h4>newsletter@amazon.com</h4></li>
+                        <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                      </ul>
+                    </div>
+                    <div class="carde-footer">
+                      <ul>
+                        <li>Received XXX</li>
+                        <li>Open Rate XXX%</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--END OF CARD 2 -->
+                <!--CARD 3 -->
+                <div class="item">
+                  <div class="carde">
+                    <div class="carde-header">
+                      <div class="carde-header-title">
+                        <h3>Amazon</h3>
+                      </div>
+                      <div class="carde-header-action">
+                        <i class="ion-thumbsup"></i>
+                        <i class="ion-thumbsdown"></i>
+                      </div>
+                    </div>
+                    <div class="carde-content">
+                      <img id="3" class="img-circle" src="img/letters/z.png" alt="">
+                      <ul>
+                        <li><h4>newsletter@amazon.com</h4></li>
+                        <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                      </ul>
+                    </div>
+                    <div class="carde-footer">
+                      <ul>
+                        <li>Received XXX</li>
+                        <li>Open Rate XXX%</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--END OF CARD 3 -->
+                <!--CARD 4 -->
+                <div class="item">
+                  <div class="carde">
+                    <div class="carde-header">
+                      <div class="carde-header-title">
+                        <h3>Amazon</h3>
+                      </div>
+                      <div class="carde-header-action">
+                        <i class="ion-thumbsup"></i>
+                        <i class="ion-thumbsdown"></i>
+                      </div>
+                    </div>
+                    <div class="carde-content">
+                      <img id="4" class="img-circle" src="img/letters/c.png" alt="">
+                      <ul>
+                        <li><h4>newsletter@amazon.com</h4></li>
+                        <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                      </ul>
+                    </div>
+                    <div class="carde-footer">
+                      <ul>
+                        <li>Received XXX</li>
+                        <li>Open Rate XXX%</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--END OF CARD 4 -->
+                <!--CARD 5 -->
+                <div class="item">
+                  <div class="carde">
+                    <div class="carde-header">
+                      <div class="carde-header-title">
+                        <h3>Amazon</h3>
+                      </div>
+                      <div class="carde-header-action">
+                        <i class="ion-thumbsup"></i>
+                        <i class="ion-thumbsdown"></i>
+                      </div>
+                    </div>
+                    <div class="carde-content">
+                      <img id="5" class="img-circle" src="img/letters/m.png" alt="">
+                      <ul>
+                        <li><h4>newsletter@amazon.com</h4></li>
+                        <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                      </ul>
+                    </div>
+                    <div class="carde-footer">
+                      <ul>
+                        <li>Received XXX</li>
+                        <li>Open Rate XXX%</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--END OF CARD 5 -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <hr>
+        </div>
+      </section>
+      <section class="cards-blocked">
+        <div class="container">
+          <h4 class="context-title">Blocked</h4>
+        </div>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <div id="pre-filtering" class="owl-carousel blocked">
+
+                <!--CARD 1 -->
+                <div class="item">
+                  <div class="carde">
+                    <div class="carde-header">
+                      <div class="carde-header-title">
+                        <h3>Amazon</h3>
+                      </div>
+                      <div class="carde-header-action">
+                        <i class="ion-thumbsup"></i>
+                        <i class="ion-thumbsdown"></i>
+                      </div>
+                    </div>
+                    <div class="carde-content">
+                      <img id="6" class="img-circle" src="img/letters/a.png" alt="">
+                      <ul>
+                        <li><h4>newsletter@amazon.com</h4></li>
+                        <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                      </ul>
+                    </div>
+                    <div class="carde-footer">
+                      <ul>
+                        <li>Received XXX</li>
+                        <li>Open Rate XXX%</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--END OF CARD 1 -->
+                <!--CARD 2 -->
+                <div class="item">
+                  <div class="carde">
+                    <div class="carde-header">
+                      <div class="carde-header-title">
+                        <h3>Amazon</h3>
+                      </div>
+                      <div class="carde-header-action">
+                        <i class="ion-thumbsup"></i>
+                        <i class="ion-thumbsdown"></i>
+                      </div>
+                    </div>
+                    <div class="carde-content">
+                      <img id="7" class="img-circle" src="img/letters/h.png" alt="">
+                      <ul>
+                        <li><h4>newsletter@amazon.com</h4></li>
+                        <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                      </ul>
+                    </div>
+                    <div class="carde-footer">
+                      <ul>
+                        <li>Received XXX</li>
+                        <li>Open Rate XXX%</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--END OF CARD 2 -->
+                <!--CARD 3 -->
+                <div class="item">
+                  <div class="carde">
+                    <div class="carde-header">
+                      <div class="carde-header-title">
+                        <h3>Amazon</h3>
+                      </div>
+                      <div class="carde-header-action">
+                        <i class="ion-thumbsup"></i>
+                        <i class="ion-thumbsdown"></i>
+                      </div>
+                    </div>
+                    <div class="carde-content">
+                      <img id="8" class="img-circle" src="img/letters/z.png" alt="">
+                      <ul>
+                        <li><h4>newsletter@amazon.com</h4></li>
+                        <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                      </ul>
+                    </div>
+                    <div class="carde-footer">
+                      <ul>
+                        <li>Received XXX</li>
+                        <li>Open Rate XXX%</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--END OF CARD 3 -->
+                <!--CARD 4 -->
+                <div class="item">
+                  <div class="carde">
+                    <div class="carde-header">
+                      <div class="carde-header-title">
+                        <h3>Amazon</h3>
+                      </div>
+                      <div class="carde-header-action">
+                        <i class="ion-thumbsup"></i>
+                        <i class="ion-thumbsdown"></i>
+                      </div>
+                    </div>
+                    <div class="carde-content">
+                      <img id="9" class="img-circle" src="img/letters/c.png" alt="">
+                      <ul>
+                        <li><h4>newsletter@amazon.com</h4></li>
+                        <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                      </ul>
+                    </div>
+                    <div class="carde-footer">
+                      <ul>
+                        <li>Received XXX</li>
+                        <li>Open Rate XXX%</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--END OF CARD 4 -->
+                <!--CARD 5 -->
+                <div class="item">
+                  <div class="carde">
+                    <div class="carde-header">
+                      <div class="carde-header-title">
+                        <h3>Amazon</h3>
+                      </div>
+                      <div class="carde-header-action">
+                        <i class="ion-thumbsup"></i>
+                        <i class="ion-thumbsdown"></i>
+                      </div>
+                    </div>
+                    <div class="carde-content">
+                      <img id="10" class="img-circle" src="img/letters/m.png" alt="">
+                      <ul>
+                        <li><h4>newsletter@amazon.com</h4></li>
+                        <li><p>Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338</p></li>
+                      </ul>
+                    </div>
+                    <div class="carde-footer">
+                      <ul>
+                        <li>Received XXX</li>
+                        <li>Open Rate XXX%</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--END OF CARD -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <hr>
+        </div>
+      </section>
+      <!-- END OF CARDS -->
+      <!-- <section> -->
+        <!-- <h4 class="context-title">Blocked</h4> -->
         <!-- <div id="cardList">
           {{#results}}
           <div id="" class="col-md-4 col-sm-6" align="center">
@@ -158,7 +449,7 @@
               </div>
             {{/results}}
         </div> -->
-      </section>
+      <!-- </section> -->
 
     </div>
     <div id="pWhitelist" class="container">
