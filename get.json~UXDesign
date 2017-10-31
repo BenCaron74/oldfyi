@@ -1,0 +1,52 @@
+{
+	"count": 3,
+	"results": [{
+		"id": "16139",
+		"lastdate": "1509034938",
+		"fromname": "Orange Bank",
+		"from": "orangebank@nati02d.espmp-aufr.net",
+		"subject": "Rendez-vous le 2\/11\/17 pour d\u00e9couvrir Orange Bank",
+		"action": "0",
+		"received": "1",
+		"reads": "1",
+		"openrate": "97",
+		"img": "\/img\/letters\/o.png",
+		"lastdate_formatted": "yesterday",
+		"number_color": "",
+		"openrate_color": "success"
+	}, {
+		"id": "16149",
+		"lastdate": "1509093238",
+		"fromname": "Team Curve",
+		"from": "support@imaginecurve.com",
+		"subject": "Alexandre, welcome to effortless expenses \u26a1\ufe0f",
+		"action": "0",
+		"received": "86",
+		"reads": "1",
+		"openrate": "10",
+		"img": "\/img\/letters\/t.png",
+		"lastdate_formatted": "5 hours ago",
+		"number_color": "",
+		"openrate_color": "success"
+	}, {
+		"id": "16151",
+		"lastdate": "1509098899",
+		"fromname": "Amazon.fr",
+		"from": "modification-compte@amazon.fr",
+		"subject": "Confirmation de l\u2019avantage li\u00e9 \u00e0 votre commande 402-7712434-0392338",
+		"action": "0",
+		"received": "37",
+		"reads": "1",
+		"openrate": "41",
+		"img": "\/img\/letters\/a.png",
+		"msg_number": null,
+		"lastdate_formatted": "4 hours ago",
+		"number_color": "",
+		"openrate_color": "success"
+	}],
+	"stats": {
+		"msgcount": "746",
+		"newscount": "158",
+		"fullsync": "100"
+	}
+}
