@@ -883,4 +883,23 @@ $('#pre-filtering.allowed').owlCarousel({
     }
   }
 });
+
+$('.ion-thumbsup').click(function(){
+  var index = $(this).parents('.owl-item').index()
+  console.log(index);
+  if ($(this).parents('.allowed').length > 0) {
+    $(".allowed").trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
+    if ($(".allowed").find('.owl-stage').children().length <= 0) {
+      $(".allowed").find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
+    }
+  } else {
+    $(".blocked").trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
+    if ($(".blocked").find('.owl-stage').children().length <= 0) {
+      $(".allowed").find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
+    }
+  }
+
+});
+
+
 })(jQuery);
