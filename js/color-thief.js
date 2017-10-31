@@ -17,7 +17,6 @@
  * @license
  */
 
-
 /*
   CanvasImage Class
   Class that wraps the html image element and canvas.
