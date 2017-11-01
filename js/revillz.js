@@ -770,6 +770,13 @@ function progress() {
             $("#loader").fadeOut('fast', function(){
               $("#pNew").fadeIn('fast');
             });
+            $(".alert-display").show().animate({'top':'4.4em'}, 300, function(){
+              setTimeout(function(){
+                $(".alert-display").animate({'top':'0em'},300,function(){
+                  $(this).hide();
+                })
+              }, 3000);
+            })
         } else {
           progress += 25;
           //Set progress += 5;

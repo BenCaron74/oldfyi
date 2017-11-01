@@ -4056,3 +4056,41 @@ margin-bottom: 2em;
   text-align: center;
   color: #a5a5a5;
 }
+.alert-display{
+  position: absolute;
+  top: 4.4em;
+  padding: .4em;
+  color: #fff;
+  width: 100%;
+  background: #f85d61;
+  line-height: 1.8em;
+  text-align: center;
+  display: none;
+  top: 0em;
+}
+.alert-display ul{
+  display: flex;
+  margin-left: 4em;
+}
+.alert-display li:first-of-type{
+  margin-right: 1em;
+  font-size: 1.6em;
+}
+@media (max-width: 654px) {
+  .alert-display ul{
+    margin-left: 2em;
+  }
+}
+@media (max-width: 561px) {
+  .alert-display ul{
+    margin-left: 0em;
+  }
+  .alert-display li:first-of-type{
+    margin-right: 1em;
+    font-size: 1em;
+  }
+  .alert-display li:last-of-type{
+    margin-right: 1em;
+    font-size: .8em;
+  }
+}
