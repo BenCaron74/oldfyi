@@ -3869,6 +3869,54 @@ margin-bottom: 2em;
   padding-top: .3em;
   margin-left: 1em;
 }
+.modal-card-overlay{
+  z-index: 999;
+  position: fixed;
+  width: 100%;
+  right: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 2em;
+  background:rgba(0, 0, 0, 0.5);
+  line-height: 100vh;
+  display: none;
+}
+.modal-card-content{
+  z-index: 9999;
+  position: fixed;
+  background-color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  top: 40vh;
+  width: 280px;
+  border-radius: .2em;
+  padding: 1em;
+  display: none;
+}
+.modal-card-content ul{
+  cursor: pointer;
+  color: #676767;
+  display: flex;
+  padding: 1em 1em;
+  transition: .3s;
+}
+.modal-card-content ul:hover{
+  color: #474747;
+}
+.modal-card-content li{
+  font-size: 1.15em;
+}
+.modal-card-content li:first-of-type{
+  font-size: 1.6em;
+}
+.modal-card-content li:last-of-type{
+  padding-top: .3em;
+  margin-left: 1em;
+}
 .lol{
   background: red;
 }

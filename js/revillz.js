@@ -843,6 +843,18 @@ $('#modalActionActive').click(function(){
 $('.modal-action-overlay').click(function(){
   $('.modal-action-overlay, .modal-action-content').fadeOut('fast');
 })
+$('.carde-header-action .ion-thumbsdown').click(function(){
+  var index = $(this).parents('.owl-item').index();
+  if ($(this).parents('.allowed').length > 0) {
+    $('.modal-card-content').attr('cardIndex', index).attr('cardType', 'allowed');
+  } else {
+    $('.modal-card-content').attr('cardIndex', index).attr('cardType', 'blocked');
+  }
+  $('.modal-card-overlay, .modal-card-content').fadeIn('fast');
+})
+$('.modal-card-overlay').click(function(){
+  $('.modal-card-overlay, .modal-card-content').fadeOut('fast');
+})
 $('#pre-filtering.blocked').owlCarousel({
   loop: false,
   items: 3,
@@ -886,7 +898,6 @@ $('#pre-filtering.allowed').owlCarousel({
 
 $('.ion-thumbsup').click(function(){
   var index = $(this).parents('.owl-item').index()
-  console.log(index);
   if ($(this).parents('.allowed').length > 0) {
     $(".allowed").trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
     if ($(".allowed").find('.owl-stage').children().length <= 0) {
@@ -895,11 +906,52 @@ $('.ion-thumbsup').click(function(){
   } else {
     $(".blocked").trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
     if ($(".blocked").find('.owl-stage').children().length <= 0) {
-      $(".allowed").find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
+      $(".blocked").find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
     }
   }
 
 });
-
+function whereToGo (location){
+  console.log(location);
+}
+$('#modalGoWhite').click(function(){
+  // FIXME: REMOVE 2 CARDS
+  // FIXME: TEXT NOT APPEND
+  var index = $(this).parents('.modal-card-content').attr('cardIndex');
+  var type = $(this).parents('.modal-card-content').attr('cardType');
+  $('.modal-card-overlay, .modal-card-content').fadeOut('fast', function(){
+    $("."+ type).trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
+  });
+  if ($("."+ type).find('.owl-stage').children().length <= 0) {
+    $("."+ type).find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
+  }
+  whereToGo('whitelist');
+});
+$('#modalGoBlack').click(function(){
+  // FIXME: REMOVE 2 CARDS
+  // FIXME: TEXT NOT APPEND
+  var index = $(this).parents('.modal-card-content').attr('cardIndex');
+  var type = $(this).parents('.modal-card-content').attr('cardType');
+  $('.modal-card-overlay, .modal-card-content').fadeOut('fast', function(){
+    $("."+ type).trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
+  });
+  if ($("."+ type).find('.owl-stage').children().length <= 0) {
+    $("."+ type).find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
+  }
+  whereToGo('blacklist');
+});
+$('#modalGoDigest').click(function(){
+  // FIXME: REMOVE 2 CARDS
+  // FIXME: TEXT NOT APPEND
+  var index = $(this).parents('.modal-card-content').attr('cardIndex');
+  var type = $(this).parents('.modal-card-content').attr('cardType');
+  $('.modal-card-overlay, .modal-card-content').fadeOut('fast', function(){
+    $("."+ type).trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
+  });
+  if ($("."+ type).find('.owl-stage').children().length <= 0) {
+    $("."+ type).find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
+  }
+  whereToGo('digest');
+});
 
 })(jQuery);
