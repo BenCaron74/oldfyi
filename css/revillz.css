@@ -4051,6 +4051,33 @@ margin-bottom: 2em;
 .owl-nav .owl-next {
   margin-right: 2em;
 }
+.owl-nav .owl-prev {
+  opacity: 0;
+}
+@media (max-width: 1116px) {
+  .owl-nav .owl-prev {
+    margin-left: 1em;
+  }
+  .owl-nav .owl-next {
+    margin-right: 1em;
+  }
+}
+@media (max-width: 868px) {
+  .owl-nav .owl-prev {
+    margin-left: 2em;
+  }
+  .owl-nav .owl-next {
+    margin-right: 2em;
+  }
+}
+@media (max-width: 582px) {
+  .owl-nav .owl-prev {
+    margin-left: 0em;
+  }
+  .owl-nav .owl-next {
+    margin-right: 0em;
+  }
+}
 .carde-header-action{
   text-align: right!important;
   font-size: 1.8em;

@@ -868,7 +868,6 @@ $('#pre-filtering.blocked').owlCarousel({
   margin: 0,
   autoplay: false,
   dots: false,
-  autoplayTimeout: 500,
   smartSpeed: 450,
   nav: true,
   navText: [
@@ -893,7 +892,6 @@ $('#pre-filtering.allowed').owlCarousel({
   margin: 0,
   autoplay: false,
   dots: false,
-  autoplayTimeout: 500,
   smartSpeed: 450,
   nav: true,
   navText: [
@@ -911,6 +909,11 @@ $('#pre-filtering.allowed').owlCarousel({
       items: 3
     }
   }
+
+});
+
+$('.owl-next i').click(function(){
+  $(this).parents('.owl-nav').children('.owl-prev').animate({'opacity': 1}, 300);
 });
 
 $('.ion-thumbsup').click(function(){
