@@ -867,9 +867,14 @@ $('#pre-filtering.blocked').owlCarousel({
   items: 3,
   margin: 0,
   autoplay: false,
-  dots: true,
+  dots: false,
   autoplayTimeout: 500,
   smartSpeed: 450,
+  nav: true,
+  navText: [
+    "<i class='ion-chevron-left'></i>",
+    "<i class='ion-chevron-right'></i>"
+  ],
   responsive: {
     0: {
       items: 1
@@ -887,9 +892,14 @@ $('#pre-filtering.allowed').owlCarousel({
   items: 3,
   margin: 0,
   autoplay: false,
-  dots: true,
+  dots: false,
   autoplayTimeout: 500,
   smartSpeed: 450,
+  nav: true,
+  navText: [
+    "<i class='ion-chevron-left'></i>",
+    "<i class='ion-chevron-right'></i>"
+  ],
   responsive: {
     0: {
       items: 1

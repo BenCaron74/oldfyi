@@ -4032,6 +4032,25 @@ margin-bottom: 2em;
   transition: all 250ms ease-out 0s;
   width: 20px;
 }
+.owl-nav{
+  display: flex;
+  width: 100%;
+  position: absolute;
+  margin-top: -9em;
+  justify-content: space-between;
+  color: #777;
+}
+.owl-nav i {
+  font-size: 32px;
+}
+
+.owl-nav .owl-prev {
+  margin-left: 2em;
+}
+
+.owl-nav .owl-next {
+  margin-right: 2em;
+}
 .carde-header-action{
   text-align: right!important;
   font-size: 1.8em;
