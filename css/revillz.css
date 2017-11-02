@@ -4140,3 +4140,8 @@ margin-bottom: 2em;
     font-size: .8em;
   }
 }
+#loader p {
+  text-align: center;
+  margin-top: 3em;
+  color: #777;
+}

@@ -974,4 +974,24 @@ $('#modalGoDigest').click(function(){
   whereToGo('digest');
 });
 
+$('#seek').keypress(function(e) {
+    if(e.which == 13) {
+        alertDisplay('Search input currently unavailable.')
+    }
+});
+$('.webflow-style-input').click(function() {
+  alertDisplay('Search input currently unavailable.')
+});
+
+function alertDisplay(text){
+  $('.alert-display-text').text(text);
+  $(".alert-display").show().animate({'top':'4.4em'}, 300, function(){
+    setTimeout(function(){
+      $(".alert-display").animate({'top':'0em'},300,function(){
+        $(this).hide();
+        $('.alert-display-text').text('Alert!')
+      })
+    }, 3000);
+  })
+}
 })(jQuery);
