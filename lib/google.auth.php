@@ -42,12 +42,18 @@ function auth_gmail($userid = 0, $token = "", $refresh = "")
 
   if (!empty($token))
   {
-    // Setup google oAuth2
-    $client = new Google_Client();
-    $client->setApplicationName($cfgGoogle['appName']);
-    $client->setAuthConfig($cfgGoogle['secret']);
-    $client->addScope($cfgGoogle['scopes']);
-    $client->setAccessType($cfgGoogle['accessType']);
+    try {
+      // Setup google oAuth2
+      $client = new Google_Client();
+      $client->setApplicationName($cfgGoogle['appName']);
+      $client->setAuthConfig($cfgGoogle['secret']);
+      $client->addScope($cfgGoogle['scopes']);
+      $client->setAccessType($cfgGoogle['accessType']);
+
+    } catch (Exception $e) {
+      logthat($logdest, "Got exception with Google client:\n" .  $e->getMessage());
+      gAuth("yes");
+    }
 
     // check value
     if ($token == "null") { $token = ""; } elseif ($debug) { logthat($logdest, "got access token : ".json_encode($token)); }
@@ -69,15 +75,15 @@ function auth_gmail($userid = 0, $token = "", $refresh = "")
       if (empty($refresh) || $refresh == "null")
       {
         // restart full auth
-	if (isset($_SESSION))
-	{
-	  logthat($logdest, "restart full auth for token: ".$token['access_token']);
-	  gAuth("yes");
-	}
-	else
-	{
-	  logthat($logdest, "cannot refresh token: refresh empty for token: ".$token['access_token']);
-	}
+        if (isset($_SESSION))
+        {
+          logthat($logdest, "restart full auth for token: ".$token['access_token']);
+          gAuth("yes");
+        }
+        else
+        {
+          logthat($logdest, "cannot refresh token: refresh empty for token: ".$token['access_token']);
+        }
         return false;
       }
 
@@ -147,7 +153,8 @@ function auth_gmail($userid = 0, $token = "", $refresh = "")
       $userImage = $gprofile->image->url;
 
     } catch (Exception $e) {
-      logthat($logdest, "Got exception with google+ service:\n" .  $e->getMessage());
+      logthat($logdest, "Got exception with Google+ service:\n" .  $e->getMessage());
+      gAuth("yes");
 
       $userLanguage = "en";
       $userFirstname = "";
@@ -193,14 +200,36 @@ function auth_gmail($userid = 0, $token = "", $refresh = "")
     }
     else
     {
-      // check if allowed to create accound
-      if (!isset($_SESSION['invite']) || $_SESSION['invite'] != "HELLOFYI2K17") {
-        header('location: /');
-        exit;
+      // check if allowed to create account
+      if (!isset($_SESSION['invite']) || !in_array($_SESSION['invite'], array("HELLOFYI2K17", "BETAFYI2K17")))
+      {
+        // check position in waiting list
+        $sql = "SELECT `position` FROM `waitinglist` WHERE `email` = '".gmailCleanAddress($userEmail)."' LIMIT 1";
+        $res = mysqli_query($conn, $sql) or logthat($logdest, "SQL Error:\n$sql\n".mysqli_error($conn));
+
+        if ($res && mysqli_num_rows($res))
+        {
+          $row = mysqli_fetch_assoc($res);
+
+          // if position is not 0 (valve opened), deny access
+          if ($row['position'] !== 0)
+          {
+            header('location: /');
+            exit;
+          }
+          else
+          {
+            $tag = "waitinglist";
+          }
+        }
+      }
+      else
+      {
+        $tag = $_SESSION['invite'];
       }
 
       // create user account
-      $sql = "INSERT INTO `user`(`email`, `password`, `method`, `language`, `rank`, `firstseen`, `lastseen`, `firstname`, `lastname`) VALUES('$userEmail', NULL, 'google', '$userLanguage', 1, UNIX_TIMESTAMP(), UNIX_TIMESTAMP(), '$userFirstname', '$userLastname')";
+      $sql = "INSERT INTO `user`(`email`, `password`, `method`, `language`, `rank`, `firstseen`, `lastseen`, `firstname`, `lastname`, `tag`) VALUES('$userEmail', NULL, 'google', '$userLanguage', 1, UNIX_TIMESTAMP(), UNIX_TIMESTAMP(), '$userFirstname', '$userLastname', '$tag')";
       $res = mysqli_query($conn, $sql) or logthat($logdest, "SQL Error:\n$sql\n".mysqli_error($conn));
       $userid = mysqli_insert_id($conn);
 

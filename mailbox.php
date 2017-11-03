@@ -231,9 +231,9 @@ if ($_SESSION['userid'] > 0)
 
   if (isset($_GET['q']) && !empty($_GET['q']))
   {
-    $search = 'AND (m.`from` LIKE "%'.str_replace(" ", "%", $_GET['q']).'%"';
-    $search .= ' OR m.`fromname` LIKE "%'.str_replace(" ", "%", $_GET['q']).'%"';
-    $search .= ' OR m.`subject` LIKE "%'.str_replace(" ", "%", $_GET['q']).'%")';
+    $search = 'AND (`from` LIKE "%'.str_replace(" ", "%", $_GET['q']).'%"';
+    $search .= ' OR `fromname` LIKE "%'.str_replace(" ", "%", $_GET['q']).'%"';
+    $search .= ' OR `subject` LIKE "%'.str_replace(" ", "%", $_GET['q']).'%")';
   }
   else
   {
@@ -246,65 +246,101 @@ if ($_SESSION['userid'] > 0)
 
   if (!empty($_GET['box'])) {
     $box = "AND m.`box` = '".mysqli_real_escape_string($conn, $_GET['box'])."'";
+    $msgtype = "";
   } else {
-    $box = "AND (m.`box` = 'INBOX' OR m.`box` = 'TRASH')
-    AND n.`msgtype` = 2";
+    // don't show spams or deleted messages
+    // boxes left: INBOX, TRASH, none (archived)
+    // and only show messages detected as newsletters
+    $box = "AND (`box` != 'SPAM' AND `box` != 'DELETED')";
+    $msgtype = "AND n.`msgtype` = 2";
   }
 
   if ($header['page'] == "newsletters")
   {
-    $sql = "SELECT n.`id`, n.`lastdate`, m.`fromname`, m.`from`, m.`subject`, n.`action`, n.`received`, r.`reads`, ROUND(r.`reads` / n.`received` * 100) as `openrate`
+    $sql = "SELECT n.`id`, l.`lastdate`, m.`fromname`, m.`from`, m.`subject`, n.`action`, n.`received`, r.`reads`, ROUND(r.`reads` / n.`received` * 100) as `openrate`
     FROM `newsletter` n, `message` m
-    LEFT JOIN (SELECT `newsletter_id`, SUM(`read`) AS `reads` FROM `message` GROUP BY `newsletter_id`)
+    JOIN
+    (SELECT `newsletter_id`, MAX(`date`) as `lastdate`
+     FROM `message`
+     WHERE 1 $box $search
+     GROUP BY `newsletter_id`)
+    AS l ON l.`newsletter_id` = m.`newsletter_id`
+    LEFT JOIN
+    (SELECT `newsletter_id`, SUM(`read`) AS `reads`
+     FROM `message`
+     GROUP BY `newsletter_id`)
     AS r ON r.`newsletter_id` = m.`newsletter_id`
     WHERE m.`user_id` = ".$_SESSION['userid']."
     AND m.`newsletter_id` = n.`id`
-    AND m.`date` = n.`lastdate`
+    AND m.`date` = l.`lastdate`
     AND n.`action` = 0
-    $box
-    $search
+    $msgtype
     GROUP BY m.`newsletter_id`
     ORDER BY $sqlsort";
   }
   elseif ($header['page'] == "blacklist")
   {
-    $sql = "SELECT n.`id`, n.`lastdate`, m.`fromname`, m.`from`, m.`subject`, n.`action`, n.`received`, r.`reads`, ROUND(r.`reads` / n.`received` * 100) as `openrate`
+    $sql = "SELECT n.`id`, l.`lastdate`, m.`fromname`, m.`from`, m.`subject`, n.`action`, n.`received`, r.`reads`, ROUND(r.`reads` / n.`received` * 100) as `openrate`
     FROM `newsletter` n, `message` m
-    LEFT JOIN (SELECT `newsletter_id`, SUM(`read`) AS `reads` FROM `message` GROUP BY `newsletter_id`)
+    JOIN
+    (SELECT `newsletter_id`, MAX(`date`) as `lastdate`
+     FROM `message`
+     WHERE 1 $search
+     GROUP BY `newsletter_id`)
+    AS l ON l.`newsletter_id` = m.`newsletter_id`
+    LEFT JOIN
+    (SELECT `newsletter_id`, SUM(`read`) AS `reads`
+     FROM `message`
+     GROUP BY `newsletter_id`)
     AS r ON r.`newsletter_id` = m.`newsletter_id`
     WHERE m.`user_id` = ".$_SESSION['userid']."
     AND m.`newsletter_id` = n.`id`
-    AND m.`date` = n.`lastdate`
+    AND m.`date` = l.`lastdate`
     AND n.`action` = 3
-    $search
     GROUP BY m.`newsletter_id`
     ORDER BY $sqlsort";
   }
   elseif ($header['page'] == "allowed")
   {
-    $sql = "SELECT n.`id`, n.`lastdate`, m.`fromname`, m.`from`, m.`subject`, n.`action`, n.`received`, r.`reads`, ROUND(r.`reads` / n.`received` * 100) as `openrate`
+    $sql = "SELECT n.`id`, l.`lastdate`, m.`fromname`, m.`from`, m.`subject`, n.`action`, n.`received`, r.`reads`, ROUND(r.`reads` / n.`received` * 100) as `openrate`
     FROM `newsletter` n, `message` m
-    LEFT JOIN (SELECT `newsletter_id`, SUM(`read`) AS `reads` FROM `message` GROUP BY `newsletter_id`)
+    JOIN
+    (SELECT `newsletter_id`, MAX(`date`) as `lastdate`
+     FROM `message`
+     WHERE 1 $search
+     GROUP BY `newsletter_id`)
+    AS l ON l.`newsletter_id` = m.`newsletter_id`
+    LEFT JOIN
+    (SELECT `newsletter_id`, SUM(`read`) AS `reads`
+     FROM `message`
+     GROUP BY `newsletter_id`)
     AS r ON r.`newsletter_id` = m.`newsletter_id`
     WHERE m.`user_id` = ".$_SESSION['userid']."
     AND m.`newsletter_id` = n.`id`
-    AND m.`date` = n.`lastdate`
+    AND m.`date` = l.`lastdate`
     AND n.`action` = 1
-    $search
     GROUP BY m.`newsletter_id`
     ORDER BY $sqlsort";
   }
   elseif ($header['page'] == "digest")
   {
-    $sql = "SELECT n.`id`, n.`lastdate`, m.`fromname`, m.`from`, m.`subject`, n.`action`, n.`received`, r.`reads`, ROUND(r.`reads` / n.`received` * 100) as `openrate`
+    $sql = "SELECT n.`id`, l.`lastdate`, m.`fromname`, m.`from`, m.`subject`, n.`action`, n.`received`, r.`reads`, ROUND(r.`reads` / n.`received` * 100) as `openrate`
     FROM `newsletter` n, `message` m
-    LEFT JOIN (SELECT `newsletter_id`, SUM(`read`) AS `reads` FROM `message` GROUP BY `newsletter_id`)
+    JOIN
+    (SELECT `newsletter_id`, MAX(`date`) as `lastdate`
+     FROM `message`
+     WHERE 1 $search
+     GROUP BY `newsletter_id`)
+    AS l ON l.`newsletter_id` = m.`newsletter_id`
+    LEFT JOIN
+    (SELECT `newsletter_id`, SUM(`read`) AS `reads`
+     FROM `message`
+     GROUP BY `newsletter_id`)
     AS r ON r.`newsletter_id` = m.`newsletter_id`
     WHERE m.`user_id` = ".$_SESSION['userid']."
     AND m.`newsletter_id` = n.`id`
-    AND m.`date` = n.`lastdate`
+    AND m.`date` = l.`lastdate`
     AND n.`action` = 2
-    $search
     GROUP BY m.`newsletter_id`
     ORDER BY $sqlsort";
   }
@@ -313,14 +349,27 @@ if ($_SESSION['userid'] > 0)
     exit;
   }
 
+  // $time_start = microtime(true);
+
   // get total results
   $res = mysqli_query($conn, $sql) or die(mysqli_error($conn));
   $rescount = mysqli_num_rows($res);
+
+  /*
+  $time_duration = microtime(true) - $time_start;
+  echo '<font color="#fff">1st request time: '.$time_duration.' s - ';
+  $time_start = microtime(true);
+  */
 
   // AND (m.`category` = 'CATEGORY_PROMOTIONS' OR m.`category` = 'CATEGORY_SOCIAL' OR m.`category` = 'CATEGORY_FORUMS' OR m.`category` = 'CATEGORY_UPDATES' AND n.`received` > 1)
 
   // get this page results
   $res = mysqli_query($conn, $sql." LIMIT $pmin, $pmax") or die(mysqli_error($conn));
+
+  /*
+  $time_duration = microtime(true) - $time_start;
+  echo "2nd request time: $time_duration s</font>";
+  */
 
   if (mysqli_num_rows($res) < 1)
   {

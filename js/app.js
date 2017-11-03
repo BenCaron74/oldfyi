@@ -14,8 +14,26 @@ $(document).ready(function() {
 });
 
 $('#gmail').click(function() {
-  $('#gmail, #outlook, #yahoo, #other').animate({opacity: 0.50, height: "hide"}, {duration: 200, queue: false, done: function(){ $('svg').fadeIn(); } });
-  document.location.href = "/newsletters";
+
+  if ( $(this).hasClass("signup") )
+  {
+    checked = $("#agree").prop('checked');
+  }
+  else
+  {
+    checked = true;
+  }
+
+  if (checked)
+  {
+    $('#gmail, #outlook, #yahoo, #other').animate({opacity: 0.50, height: "hide"}, {duration: 200, queue: false, done: function(){ $('svg').fadeIn(); } });
+    document.location.href = "/newsletters";
+  }
+  else
+  {
+    alert("Please review our terms of service and privacy policy first");
+  }
+
 });
 
 $.fn.extend({
