@@ -1,112 +1,115 @@
-(function (factory) {
-	if (typeof define === 'function' && define.amd) {
-		// AMD (Register as an anonymous module)
-		define(['jquery'], factory);
-	} else if (typeof exports === 'object') {
-		// Node/CommonJS
-		module.exports = factory(require('jquery'));
-	} else {
-		// Browser globals
-		factory(jQuery);
-	}
-}(function ($) {
+(function(factory) {
+  if (typeof define === 'function' && define.amd) {
+    // AMD (Register as an anonymous module)
+    define(['jquery'], factory);
+  } else if (typeof exports === 'object') {
+    // Node/CommonJS
+    module.exports = factory(require('jquery'));
+  } else {
+    // Browser globals
+    factory(jQuery);
+  }
+}(function($) {
 
-	var pluses = /\+/g;
+  var pluses = /\+/g;
 
-	function encode(s) {
-		return config.raw ? s : encodeURIComponent(s);
-	}
+  function encode(s) {
+    return config.raw ? s : encodeURIComponent(s);
+  }
 
-	function decode(s) {
-		return config.raw ? s : decodeURIComponent(s);
-	}
+  function decode(s) {
+    return config.raw ? s : decodeURIComponent(s);
+  }
 
-	function stringifyCookieValue(value) {
-		return encode(config.json ? JSON.stringify(value) : String(value));
-	}
+  function stringifyCookieValue(value) {
+    return encode(config.json ? JSON.stringify(value) : String(value));
+  }
 
-	function parseCookieValue(s) {
-		if (s.indexOf('"') === 0) {
-			// This is a quoted cookie as according to RFC2068, unescape...
-			s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
-		}
+  function parseCookieValue(s) {
+    if (s.indexOf('"') === 0) {
+      // This is a quoted cookie as according to RFC2068, unescape...
+      s = s.slice(1, -1).replace(/\\"/g, '"').replace(/\\\\/g, '\\');
+    }
 
-		try {
-			// Replace server-side written pluses with spaces.
-			// If we can't decode the cookie, ignore it, it's unusable.
-			// If we can't parse the cookie, ignore it, it's unusable.
-			s = decodeURIComponent(s.replace(pluses, ' '));
-			return config.json ? JSON.parse(s) : s;
-		} catch(e) {}
-	}
+    try {
+      // Replace server-side written pluses with spaces.
+      // If we can't decode the cookie, ignore it, it's unusable.
+      // If we can't parse the cookie, ignore it, it's unusable.
+      s = decodeURIComponent(s.replace(pluses, ' '));
+      return config.json ? JSON.parse(s) : s;
+    } catch (e) {}
+  }
 
-	function read(s, converter) {
-		var value = config.raw ? s : parseCookieValue(s);
-		return $.isFunction(converter) ? converter(value) : value;
-	}
+  function read(s, converter) {
+    var value = config.raw ? s : parseCookieValue(s);
+    return $.isFunction(converter) ? converter(value) : value;
+  }
 
-	var config = $.cookie = function (key, value, options) {
+  var config = $.cookie = function(key, value, options) {
 
-		// Write
+    // Write
 
-		if (arguments.length > 1 && !$.isFunction(value)) {
-			options = $.extend({}, config.defaults, options);
+    if (arguments.length > 1 && !$.isFunction(value)) {
+      options = $.extend({}, config.defaults, options);
 
-			if (typeof options.expires === 'number') {
-				var days = options.expires, t = options.expires = new Date();
-				t.setMilliseconds(t.getMilliseconds() + days * 864e+5);
-			}
+      if (typeof options.expires === 'number') {
+        var days = options.expires,
+          t = options.expires = new Date();
+        t.setMilliseconds(t.getMilliseconds() + days * 864e+5);
+      }
 
-			return (document.cookie = [
-				encode(key), '=', stringifyCookieValue(value),
-				options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
-				options.path    ? '; path=' + options.path : '',
-				options.domain  ? '; domain=' + options.domain : '',
-				options.secure  ? '; secure' : ''
-			].join(''));
-		}
+      return (document.cookie = [
+        encode(key), '=', stringifyCookieValue(value),
+        options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+        options.path ? '; path=' + options.path : '',
+        options.domain ? '; domain=' + options.domain : '',
+        options.secure ? '; secure' : ''
+      ].join(''));
+    }
 
-		// Read
+    // Read
 
-		var result = key ? undefined : {},
-			// To prevent the for loop in the first place assign an empty array
-			// in case there are no cookies at all. Also prevents odd result when
-			// calling $.cookie().
-			cookies = document.cookie ? document.cookie.split('; ') : [],
-			i = 0,
-			l = cookies.length;
+    var result = key ? undefined : {},
+      // To prevent the for loop in the first place assign an empty array
+      // in case there are no cookies at all. Also prevents odd result when
+      // calling $.cookie().
+      cookies = document.cookie ? document.cookie.split('; ') : [],
+      i = 0,
+      l = cookies.length;
 
-		for (; i < l; i++) {
-			var parts = cookies[i].split('='),
-				name = decode(parts.shift()),
-				cookie = parts.join('=');
+    for (; i < l; i++) {
+      var parts = cookies[i].split('='),
+        name = decode(parts.shift()),
+        cookie = parts.join('=');
 
-			if (key === name) {
-				// If second argument (value) is a function it's a converter...
-				result = read(cookie, value);
-				break;
-			}
+      if (key === name) {
+        // If second argument (value) is a function it's a converter...
+        result = read(cookie, value);
+        break;
+      }
 
-			// Prevent storing a cookie that we couldn't decode.
-			if (!key && (cookie = read(cookie)) !== undefined) {
-				result[name] = cookie;
-			}
-		}
+      // Prevent storing a cookie that we couldn't decode.
+      if (!key && (cookie = read(cookie)) !== undefined) {
+        result[name] = cookie;
+      }
+    }
 
-		return result;
-	};
+    return result;
+  };
 
-	config.defaults = {};
+  config.defaults = {};
 
-	$.removeCookie = function (key, options) {
-		// Must not alter options, thus extending a fresh object...
-		$.cookie(key, '', $.extend({}, options, { expires: -1 }));
-		return !$.cookie(key);
-	};
+  $.removeCookie = function(key, options) {
+    // Must not alter options, thus extending a fresh object...
+    $.cookie(key, '', $.extend({}, options, {
+      expires: -1
+    }));
+    return !$.cookie(key);
+  };
 
 }));
 
-(function defineMustache (global, factory) {
+(function defineMustache(global, factory) {
   if (typeof exports === 'object' && exports && typeof exports.nodeName !== 'string') {
     factory(exports); // CommonJS
   } else if (typeof define === 'function' && define.amd) {
@@ -115,14 +118,14 @@
     global.Mustache = {};
     factory(global.Mustache); // script, wsh, asp
   }
-}(this, function mustacheFactory (mustache) {
+}(this, function mustacheFactory(mustache) {
 
   var objectToString = Object.prototype.toString;
-  var isArray = Array.isArray || function isArrayPolyfill (object) {
+  var isArray = Array.isArray || function isArrayPolyfill(object) {
     return objectToString.call(object) === '[object Array]';
   };
 
-  function isFunction (object) {
+  function isFunction(object) {
     return typeof object === 'function';
   }
 
@@ -130,11 +133,11 @@
    * More correct typeof string handling array
    * which normally returns typeof 'object'
    */
-  function typeStr (obj) {
+  function typeStr(obj) {
     return isArray(obj) ? 'array' : typeof obj;
   }
 
-  function escapeRegExp (string) {
+  function escapeRegExp(string) {
     return string.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, '\\$&');
   }
 
@@ -142,19 +145,21 @@
    * Null safe way of checking whether or not an object,
    * including its prototype, has a given property
    */
-  function hasProperty (obj, propName) {
+  function hasProperty(obj, propName) {
     return obj != null && typeof obj === 'object' && (propName in obj);
   }
 
   // Workaround for https://issues.apache.org/jira/browse/COUCHDB-577
   // See https://github.com/janl/mustache.js/issues/189
   var regExpTest = RegExp.prototype.test;
-  function testRegExp (re, string) {
+
+  function testRegExp(re, string) {
     return regExpTest.call(re, string);
   }
 
   var nonSpaceRe = /\S/;
-  function isWhitespace (string) {
+
+  function isWhitespace(string) {
     return !testRegExp(nonSpaceRe, string);
   }
 
@@ -169,8 +174,8 @@
     '=': '&#x3D;'
   };
 
-  function escapeHtml (string) {
-    return String(string).replace(/[&<>"'`=\/]/g, function fromEntityMap (s) {
+  function escapeHtml(string) {
+    return String(string).replace(/[&<>"'`=\/]/g, function fromEntityMap(s) {
       return entityMap[s];
     });
   }
@@ -181,19 +186,19 @@
   var curlyRe = /\s*\}/;
   var tagRe = /#|\^|\/|>|\{|&|=|!/;
 
-  function parseTemplate (template, tags) {
+  function parseTemplate(template, tags) {
     if (!template)
       return [];
 
-    var sections = [];     // Stack to hold section tokens
-    var tokens = [];       // Buffer to hold the tokens
-    var spaces = [];       // Indices of whitespace tokens on the current line
-    var hasTag = false;    // Is there a {{tag}} on the current line?
-    var nonSpace = false;  // Is there a non-space char on the current line?
+    var sections = []; // Stack to hold section tokens
+    var tokens = []; // Buffer to hold the tokens
+    var spaces = []; // Indices of whitespace tokens on the current line
+    var hasTag = false; // Is there a {{tag}} on the current line?
+    var nonSpace = false; // Is there a non-space char on the current line?
 
     // Strips all whitespace tokens array for the current line
     // if there was a {{#tag}} on it and otherwise only space.
-    function stripSpace () {
+    function stripSpace() {
       if (hasTag && !nonSpace) {
         while (spaces.length)
           delete tokens[spaces.pop()];
@@ -206,7 +211,8 @@
     }
 
     var openingTagRe, closingTagRe, closingCurlyRe;
-    function compileTags (tagsToCompile) {
+
+    function compileTags(tagsToCompile) {
       if (typeof tagsToCompile === 'string')
         tagsToCompile = tagsToCompile.split(spaceRe, 2);
 
@@ -239,7 +245,7 @@
             nonSpace = true;
           }
 
-          tokens.push([ 'text', chr, start, start + 1 ]);
+          tokens.push(['text', chr, start, start + 1]);
           start += 1;
 
           // Check for whitespace on the current line.
@@ -276,7 +282,7 @@
       if (!scanner.scan(closingTagRe))
         throw new Error('Unclosed tag at ' + scanner.pos);
 
-      token = [ type, value, start, scanner.pos ];
+      token = [type, value, start, scanner.pos];
       tokens.push(token);
 
       if (type === '#' || type === '^') {
@@ -311,7 +317,7 @@
    * Combines the values of consecutive text tokens in the given `tokens` array
    * to a single token.
    */
-  function squashTokens (tokens) {
+  function squashTokens(tokens) {
     var squashedTokens = [];
 
     var token, lastToken;
@@ -332,7 +338,7 @@
     return squashedTokens;
   }
 
-  function nestTokens (tokens) {
+  function nestTokens(tokens) {
     var nestedTokens = [];
     var collector = nestedTokens;
     var sections = [];
@@ -365,7 +371,7 @@
    * A simple string scanner that is used by the template parser to find
    * tokens in template strings.
    */
-  function Scanner (string) {
+  function Scanner(string) {
     this.string = string;
     this.tail = string;
     this.pos = 0;
@@ -374,7 +380,7 @@
   /**
    * Returns `true` if the tail is empty (end of string).
    */
-  Scanner.prototype.eos = function eos () {
+  Scanner.prototype.eos = function eos() {
     return this.tail === '';
   };
 
@@ -382,7 +388,7 @@
    * Tries to match the given regular expression at the current position.
    * Returns the matched text if it can match, the empty string otherwise.
    */
-  Scanner.prototype.scan = function scan (re) {
+  Scanner.prototype.scan = function scan(re) {
     var match = this.tail.match(re);
 
     if (!match || match.index !== 0)
@@ -400,8 +406,9 @@
    * Skips all text until the given regular expression can be matched. Returns
    * the skipped string, which is the entire tail if no match can be made.
    */
-  Scanner.prototype.scanUntil = function scanUntil (re) {
-    var index = this.tail.search(re), match;
+  Scanner.prototype.scanUntil = function scanUntil(re) {
+    var index = this.tail.search(re),
+      match;
 
     switch (index) {
       case -1:
@@ -425,9 +432,11 @@
    * Represents a rendering context by wrapping a view object and
    * maintaining a reference to the parent context.
    */
-  function Context (view, parentContext) {
+  function Context(view, parentContext) {
     this.view = view;
-    this.cache = { '.': this.view };
+    this.cache = {
+      '.': this.view
+    };
     this.parent = parentContext;
   }
 
@@ -435,7 +444,7 @@
    * Creates a new context using the given view with this context
    * as the parent.
    */
-  Context.prototype.push = function push (view) {
+  Context.prototype.push = function push(view) {
     return new Context(view, this);
   };
 
@@ -443,14 +452,15 @@
    * Returns the value of the given name in this context, traversing
    * up the context hierarchy if the value is absent in this context's view.
    */
-  Context.prototype.lookup = function lookup (name) {
+  Context.prototype.lookup = function lookup(name) {
     var cache = this.cache;
 
     var value;
     if (cache.hasOwnProperty(name)) {
       value = cache[name];
     } else {
-      var context = this, names, index, lookupHit = false;
+      var context = this,
+        names, index, lookupHit = false;
 
       while (context) {
         if (name.indexOf('.') > 0) {
@@ -484,14 +494,14 @@
     return value;
   };
 
-  function Writer () {
+  function Writer() {
     this.cache = {};
   }
 
   /**
    * Clears all cached templates in this writer.
    */
-  Writer.prototype.clearCache = function clearCache () {
+  Writer.prototype.clearCache = function clearCache() {
     this.cache = {};
   };
 
@@ -499,7 +509,7 @@
    * Parses and caches the given `template` and returns the array of tokens
    * that is generated from the parse.
    */
-  Writer.prototype.parse = function parse (template, tags) {
+  Writer.prototype.parse = function parse(template, tags) {
     var cache = this.cache;
     var tokens = cache[template];
 
@@ -510,13 +520,13 @@
   };
 
 
-  Writer.prototype.render = function render (template, view, partials) {
+  Writer.prototype.render = function render(template, view, partials) {
     var tokens = this.parse(template);
     var context = (view instanceof Context) ? view : new Context(view);
     return this.renderTokens(tokens, context, partials, template);
   };
 
-  Writer.prototype.renderTokens = function renderTokens (tokens, context, partials, originalTemplate) {
+  Writer.prototype.renderTokens = function renderTokens(tokens, context, partials, originalTemplate) {
     var buffer = '';
 
     var token, symbol, value;
@@ -539,12 +549,12 @@
     return buffer;
   };
 
-  Writer.prototype.renderSection = function renderSection (token, context, partials, originalTemplate) {
+  Writer.prototype.renderSection = function renderSection(token, context, partials, originalTemplate) {
     var self = this;
     var buffer = '';
     var value = context.lookup(token[1]);
 
-    function subRender (template) {
+    function subRender(template) {
       return self.render(template, context, partials);
     }
 
@@ -570,14 +580,14 @@
     return buffer;
   };
 
-  Writer.prototype.renderInverted = function renderInverted (token, context, partials, originalTemplate) {
+  Writer.prototype.renderInverted = function renderInverted(token, context, partials, originalTemplate) {
     var value = context.lookup(token[1]);
 
     if (!value || (isArray(value) && value.length === 0))
       return this.renderTokens(token[4], context, partials, originalTemplate);
   };
 
-  Writer.prototype.renderPartial = function renderPartial (token, context, partials) {
+  Writer.prototype.renderPartial = function renderPartial(token, context, partials) {
     if (!partials) return;
 
     var value = isFunction(partials) ? partials(token[1]) : partials[token[1]];
@@ -585,47 +595,47 @@
       return this.renderTokens(this.parse(value), context, partials, value);
   };
 
-  Writer.prototype.unescapedValue = function unescapedValue (token, context) {
+  Writer.prototype.unescapedValue = function unescapedValue(token, context) {
     var value = context.lookup(token[1]);
     if (value != null)
       return value;
   };
 
-  Writer.prototype.escapedValue = function escapedValue (token, context) {
+  Writer.prototype.escapedValue = function escapedValue(token, context) {
     var value = context.lookup(token[1]);
     if (value != null)
       return mustache.escape(value);
   };
 
-  Writer.prototype.rawValue = function rawValue (token) {
+  Writer.prototype.rawValue = function rawValue(token) {
     return token[1];
   };
 
   mustache.name = 'mustache.js';
   mustache.version = '2.3.0';
-  mustache.tags = [ '{{', '}}' ];
+  mustache.tags = ['{{', '}}'];
 
   var defaultWriter = new Writer();
 
-  mustache.clearCache = function clearCache () {
+  mustache.clearCache = function clearCache() {
     return defaultWriter.clearCache();
   };
 
-  mustache.parse = function parse (template, tags) {
+  mustache.parse = function parse(template, tags) {
     return defaultWriter.parse(template, tags);
   };
 
-  mustache.render = function render (template, view, partials) {
+  mustache.render = function render(template, view, partials) {
     if (typeof template !== 'string') {
       throw new TypeError('Invalid template! Template should be a "string" ' +
-                          'but "' + typeStr(template) + '" was given as the first ' +
-                          'argument for mustache#render(template, view, partials)');
+        'but "' + typeStr(template) + '" was given as the first ' +
+        'argument for mustache#render(template, view, partials)');
     }
 
     return defaultWriter.render(template, view, partials);
   };
 
-  mustache.to_html = function to_html (template, view, partials, send) {
+  mustache.to_html = function to_html(template, view, partials, send) {
 
     var result = mustache.render(template, view, partials);
 
@@ -648,9 +658,9 @@
 
 
 var gradNum = 0;
-var gradientCard = ["#e53935","#d81b60","#8e24aa","#5e35b1","#3949ab",
-"#1e88e5","#039be5","#00acc1","#00897b","#43a047","#7cb342","#c0ca33",
-"#fdd835","#ffb300","#fb8c00","#f4511e","#6d4c41","#757575","#546e7a"
+var gradientCard = ["#e53935", "#d81b60", "#8e24aa", "#5e35b1", "#3949ab",
+  "#1e88e5", "#039be5", "#00acc1", "#00897b", "#43a047", "#7cb342", "#c0ca33",
+  "#fdd835", "#ffb300", "#fb8c00", "#f4511e", "#6d4c41", "#757575", "#546e7a"
 ]
 
 function randGrad() {
@@ -662,51 +672,60 @@ function randGrad() {
 
 function getAverageRGB(imgEl) {
 
-    var blockSize = 5, // only visit every 5 pixels
-        defaultRGB = {r:0,g:0,b:0}, // for non-supporting envs
-        canvas = document.createElement('canvas'),
-        context = canvas.getContext && canvas.getContext('2d'),
-        data, width, height,
-        i = -4,
-        length,
-        rgb = {r:0,g:0,b:0},
-        count = 0;
+  var blockSize = 5, // only visit every 5 pixels
+    defaultRGB = {
+      r: 0,
+      g: 0,
+      b: 0
+    }, // for non-supporting envs
+    canvas = document.createElement('canvas'),
+    context = canvas.getContext && canvas.getContext('2d'),
+    data, width, height,
+    i = -4,
+    length,
+    rgb = {
+      r: 0,
+      g: 0,
+      b: 0
+    },
+    count = 0;
 
-    if (!context) {
-        return defaultRGB;
-    }
+  if (!context) {
+    return defaultRGB;
+  }
 
-    height = canvas.height = imgEl.naturalHeight || imgEl.offsetHeight || imgEl.height;
-    width = canvas.width = imgEl.naturalWidth || imgEl.offsetWidth || imgEl.width;
+  height = canvas.height = imgEl.naturalHeight || imgEl.offsetHeight || imgEl.height;
+  width = canvas.width = imgEl.naturalWidth || imgEl.offsetWidth || imgEl.width;
 
-    context.drawImage(imgEl, 0, 0);
+  context.drawImage(imgEl, 0, 0);
 
-    try {
-        data = context.getImageData(0, 0, width, height);
-    } catch(e) {
-        /* security error, img on diff domain */alert('x');
-        return defaultRGB;
-    }
+  try {
+    data = context.getImageData(0, 0, width, height);
+  } catch (e) {
+    /* security error, img on diff domain */
+    alert('x');
+    return defaultRGB;
+  }
 
-    length = data.data.length;
+  length = data.data.length;
 
-    while ( (i += blockSize * 4) < length ) {
-        ++count;
-        rgb.r += data.data[i];
-        rgb.g += data.data[i+1];
-        rgb.b += data.data[i+2];
-    }
+  while ((i += blockSize * 4) < length) {
+    ++count;
+    rgb.r += data.data[i];
+    rgb.g += data.data[i + 1];
+    rgb.b += data.data[i + 2];
+  }
 
-    // ~~ used to floor values
-    rgb.r = ~~(rgb.r/count);
-    rgb.g = ~~(rgb.g/count);
-    rgb.b = ~~(rgb.b/count);
+  // ~~ used to floor values
+  rgb.r = ~~(rgb.r / count);
+  rgb.g = ~~(rgb.g / count);
+  rgb.b = ~~(rgb.b / count);
 
-    return rgb;
+  return rgb;
 
 }
 
-function cardTopCol(){
+function cardTopCol() {
   $('.carde-header').each(function() {
     var imgID = $(this).parents('.carde').find('img').attr('id');
     var img = document.getElementById(imgID);
@@ -714,7 +733,7 @@ function cardTopCol(){
     var colorThiefPatern = colorThief.getPalette(img)
     var kObj = colorThief.getColor(img);
     var array = colorThiefPatern[1];
-    $(this).css('background', 'rgb('+array[0]+','+array[1]+','+array[2]+')');
+    $(this).css('background', 'rgb(' + array[0] + ',' + array[1] + ',' + array[2] + ')');
   });
 }
 
@@ -730,9 +749,6 @@ function cardTopCol(){
   // }).fail(function() {
   //   console.log('JSON data loading failed');
   // });
-
-
-
 
   $(document).ready(function() {
     var winWidth = $(window).width();
@@ -757,343 +773,354 @@ function cardTopCol(){
 
 
 
-$('a').click(function() {
-  if ($(this).parent().hasClass('nav-item')) {
-    var active = '#' + $("[class*='nav-active']").attr('id');
-    var id = $(this).parent().attr('id');
-    var idNav = '#' + id;
-    var idContent = '#p' + id.substr(1);
-    var id = {
-      nav: idNav,
-      content: idContent
-    };
-    sectionSwitch(id, active);
-  } else {
-    return false;
-  }
-});
-$('.more-nav .ion-android-more-vertical').click(function() {
-  if ($('.xs-nav').is(":visible")) {
-    $('.xs-item').hide();
-    $('.xs-nav').animate({
-      bottom: '100%'
-    }, 200, function(){
-      $('.xs-nav').hide();
-    })
-  } else {
-    $('.xs-nav').show();
-    $('.xs-item').show().parent().animate({
-      bottom: '62%'
-    }, 200)
-  }
-});
-
-function sectionSwitch(id, active) {
-  var selectedId = $(id.content);
-  var pActive = '#p' + active.substr(2);
-  var pActive = $(pActive);
-  var nActive = $(active);
-  $("li").each(function(index) {
-    if ($(this).hasClass('nav-active')) {
-      $(this).removeClass('nav-active');;
+  $('a').click(function() {
+    if ($(this).parent().hasClass('nav-item')) {
+      var active = '#' + $("[class*='nav-active']").attr('id');
+      var id = $(this).parent().attr('id');
+      var idNav = '#' + id;
+      var idContent = '#p' + id.substr(1);
+      var id = {
+        nav: idNav,
+        content: idContent
+      };
+      sectionSwitch(id, active);
+    } else {
+      return false;
     }
   });
-  pActive.fadeOut('fast', function() {
-    selectedId.fadeIn();
-    $('.xs-nav').animate({
-      bottom: '100%'
-    }, 200, function(){
-      $('.xs-nav').hide();
-    })
+  $('.more-nav .ion-android-more-vertical').click(function() {
+    if ($('.xs-nav').is(":visible")) {
+      $('.xs-item').hide();
+      $('.xs-nav').animate({
+        bottom: '100%'
+      }, 200, function() {
+        $('.xs-nav').hide();
+      })
+    } else {
+      $('.xs-nav').show();
+      $('.xs-item').show().parent().animate({
+        bottom: '62%'
+      }, 200)
+    }
+  });
+
+  function sectionSwitch(id, active) {
+    var selectedId = $(id.content);
+    var pActive = '#p' + active.substr(2);
+    var pActive = $(pActive);
+    var nActive = $(active);
     $("li").each(function(index) {
-      if ($(this).is(id.nav)) {
-        $(this).addClass("nav-active");
+      if ($(this).hasClass('nav-active')) {
+        $(this).removeClass('nav-active');;
       }
     });
-  });
-}
-function numColor(){
-  $('.card-bottom li b').each(function() {
-    var val = $(this);
-    if (val.text().includes('%')) {
-      var percent = val.text().replace("%", '');
-      if (percent < 33) {
+    pActive.fadeOut('fast', function() {
+      selectedId.fadeIn();
+      $('.xs-nav').animate({
+        bottom: '100%'
+      }, 200, function() {
+        $('.xs-nav').hide();
+      })
+      $("li").each(function(index) {
+        if ($(this).is(id.nav)) {
+          $(this).addClass("nav-active");
+        }
+      });
+    });
+  }
+
+  function numColor() {
+    $('.card-bottom li b').each(function() {
+      var val = $(this);
+      if (val.text().includes('%')) {
+        var percent = val.text().replace("%", '');
+        if (percent < 33) {
+          val.css('color', '#43A047')
+        } else if (percent < 66) {
+          val.css('color', '#FFB300')
+        } else {
+          val.css('color', '#DD2C00')
+        }
+      } else if (val.text() < 33) {
         val.css('color', '#43A047')
-      } else if (percent < 66) {
+      } else if (val.text() < 66) {
         val.css('color', '#FFB300')
       } else {
         val.css('color', '#DD2C00')
       }
-    } else if (val.text() < 33) {
-      val.css('color', '#43A047')
-    } else if (val.text() < 66) {
-      val.css('color', '#FFB300')
+    });
+  }
+
+  $('#setting').click(function() {
+    var item = $(this);
+    var offset = item.offset();
+    if ($('.settings-pane').is(":visible")) {
+      $('.settings-pane').fadeOut('fast')
     } else {
-      val.css('color', '#DD2C00')
+      console.log(offset.top);
+      console.log(offset.left);
+      $('.settings-pane').css({
+        left: offset.left - 310 + 'px',
+        top: offset.top + 'px',
+        position: 'fixed'
+      }).fadeIn('fast');
     }
   });
-}
-
-$('#setting').click(function() {
-  var item = $(this);
-  var offset = item.offset();
-  if ($('.settings-pane').is(":visible")) {
-    $('.settings-pane').fadeOut('fast')
-  } else {
-    console.log(offset.top);
-    console.log(offset.left);
-    $('.settings-pane').css({
-      left: offset.left - 310 +'px',
-      top: offset.top + 'px',
-      position:'fixed'
-    }).fadeIn('fast');
-  }
-});
-$('#notif').click(function() {
-  var item = $(this);
-  var offset = item.offset();
-  if ($('.notification-pane').is(":visible")) {
-    $('.notification-pane').fadeOut('fast')
-  } else {
-    console.log(offset.top);
-    console.log(offset.left);
-    $('.notification-pane').css({
-      left: offset.left - 310 +'px',
-      top: offset.top + 'px',
-      position:'fixed'
-    });
-    $('.notification-pane').fadeIn('fast');
-  }
-});
+  $('#notif').click(function() {
+    var item = $(this);
+    var offset = item.offset();
+    if ($('.notification-pane').is(":visible")) {
+      $('.notification-pane').fadeOut('fast')
+    } else {
+      console.log(offset.top);
+      console.log(offset.left);
+      $('.notification-pane').css({
+        left: offset.left - 310 + 'px',
+        top: offset.top + 'px',
+        position: 'fixed'
+      });
+      $('.notification-pane').fadeIn('fast');
+    }
+  });
 
 
-function progress() {
+  function progress() {
     var progr = document.getElementById('progress');
     var progress = 0;
     var id = setInterval(frame, 50);
+
     function frame() {
-        if (progress > $('#loader').width()) {
-            clearInterval(id);
-            cardTopCol();
-            $("#loader").fadeOut('fast', function(){
-              $("#pNew").fadeIn('fast');
-            });
-        } else {
-          progress += 25;
-          //Set progress += 5;
-          progr.style.width = progress + 'px';
-        }
-    }
-}
-progress();
-
-$('.select').on('click','.placeholder',function(){
-  var parent = $(this).closest('.select');
-  if ( ! parent.hasClass('is-open')){
-    parent.addClass('is-open');
-    $('.select.is-open').not(parent).removeClass('is-open');
-  }else{
-    parent.removeClass('is-open');
-  }
-}).on('click','ul>li',function(){
-  var parent = $(this).closest('.select');
-  parent.removeClass('is-open').find('.placeholder').text( $(this).text() );
-  parent.find('input[type=hidden]').attr('value', $(this).attr('data-value') );
-});
-
-$('#otherAct').click(function(){
-  alert('yolo');
-  $(this).toggleClass('flip-action');
-  if($('.card-content-overlay').css('display') == 'none'){
-    $(this).parents('.card-top').next().find('.card-img').fadeOut();
-    $(this).parents('.card-top').next().find('.card-txt').fadeOut(function(){
-      $(this).parents('.card-content').children().first().slideDown();
-    });
-  } else {
-    $(this).parents('.card-top').next().find('.card-content-overlay').slideUp(function(){
-      $(this).nextAll().fadeIn();
-    });
-  }
-});
-
-$.fn.extend({
-    revealAction: function (animationName) {
-        var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-        this.addClass('animated ' + animationName).one(animationEnd, function() {
-            $(this).removeClass('animated ' + animationName);
+      if (progress > $('#loader').width()) {
+        clearInterval(id);
+        cardTopCol();
+        $("#loader").fadeOut('fast', function() {
+          $("#pNew").fadeIn('fast');
         });
-        return this;
-    }
-});
-$('#blacklistAct').click(function() {
-  $(this).parents('.card').fadeOut(function(){
-    $(this).parent().remove();
-  })
-});
-$('#whitelistAct').click(function() {
-  $(this).parents('.card').fadeOut(function(){
-    $(this).parent().remove();
-  })
-});
-$('#digestAct').click(function() {
-  $(this).parents('.card').fadeOut(function(){
-    $(this).parent().remove();
-  })
-});
-$('#suggestAct, #deleteAct').click(function() {
-  $(this).parents('.card').fadeOut(function(){
-    $(this).parent().remove();
-  })
-});
-$('#modalActionActive').click(function(){
-  $('.modal-action-overlay, .modal-action-content').fadeIn('fast');
-})
-$('.modal-action-overlay').click(function(){
-  $('.modal-action-overlay, .modal-action-content').fadeOut('fast');
-})
-$('.carde-header-action .ion-thumbsdown').click(function(){
-  var index = $(this).parents('.owl-item').index();
-  if ($(this).parents('.allowed').length > 0) {
-    $('.modal-card-content').attr('cardIndex', index).attr('cardType', 'allowed');
-  } else {
-    $('.modal-card-content').attr('cardIndex', index).attr('cardType', 'blocked');
-  }
-  $('.modal-card-overlay, .modal-card-content').fadeIn('fast');
-})
-$('.modal-card-overlay').click(function(){
-  $('.modal-card-overlay, .modal-card-content').fadeOut('fast');
-})
-$('#pre-filtering.blocked').owlCarousel({
-  loop: false,
-  items: 3,
-  margin: 0,
-  autoplay: false,
-  dots: false,
-  smartSpeed: 450,
-  nav: true,
-  navText: [
-    "<i class='ion-chevron-left'></i>",
-    "<i class='ion-chevron-right'></i>"
-  ],
-  responsive: {
-    0: {
-      items: 1
-    },
-    870: {
-      items: 2
-    },
-    1280: {
-      items: 3
+      } else {
+        progress += 25;
+        //Set progress += 5;
+        progr.style.width = progress + 'px';
+      }
     }
   }
-});
-$('#pre-filtering.allowed').owlCarousel({
-  loop: false,
-  items: 3,
-  margin: 0,
-  autoplay: false,
-  dots: false,
-  smartSpeed: 450,
-  nav: true,
-  navText: [
-    "<i class='ion-chevron-left'></i>",
-    "<i class='ion-chevron-right'></i>"
-  ],
-  responsive: {
-    0: {
-      items: 1
-    },
-    870: {
-      items: 2
-    },
-    1280: {
-      items: 3
+  progress();
+
+  $('.select').on('click', '.placeholder', function() {
+    var parent = $(this).closest('.select');
+    if (!parent.hasClass('is-open')) {
+      parent.addClass('is-open');
+      $('.select.is-open').not(parent).removeClass('is-open');
+    } else {
+      parent.removeClass('is-open');
     }
-  }
-
-});
-
-$('.owl-next i').click(function(){
-  $(this).parents('.owl-nav').children('.owl-prev').animate({'opacity': 1}, 300);
-});
-
-$('.ion-thumbsup').click(function(){
-  var index = $(this).parents('.owl-item').index()
-  if ($(this).parents('.allowed').length > 0) {
-    $(".allowed").trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
-    if ($(".allowed").find('.owl-stage').children().length <= 0) {
-      $(".allowed").find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
-    }
-  } else {
-    $(".blocked").trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
-    if ($(".blocked").find('.owl-stage').children().length <= 0) {
-      $(".blocked").find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
-    }
-  }
-
-});
-function whereToGo (location){
-  console.log(location);
-}
-$('#modalGoWhite').click(function(){
-  // FIXME: REMOVE 2 CARDS
-  // FIXME: TEXT NOT APPEND
-  var index = $(this).parents('.modal-card-content').attr('cardIndex');
-  var type = $(this).parents('.modal-card-content').attr('cardType');
-  $('.modal-card-overlay, .modal-card-content').fadeOut('fast', function(){
-    $("."+ type).trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
+  }).on('click', 'ul>li', function() {
+    var parent = $(this).closest('.select');
+    parent.removeClass('is-open').find('.placeholder').text($(this).text());
+    parent.find('input[type=hidden]').attr('value', $(this).attr('data-value'));
   });
-  if ($("."+ type).find('.owl-stage').children().length <= 0) {
-    $("."+ type).find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
-  }
-  whereToGo('whitelist');
-});
-$('#modalGoBlack').click(function(){
-  // FIXME: REMOVE 2 CARDS
-  // FIXME: TEXT NOT APPEND
-  var index = $(this).parents('.modal-card-content').attr('cardIndex');
-  var type = $(this).parents('.modal-card-content').attr('cardType');
-  $('.modal-card-overlay, .modal-card-content').fadeOut('fast', function(){
-    $("."+ type).trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
-  });
-  if ($("."+ type).find('.owl-stage').children().length <= 0) {
-    $("."+ type).find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
-  }
-  whereToGo('blacklist');
-});
-$('#modalGoDigest').click(function(){
-  // FIXME: REMOVE 2 CARDS
-  // FIXME: TEXT NOT APPEND
-  var index = $(this).parents('.modal-card-content').attr('cardIndex');
-  var type = $(this).parents('.modal-card-content').attr('cardType');
-  $('.modal-card-overlay, .modal-card-content').fadeOut('fast', function(){
-    $("."+ type).trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
-  });
-  if ($("."+ type).find('.owl-stage').children().length <= 0) {
-    $("."+ type).find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
-  }
-  whereToGo('digest');
-});
 
-$('#seek').keypress(function(e) {
-    if(e.which == 13) {
-        alertDisplay('Search input currently unavailable.')
+  $('#otherAct').click(function() {
+    alert('yolo');
+    $(this).toggleClass('flip-action');
+    if ($('.card-content-overlay').css('display') == 'none') {
+      $(this).parents('.card-top').next().find('.card-img').fadeOut();
+      $(this).parents('.card-top').next().find('.card-txt').fadeOut(function() {
+        $(this).parents('.card-content').children().first().slideDown();
+      });
+    } else {
+      $(this).parents('.card-top').next().find('.card-content-overlay').slideUp(function() {
+        $(this).nextAll().fadeIn();
+      });
     }
-});
-$('.webflow-style-input').click(function() {
-  alertDisplay('Search input currently unavailable.')
-});
+  });
 
-function alertDisplay(text){
-  $('.alert-display-text').text(text);
-  $(".alert-display").show().animate({'top':'4.4em'}, 300, function(){
-    setTimeout(function(){
-      $(".alert-display").animate({'top':'0em'},300,function(){
-        $(this).hide();
-        $('.alert-display-text').text('Alert!')
-      })
-    }, 3000);
+  $.fn.extend({
+    revealAction: function(animationName) {
+      var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+      this.addClass('animated ' + animationName).one(animationEnd, function() {
+        $(this).removeClass('animated ' + animationName);
+      });
+      return this;
+    }
+  });
+  $('#blacklistAct').click(function() {
+    $(this).parents('.card').fadeOut(function() {
+      $(this).parent().remove();
+    })
+  });
+  $('#whitelistAct').click(function() {
+    $(this).parents('.card').fadeOut(function() {
+      $(this).parent().remove();
+    })
+  });
+  $('#digestAct').click(function() {
+    $(this).parents('.card').fadeOut(function() {
+      $(this).parent().remove();
+    })
+  });
+  $('#suggestAct, #deleteAct').click(function() {
+    $(this).parents('.card').fadeOut(function() {
+      $(this).parent().remove();
+    })
+  });
+  $('#modalActionActive').click(function() {
+    $('.modal-action-overlay, .modal-action-content').fadeIn('fast');
   })
-}
-$.cookie("FTGuide", true, {expires : 365});
+  $('.modal-action-overlay').click(function() {
+    $('.modal-action-overlay, .modal-action-content').fadeOut('fast');
+  })
+  $('.carde-header-action .ion-thumbsdown').click(function() {
+    var index = $(this).parents('.owl-item').index();
+    if ($(this).parents('.allowed').length > 0) {
+      $('.modal-card-content').attr('cardIndex', index).attr('cardType', 'allowed');
+    } else {
+      $('.modal-card-content').attr('cardIndex', index).attr('cardType', 'blocked');
+    }
+    $('.modal-card-overlay, .modal-card-content').fadeIn('fast');
+  })
+  $('.modal-card-overlay').click(function() {
+    $('.modal-card-overlay, .modal-card-content').fadeOut('fast');
+  })
+  $('#pre-filtering.blocked').owlCarousel({
+    loop: false,
+    items: 3,
+    margin: 0,
+    autoplay: false,
+    dots: false,
+    smartSpeed: 450,
+    nav: true,
+    navText: [
+      "<i class='ion-chevron-left'></i>",
+      "<i class='ion-chevron-right'></i>"
+    ],
+    responsive: {
+      0: {
+        items: 1
+      },
+      870: {
+        items: 2
+      },
+      1280: {
+        items: 3
+      }
+    }
+  });
+  $('#pre-filtering.allowed').owlCarousel({
+    loop: false,
+    items: 3,
+    margin: 0,
+    autoplay: false,
+    dots: false,
+    smartSpeed: 450,
+    nav: true,
+    navText: [
+      "<i class='ion-chevron-left'></i>",
+      "<i class='ion-chevron-right'></i>"
+    ],
+    responsive: {
+      0: {
+        items: 1
+      },
+      870: {
+        items: 2
+      },
+      1280: {
+        items: 3
+      }
+    }
+
+  });
+
+  $('.owl-next i').click(function() {
+    $(this).parents('.owl-nav').children('.owl-prev').animate({
+      'opacity': 1
+    }, 300);
+  });
+
+  $('.ion-thumbsup').click(function() {
+    var index = $(this).parents('.owl-item').index()
+    if ($(this).parents('.allowed').length > 0) {
+      $(".allowed").trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
+      if ($(".allowed").find('.owl-stage').children().length <= 0) {
+        $(".allowed").find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
+      }
+    } else {
+      $(".blocked").trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
+      if ($(".blocked").find('.owl-stage').children().length <= 0) {
+        $(".blocked").find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
+      }
+    }
+
+  });
+
+  function whereToGo(location) {
+    console.log(location);
+  }
+  $('#modalGoWhite').click(function() {
+    // FIXME: REMOVE 2 CARDS
+    // FIXME: TEXT NOT APPEND
+    var index = $(this).parents('.modal-card-content').attr('cardIndex');
+    var type = $(this).parents('.modal-card-content').attr('cardType');
+    $('.modal-card-overlay, .modal-card-content').fadeOut('fast', function() {
+      $("." + type).trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
+    });
+    if ($("." + type).find('.owl-stage').children().length <= 0) {
+      $("." + type).find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
+    }
+    whereToGo('whitelist');
+  });
+  $('#modalGoBlack').click(function() {
+    // FIXME: REMOVE 2 CARDS
+    // FIXME: TEXT NOT APPEND
+    var index = $(this).parents('.modal-card-content').attr('cardIndex');
+    var type = $(this).parents('.modal-card-content').attr('cardType');
+    $('.modal-card-overlay, .modal-card-content').fadeOut('fast', function() {
+      $("." + type).trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
+    });
+    if ($("." + type).find('.owl-stage').children().length <= 0) {
+      $("." + type).find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
+    }
+    whereToGo('blacklist');
+  });
+  $('#modalGoDigest').click(function() {
+    // FIXME: REMOVE 2 CARDS
+    // FIXME: TEXT NOT APPEND
+    var index = $(this).parents('.modal-card-content').attr('cardIndex');
+    var type = $(this).parents('.modal-card-content').attr('cardType');
+    $('.modal-card-overlay, .modal-card-content').fadeOut('fast', function() {
+      $("." + type).trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
+    });
+    if ($("." + type).find('.owl-stage').children().length <= 0) {
+      $("." + type).find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
+    }
+    whereToGo('digest');
+  });
+
+  $('#seek').keypress(function(e) {
+    if (e.which == 13) {
+      alertDisplay('Search input currently unavailable.')
+    }
+  });
+  $('.webflow-style-input').click(function() {
+    alertDisplay('Search input currently unavailable.')
+  });
+
+  function alertDisplay(text) {
+    $('.alert-display-text').text(text);
+    $(".alert-display").show().animate({
+      'top': '4.4em'
+    }, 300, function() {
+      setTimeout(function() {
+        $(".alert-display").animate({
+          'top': '0em'
+        }, 300, function() {
+          $(this).hide();
+          $('.alert-display-text').text('Alert!')
+        })
+      }, 3000);
+    })
+  }
+  $.cookie("FTGuide", true, {
+    expires: 365
+  });
 })(jQuery);

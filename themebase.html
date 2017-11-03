@@ -430,6 +430,7 @@
     </div>
     <div id="pDigest" class="container">
       <h4 class="context-title">Digest</h4>
+      {{#results}}
       <div class="col-sm-12">
         <div class="arch-pane">
           <div class="arch-content">
@@ -439,8 +440,8 @@
             <div class="arch-txt">
               <ul>
                 <li>
-                  <h2>Youtube | Nass just uploaded a video.</h2></li>
-                <li>Nass just shared a video after not posting for a while</li>
+                  <h2>{{fromname}}</h2></li>
+                <li>{{subject}}</li>
               </ul>
             </div>
           </div>
@@ -453,8 +454,8 @@
             </ul>
           </div>
         </div>
-
       </div>
+      {{/results}}
       <div class="col-sm-12">
         <div class="arch-pane">
           <div class="arch-content">
