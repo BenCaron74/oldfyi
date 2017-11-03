@@ -17,8 +17,8 @@ if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQU
 }
 
 // get vars
-$do = $_GET['do'];
-$id = $_GET['id'];
+$do = (isset($_GET['do']) ? $_GET['do'] : "");
+$id = (isset($_GET['id']) ? $_GET['id'] : "");
 
 // check action
 if ($do == "allow")

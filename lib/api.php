@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__.'/google.checklogin.php';
+require_once __DIR__.'/../process.php';
 
 // simple date format
 function formatdate($date)
@@ -11,7 +12,7 @@ function formatdate($date)
   else { return date("M d", $date); }
 }
 
-// stats and full sync stats
+// mailbox stats and full sync stats
 function mailbox_info($id)
 {
   global $conn;
@@ -119,6 +120,22 @@ function output_json($json, $code=0)
 
 // START
 
+/*
+// check referer to avoid XSS
+if (empty($_SERVER['HTTP_REFERER']) || !strstr($_SERVER['HTTP_REFERER'], $siteurl))
+{
+  http_response_code(403);
+  exit;
+}
+
+// check if requested via AJAX
+if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest')
+{
+  http_response_code(403);
+  exit;
+}
+*/
+
 // default response
 $json = array();
 
@@ -139,7 +156,7 @@ if ($method == "PUT")
   $input = file_get_contents("php://input");
   $input = json_decode($input);
 }
-elseif ($method != "GET" && $method != "DELETE")
+elseif ($method != "GET" && $method != "POST" && $method != "DELETE")
 {
   output_json($json, 400);
 }
@@ -148,6 +165,100 @@ elseif ($method != "GET" && $method != "DELETE")
 // check method
 switch ($path[0])
 {
+  // handle lists
+  case "newsletter":
+
+  // handle second path element
+  switch ($method)
+  {
+    // add a new alert
+    case "POST":
+
+    // get URL parameters
+    $id = mysqli_real_escape_string($conn, $path[1]);
+    $do = mysqli_real_escape_string($conn, $path[2]);
+
+    // check input parameters
+    if (empty($do) || !in_array($do, array("new", "allow", "block", "unblock", "digest")) || empty($id) || !is_numeric($id))
+    {
+      output_json($json, 400);
+    }
+
+    // check action
+    if ($do == "allow")
+    {
+      $ids = explode(",", $id);
+      foreach($ids as $nid)
+      {
+        // allow each selected newsletter
+        $sql = "INSERT INTO `queue`(`user_id`, `newsletter_id`, `action`, `date`, `process`) VALUES(".$_SESSION['userid'].", $nid, 1, UNIX_TIMESTAMP(), 1)";
+        $allow = mysqli_query($conn, $sql);
+
+        if ($allow === false)
+        {
+          output_json($json, 500);
+        }
+      }
+      output_json($json, 200);
+    }
+    elseif ($do == "digest")
+    {
+      $ids = explode(",", $id);
+      foreach($ids as $nid)
+      {
+        // digest each selected newsletter
+        $sql = "INSERT INTO `queue`(`user_id`, `newsletter_id`, `action`, `date`, `process`) VALUES(".$_SESSION['userid'].", $nid, 2, UNIX_TIMESTAMP(), 1)";
+        $digest = mysqli_query($conn, $sql);
+
+        if ($digest === false)
+        {
+          output_json($json, 500);
+        }
+      }
+      output_json($json, 200);
+    }
+    elseif ($do == "unblock")
+    {
+      $ids = explode(",", $id);
+      foreach($ids as $nid)
+      {
+        // unblock each selected newsletter
+        $sql = "INSERT INTO `queue`(`user_id`, `newsletter_id`, `action`, `date`, `process`) VALUES(".$_SESSION['userid'].", $nid, 0, UNIX_TIMESTAMP(), 1)";
+        $unblock = mysqli_query($conn, $sql);
+
+        if ($unblock === false)
+        {
+          output_json($json, 500);
+        }
+      }
+      output_json($json, 200);
+    }
+    elseif ($do == "block")
+    {
+      $ids = explode(",", $id);
+      foreach($ids as $nid)
+      {
+        // unsubscribe from each selected newsletter
+        $sql = "INSERT INTO `queue`(`user_id`, `newsletter_id`, `action`, `date`, `process`) VALUES(".$_SESSION['userid'].", $nid, 3, UNIX_TIMESTAMP(), 1)";
+        $unsub = mysqli_query($conn, $sql);
+
+        if ($unsub === false)
+        {
+          output_json($json, 500);
+        }
+      }
+      output_json($json, 200);
+    }
+    break;
+
+
+    // bad method
+    default:
+    output_json($json, 400);
+    break;
+  }
+
+
   // handle lists
   case "list":
 
@@ -340,6 +451,7 @@ switch ($path[0])
       // send result
       output_json($json, 200);
     }
+    break;
 
 
     // bad method

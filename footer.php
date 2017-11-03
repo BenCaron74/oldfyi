@@ -61,7 +61,7 @@
   <script src="/global/js/Plugin/bootbox.js"></script>
   <script src="/base/assets/js/BaseApp.js"></script>
   <script src="/base/assets/js/App/Mailbox.js"></script>
-  <script src="/js/mailbox.js?v=29"></script>
+  <script src="/js/mailbox.js?v=31"></script>
 <?php
 if (isset($rowp) && isset($rowp['progress']) && $rowp['progress'] < 100)
 {
