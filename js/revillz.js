@@ -655,29 +655,14 @@
   return mustache;
 }));
 
-
-
-var gradNum = 0;
-var gradientCard = ["#e53935", "#d81b60", "#8e24aa", "#5e35b1", "#3949ab",
-  "#1e88e5", "#039be5", "#00acc1", "#00897b", "#43a047", "#7cb342", "#c0ca33",
-  "#fdd835", "#ffb300", "#fb8c00", "#f4511e", "#6d4c41", "#757575", "#546e7a"
-]
-
-function randGrad() {
-  var x = 1 + Math.floor(Math.random() * 19);
-  gradNum++;
-  return gradientCard[gradNum];
-}
-
-
+//Get average card image color
 function getAverageRGB(imgEl) {
-
-  var blockSize = 5, // only visit every 5 pixels
+  var blockSize = 5,
     defaultRGB = {
       r: 0,
       g: 0,
       b: 0
-    }, // for non-supporting envs
+    },
     canvas = document.createElement('canvas'),
     context = canvas.getContext && canvas.getContext('2d'),
     data, width, height,
@@ -689,42 +674,32 @@ function getAverageRGB(imgEl) {
       b: 0
     },
     count = 0;
-
   if (!context) {
     return defaultRGB;
   }
-
   height = canvas.height = imgEl.naturalHeight || imgEl.offsetHeight || imgEl.height;
   width = canvas.width = imgEl.naturalWidth || imgEl.offsetWidth || imgEl.width;
-
   context.drawImage(imgEl, 0, 0);
-
   try {
     data = context.getImageData(0, 0, width, height);
   } catch (e) {
-    /* security error, img on diff domain */
     alert('x');
     return defaultRGB;
   }
-
   length = data.data.length;
-
   while ((i += blockSize * 4) < length) {
     ++count;
     rgb.r += data.data[i];
     rgb.g += data.data[i + 1];
     rgb.b += data.data[i + 2];
   }
-
-  // ~~ used to floor values
   rgb.r = ~~(rgb.r / count);
   rgb.g = ~~(rgb.g / count);
   rgb.b = ~~(rgb.b / count);
-
   return rgb;
-
 }
 
+//Set card header color by average => ColorThief
 function cardTopCol() {
   $('.carde-header').each(function() {
     var imgID = $(this).parents('.carde').find('img').attr('id');
@@ -751,6 +726,7 @@ function cardTopCol() {
   // });
 
   $(document).ready(function() {
+		//Header responsive
     var winWidth = $(window).width();
     var offset = $(".header-brand").offset().top;
     if (offset > 140) {
@@ -765,14 +741,15 @@ function cardTopCol() {
         $(".header-brand .header-nav").fadeOut("fast");
       }
     });
-    // TODO: Remove when JQ AJAX
+		// ============================================
+    // TODO: Remove when JQ AJAX /!\ IMPORTANT /!\
     numColor();
     cardTopCol();
-    // ==========================
+    // ============================================
   });
 
 
-
+	//Header link onepage
   $('a').click(function() {
     if ($(this).parent().hasClass('nav-item')) {
       var active = '#' + $("[class*='nav-active']").attr('id');
@@ -803,7 +780,7 @@ function cardTopCol() {
       }, 200)
     }
   });
-
+	// Draw Nav Active
   function sectionSwitch(id, active) {
     var selectedId = $(id.content);
     var pActive = '#p' + active.substr(2);
@@ -828,7 +805,7 @@ function cardTopCol() {
       });
     });
   }
-
+//Set color index for card info
   function numColor() {
     $('.card-bottom li b').each(function() {
       var val = $(this);
@@ -850,7 +827,7 @@ function cardTopCol() {
       }
     });
   }
-
+	//Show settings panel
   $('#setting').click(function() {
     var item = $(this);
     var offset = item.offset();
@@ -866,6 +843,7 @@ function cardTopCol() {
       }).fadeIn('fast');
     }
   });
+	//Show notification panel
   $('#notif').click(function() {
     var item = $(this);
     var offset = item.offset();
@@ -883,7 +861,7 @@ function cardTopCol() {
     }
   });
 
-
+//First progres bar and loader OTH elements
   function progress() {
     var progr = document.getElementById('progress');
     var progress = 0;
@@ -904,36 +882,7 @@ function cardTopCol() {
     }
   }
   progress();
-
-  $('.select').on('click', '.placeholder', function() {
-    var parent = $(this).closest('.select');
-    if (!parent.hasClass('is-open')) {
-      parent.addClass('is-open');
-      $('.select.is-open').not(parent).removeClass('is-open');
-    } else {
-      parent.removeClass('is-open');
-    }
-  }).on('click', 'ul>li', function() {
-    var parent = $(this).closest('.select');
-    parent.removeClass('is-open').find('.placeholder').text($(this).text());
-    parent.find('input[type=hidden]').attr('value', $(this).attr('data-value'));
-  });
-
-  $('#otherAct').click(function() {
-    alert('yolo');
-    $(this).toggleClass('flip-action');
-    if ($('.card-content-overlay').css('display') == 'none') {
-      $(this).parents('.card-top').next().find('.card-img').fadeOut();
-      $(this).parents('.card-top').next().find('.card-txt').fadeOut(function() {
-        $(this).parents('.card-content').children().first().slideDown();
-      });
-    } else {
-      $(this).parents('.card-top').next().find('.card-content-overlay').slideUp(function() {
-        $(this).nextAll().fadeIn();
-      });
-    }
-  });
-
+	//Create JQuery Animator function
   $.fn.extend({
     revealAction: function(animationName) {
       var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
@@ -943,6 +892,7 @@ function cardTopCol() {
       return this;
     }
   });
+	//All card actions
   $('#blacklistAct').click(function() {
     $(this).parents('.card').fadeOut(function() {
       $(this).parent().remove();
@@ -981,6 +931,7 @@ function cardTopCol() {
   $('.modal-card-overlay').click(function() {
     $('.modal-card-overlay, .modal-card-content').fadeOut('fast');
   })
+	//Initialize Owl
   $('#pre-filtering.blocked').owlCarousel({
     loop: false,
     items: 3,
@@ -1030,13 +981,13 @@ function cardTopCol() {
     }
 
   });
-
+	//Owl Prev/Next button
   $('.owl-next i').click(function() {
     $(this).parents('.owl-nav').children('.owl-prev').animate({
       'opacity': 1
     }, 300);
   });
-
+	//Remove card on user action
   $('.ion-thumbsup').click(function() {
     var index = $(this).parents('.owl-item').index()
     if ($(this).parents('.allowed').length > 0) {
@@ -1052,10 +1003,11 @@ function cardTopCol() {
     }
 
   });
-
-  function whereToGo(location) {
+	//Where the card should go
+  function location(location) {
     console.log(location);
   }
+	//Action after active modal
   $('#modalGoWhite').click(function() {
     // FIXME: REMOVE 2 CARDS
     // FIXME: TEXT NOT APPEND
@@ -1095,7 +1047,7 @@ function cardTopCol() {
     }
     whereToGo('digest');
   });
-
+	//Search bar
   $('#seek').keypress(function(e) {
     if (e.which == 13) {
       alertDisplay('Search input currently unavailable.')
@@ -1104,7 +1056,7 @@ function cardTopCol() {
   $('.webflow-style-input').click(function() {
     alertDisplay('Search input currently unavailable.')
   });
-
+	//Header Alert
   function alertDisplay(text) {
     $('.alert-display-text').text(text);
     $(".alert-display").show().animate({
@@ -1120,7 +1072,22 @@ function cardTopCol() {
       }, 3000);
     })
   }
-  $.cookie("FTGuide", true, {
-    expires: 365
-  });
+	// If first connection
+	if (true) {
+
+	}
+	//Cookie: Setter
+  function setCookie(name, parameters, time){
+    $.cookie(name , parameters, {
+      expires: time
+    });
+  }
+	//Cookie: Getter
+	function getCookie (cookie){
+		var chocolateCookie = $.cookie(cookie);
+		return chocolateCookie;
+	}
+  //Get cookie by var
+
+	//var myCookie = getCookie('cookie');
 })(jQuery);
