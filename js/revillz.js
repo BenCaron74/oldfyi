@@ -707,12 +707,35 @@ function cardTopCol() {
     var colorThief = new ColorThief();
     var colorThiefPatern = colorThief.getPalette(img)
     var kObj = colorThief.getColor(img);
-    var array = colorThiefPatern[1];
+    var array = colorThiefPatern[4];
     $(this).css('background', 'rgb(' + array[0] + ',' + array[1] + ',' + array[2] + ')');
   });
 }
 
+$(document).ready(function() {
+  //Header responsive
+  var winWidth = $(window).width();
+  var offset = $(".header-brand").offset().top;
+  if (offset > 140) {
+    $(".header-brand .header-nav").show();
+  }
+  $(document).scroll(function() {
+    var scrollTop = $(document).scrollTop();
+    if (scrollTop > 140 && winWidth > 824) {
+      $(".header-brand .header-nav").fadeIn("slow");
+
+    } else {
+      $(".header-brand .header-nav").fadeOut("fast");
+    }
+  });
+  // ============================================
+  // TODO: Remove when JQ AJAX /!\ IMPORTANT /!\
+  numColor();
+  cardTopCol();
+  // ============================================
+});
 (function($) {
+
   // var jqxhr = $.getJSON('yolo.json', function(json) {
   //   var card = $('#cardList').html();
   //   Mustache.parse(card);
@@ -725,28 +748,6 @@ function cardTopCol() {
   //   console.log('JSON data loading failed');
   // });
 
-  $(document).ready(function() {
-		//Header responsive
-    var winWidth = $(window).width();
-    var offset = $(".header-brand").offset().top;
-    if (offset > 140) {
-      $(".header-brand .header-nav").show();
-    }
-    $(document).scroll(function() {
-      var scrollTop = $(document).scrollTop();
-      if (scrollTop > 140 && winWidth > 824) {
-        $(".header-brand .header-nav").fadeIn("slow");
-
-      } else {
-        $(".header-brand .header-nav").fadeOut("fast");
-      }
-    });
-		// ============================================
-    // TODO: Remove when JQ AJAX /!\ IMPORTANT /!\
-    numColor();
-    cardTopCol();
-    // ============================================
-  });
 
 
 	//Header link onepage
