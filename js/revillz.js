@@ -712,29 +712,29 @@ function cardTopCol() {
   });
 }
 
-$(document).ready(function() {
-  //Header responsive
-  var winWidth = $(window).width();
-  var offset = $(".header-brand").offset().top;
-  if (offset > 140) {
-    $(".header-brand .header-nav").show();
-  }
-  $(document).scroll(function() {
-    var scrollTop = $(document).scrollTop();
-    if (scrollTop > 140 && winWidth > 824) {
-      $(".header-brand .header-nav").fadeIn("slow");
-
-    } else {
-      $(".header-brand .header-nav").fadeOut("fast");
-    }
-  });
-  // ============================================
-  // TODO: Remove when JQ AJAX /!\ IMPORTANT /!\
-  numColor();
-  cardTopCol();
-  // ============================================
-});
 (function($) {
+  $(document).ready(function() {
+    //Header responsive
+    var winWidth = $(window).width();
+    var offset = $(".header-brand").offset().top;
+    if (offset > 140) {
+      $(".header-brand .header-nav").show();
+    }
+    $(document).scroll(function() {
+      var scrollTop = $(document).scrollTop();
+      if (scrollTop > 140 && winWidth > 824) {
+        $(".header-brand .header-nav").fadeIn("slow");
+
+      } else {
+        $(".header-brand .header-nav").fadeOut("fast");
+      }
+    });
+    // ============================================
+    // TODO: Remove when JQ AJAX /!\ IMPORTANT /!\
+    numColor();
+    cardTopCol();
+    // ============================================
+  });
 
   // var jqxhr = $.getJSON('yolo.json', function(json) {
   //   var card = $('#cardList').html();
@@ -747,6 +747,59 @@ $(document).ready(function() {
   // }).fail(function() {
   //   console.log('JSON data loading failed');
   // });
+var addCard = function (listtype, sort = "", sorttype = "") {
+    var owlItem = ["<div class='item'><div class='carde'><div class='carde-header'><div class='carde-header-title'><h3>",
+      "</h3></div><div class='carde-header-action'><i id='ionSuggest' class='ion-thumbsup'></i><i id='ionOther' class='ion-thumbsdown'></i></div></div><div class='carde-content'><img id='",
+      "' class='img-circle' src='img/letters/a.png' alt=''><ul><li><h4>",
+      "</h4></li><li><p>",
+      "</p></li></ul></div><div class='carde-footer'><ul><li>Received <b>",
+      "</b></li><li>Open Rate <b>",
+      "%</b></li></ul></div></div></div>"
+    ]
+    args = "";
+    if (sort != "") {
+      args = "?sort=" + sort;
+      if (sorttype != "") {
+        args = args + "&sorttype=" + sorttype;
+      }
+    }
+    $.ajax({
+      url: "https://freeyourinbox.com/api/v1/api/v1/list/" + listtype + args,
+      context: document.body
+    }).done(function(data) {
+      console.log(data);
+      //Where?
+      append = "we have analyzed " + data.stats.msgcount + " emails in " + data.stats.newscount + " newsletters<br>";
+      if (data.stats.fullsync < 100) { append = append + 'fullsync in progress (' + data.stats.fullsync + '%) please wait...<br>'; }
+      //==//
+
+      $.each(data.results, function( key, value ) {
+        $('#pre-filtering.allowed').trigger('add.owl.carousel', [owlItem[0]+value.fromname+owlItem[1]+value.id+owlItem[2]+value.from+owlItem[3]+value.subject+owlItem[4]+value.received+owlItem[5]+value.openrate+owlItem[6]])
+        .trigger('refresh.owl.carousel');
+  /*
+   actions:
+   0 = new
+   1 = allow
+   2 = digest
+   3 = block
+  */
+        if (value.action != 1) {
+          append = append + ' <a href="javascript:fyi_action(' + value.id + ', \'allow\');">Allow</a>';
+        }
+        if (value.action != 2) {
+          append = append + ' <a href="javascript:fyi_action(' + value.id + ', \'digest\');">Digest</a>';
+        }
+        if (value.action != 3) {
+          append = append + ' <a href="javascript:fyi_action(' + value.id + ', \'filter\');">Block</a>';
+        }
+        if (value.action == 3) {
+          append = append + ' <a href="javascript:fyi_action(' + value.id + ', \'unblock\');">Unblock</a>';
+        }
+        append = append + '</div><br>';
+      });
+      $("#result").html(append);
+    });
+  }
 
 
 
