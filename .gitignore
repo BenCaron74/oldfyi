@@ -1,14 +1,13 @@
 # Add any directories, files, or patterns you don't want to be tracked by version control
-Ben
-doc
-mail
-lib/settings.php
-logs
-variant
-vendor
+/Ben
+/doc
+/mail
+/lib/google.config.php
+/lib/settings.php
+/logs/*
+/variant
 *.txt
 *.xml
 *.zip
-viRG1zT7S5S2CBRlxGCd-gQzayc.html
-96a2c3893cc9.html
-process.php
+/viRG1zT7S5S2CBRlxGCd-gQzayc.html
+/96a2c3893cc9.html

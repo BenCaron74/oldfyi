@@ -23,7 +23,7 @@ function gAuth($force = "no") {
 
 function logthat($userid, $msg)
 {
-  file_put_contents("/var/www/sites/freeyourinbox.com/public_html/logs/process.".$userid.".log", date("d/m/Y H:i:s")." : " . $msg . "\n", FILE_APPEND);
+  file_put_contents(__DIR__."/../logs/process.".$userid.".log", date("d/m/Y H:i:s")." : " . $msg . "\n", FILE_APPEND);
 }
 
 function sanitize($str)
