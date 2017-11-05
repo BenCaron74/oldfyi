@@ -664,13 +664,30 @@ $(document).ready(function() {
   $(document).scroll(function() {
     var scrollTop = $(document).scrollTop();
     if (scrollTop > 140) {
-      // $('header').css('background', '#fff');
+       $('header').css('background', '#fff');
+       $('header .header-nav a').css('color', '#777');
+       $('header .header-nav a:hover').css('background', 'rgba(0, 0, 0, 0.42)');
+       $('header .header-nav a.active').css({
+         'color': '#fff',
+         'background': 'linear-gradient( 135deg, #c694d2 10%, #253f66 100%)'
+     });
       // $('header').animate({'background': '#fff'}, 200, function(){
       //   //callback
       // })
       console.log('Then: '+scrollTop);
-    } else {
-      console.log(scrollTop);
+    }
+    if (scrollTop < 140) {
+      $('header').css('background', '');
+      $('header .header-nav a').css('color', '#fff');
+      $('header .header-nav a.active').css({
+        'color': '#ff5e62',
+        'background': '#fff'
+    });
+
+      // $('header').animate({'background': '#fff'}, 200, function(){
+      //   //callback
+      // })
+      console.log('Then: '+scrollTop);
     }
   });
 });
