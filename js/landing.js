@@ -664,7 +664,7 @@ $(document).ready(function() {
   $(document).scroll(function() {
     var scrollTop = $(document).scrollTop();
     if (scrollTop > 140) {
-      $('header').css('background', '#fff');
+      // $('header').css('background', '#fff');
       // $('header').animate({'background': '#fff'}, 200, function(){
       //   //callback
       // })

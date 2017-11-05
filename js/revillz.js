@@ -747,7 +747,7 @@ function cardTopCol() {
   // }).fail(function() {
   //   console.log('JSON data loading failed');
   // });
-var addCard = function (listtype, sort = "", sorttype = "") {
+function yolo (listtype, sort = "", sorttype = "") {
     var owlItem = ["<div class='item'><div class='carde'><div class='carde-header'><div class='carde-header-title'><h3>",
       "</h3></div><div class='carde-header-action'><i id='ionSuggest' class='ion-thumbsup'></i><i id='ionOther' class='ion-thumbsdown'></i></div></div><div class='carde-content'><img id='",
       "' class='img-circle' src='img/letters/a.png' alt=''><ul><li><h4>",
@@ -774,8 +774,10 @@ var addCard = function (listtype, sort = "", sorttype = "") {
       //==//
 
       $.each(data.results, function( key, value ) {
+        console.log(value.id);
         $('#pre-filtering.allowed').trigger('add.owl.carousel', [owlItem[0]+value.fromname+owlItem[1]+value.id+owlItem[2]+value.from+owlItem[3]+value.subject+owlItem[4]+value.received+owlItem[5]+value.openrate+owlItem[6]])
         .trigger('refresh.owl.carousel');
+
   /*
    actions:
    0 = new
