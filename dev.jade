@@ -1,0 +1,442 @@
+doctype html
+html
+	head
+		meta(charset="utf-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1")
+		title Revillz
+		link(rel="stylesheet", href="css/ionicons.min.css")
+		link(rel="stylesheet", href="css/owl.carousel.css")
+		link(rel="stylesheet", href="css/owl.theme.default.css")
+		link(rel="stylesheet", href="css/revillz.css")
+	body
+		header
+			.header-brand
+				.header-logo
+					a(href="#")
+						img.brand-img(src="testPic/brand.png", alt="")
+					ul.header-nav
+						li#nNew.nav-item.nav-active
+							a(href="#") Home
+						li#nBlacklist.nav-item
+							a(href="#") Blacklist
+						li#nWhitelist.nav-item
+							a(href="#") Whitelist
+						li#nDigest.nav-item
+							a(href="#") Digest
+				.header-user
+					ul
+						li.more-nav
+							i.ion-android-more-vertical
+						li.hidden-xs
+							i#setting.ion-android-settings
+						li.hidden-xs
+							i#notif.ion-android-notifications
+						li
+							img.user-img(src="testPic/user.png", alt="")
+			.alert-display
+				ul
+					li.ion-ios-flask
+					li.alert-display-text Hi! Check me. I'm a cool inline alert box.
+			.header-navbar
+				ul.header-nav
+					li#nNew.nav-item.nav-active
+						a(href="#") Home
+					li#nBlacklist.nav-item
+						a(href="#") Blacklist
+					li#nWhitelist.nav-item
+						a(href="#") Whitelist
+					li#nDigest.nav-item
+						a(href="#") Digest
+				.webflow-style-input
+					input#seek.search(type="text", placeholder="Search...")
+					button(type="submit")
+						i.icon.ion-android-arrow-forward
+		.content
+			#loader.container
+				h2 Processing
+				.progress-bar
+					#progress.progress
+				// <p>Yolo</p>
+			#pNew
+				// CARDS
+				section.cards-allowed
+					.container
+						h4.context-title.yolMobile Allowed
+					.container-fluid
+						.row
+							.col-sm-12
+								#pre-filtering.owl-carousel.allowed
+									// CARD 1
+									// {{#results}}
+									.item
+										.carde
+											.carde-header
+												.carde-header-title
+													h3 {{fromname}}
+												.carde-header-action
+													i#ionSuggest.ion-thumbsup
+													i#ionOther.ion-thumbsdown
+											.carde-content
+												img#1.img-circle(src="img/letters/a.png", alt="")
+												ul
+													li
+														h4 {{from}}
+													li
+														p {{subject}}
+											.carde-footer
+												ul
+													li
+														| Received 
+														b {{received}}
+													li
+														| Open Rate 
+														b {{openrate}}%
+									// {{/results}}
+									// END OF CARD 1
+									// CARD 2
+									.item
+										.carde
+											.carde-header
+												.carde-header-title
+													h3 Amazon
+												.carde-header-action
+													i.ion-thumbsup
+													i#ionOther.ion-thumbsdown
+											.carde-content
+												img#2.img-circle(src="img/letters/h.png", alt="")
+												ul
+													li
+														h4 newsletter@amazon.com
+													li
+														p Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338
+											.carde-footer
+												ul
+													li Received XXX
+													li Open Rate XXX%
+									// END OF CARD 2
+									// CARD 3
+									.item
+										.carde
+											.carde-header
+												.carde-header-title
+													h3 Amazon
+												.carde-header-action
+													i.ion-thumbsup
+													i.ion-thumbsdown
+											.carde-content
+												img#3.img-circle(src="img/letters/z.png", alt="")
+												ul
+													li
+														h4 newsletter@amazon.com
+													li
+														p Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338
+											.carde-footer
+												ul
+													li Received XXX
+													li Open Rate XXX%
+									// END OF CARD 3
+									// CARD 4
+									.item
+										.carde
+											.carde-header
+												.carde-header-title
+													h3 Amazon
+												.carde-header-action
+													i.ion-thumbsup
+													i.ion-thumbsdown
+											.carde-content
+												img#4.img-circle(src="img/letters/c.png", alt="")
+												ul
+													li
+														h4 newsletter@amazon.com
+													li
+														p Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338
+											.carde-footer
+												ul
+													li Received XXX
+													li Open Rate XXX%
+									// END OF CARD 4
+									// CARD 5
+									.item
+										.carde
+											.carde-header
+												.carde-header-title
+													h3 Amazon
+												.carde-header-action
+													i.ion-thumbsup
+													i.ion-thumbsdown
+											.carde-content
+												img#5.img-circle(src="img/letters/m.png", alt="")
+												ul
+													li
+														h4 newsletter@amazon.com
+													li
+														p Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338
+											.carde-footer
+												ul
+													li Received XXX
+													li Open Rate XXX%
+									// END OF CARD 5
+					.container
+						hr
+				section.cards-blocked
+					.container
+						h4.context-title Blocked
+					.container-fluid
+						.row
+							.col-sm-12
+								#pre-filtering.owl-carousel.blocked
+									// CARD 1
+									.item
+										.carde
+											.carde-header
+												.carde-header-title
+													h3 Amazon
+												.carde-header-action
+													i.ion-thumbsup
+													i.ion-thumbsdown
+											.carde-content
+												img#6.img-circle(src="img/letters/a.png", alt="")
+												ul
+													li
+														h4 newsletter@amazon.com
+													li
+														p Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338
+											.carde-footer
+												ul
+													li Received XXX
+													li Open Rate XXX%
+									// END OF CARD 1
+									// CARD 2
+									.item
+										.carde
+											.carde-header
+												.carde-header-title
+													h3 Amazon
+												.carde-header-action
+													i.ion-thumbsup
+													i.ion-thumbsdown
+											.carde-content
+												img#7.img-circle(src="img/letters/h.png", alt="")
+												ul
+													li
+														h4 newsletter@amazon.com
+													li
+														p Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338
+											.carde-footer
+												ul
+													li Received XXX
+													li Open Rate XXX%
+									// END OF CARD 2
+									// CARD 3
+									.item
+										.carde
+											.carde-header
+												.carde-header-title
+													h3 Amazon
+												.carde-header-action
+													i.ion-thumbsup
+													i.ion-thumbsdown
+											.carde-content
+												img#8.img-circle(src="img/letters/z.png", alt="")
+												ul
+													li
+														h4 newsletter@amazon.com
+													li
+														p Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338
+											.carde-footer
+												ul
+													li Received XXX
+													li Open Rate XXX%
+									// END OF CARD 3
+									// CARD 4
+									.item
+										.carde
+											.carde-header
+												.carde-header-title
+													h3 Amazon
+												.carde-header-action
+													i.ion-thumbsup
+													i.ion-thumbsdown
+											.carde-content
+												img#9.img-circle(src="img/letters/c.png", alt="")
+												ul
+													li
+														h4 newsletter@amazon.com
+													li
+														p Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338
+											.carde-footer
+												ul
+													li Received XXX
+													li Open Rate XXX%
+									// END OF CARD 4
+									// CARD 5
+									.item
+										.carde
+											.carde-header
+												.carde-header-title
+													h3 Amazon
+												.carde-header-action
+													i.ion-thumbsup
+													i.ion-thumbsdown
+											.carde-content
+												img#10.img-circle(src="img/letters/m.png", alt="")
+												ul
+													li
+														h4 newsletter@amazon.com
+													li
+														p Confirmation de l'avantage livraison sur votre commande 402-7712434-0392338
+											.carde-footer
+												ul
+													li Received XXX
+													li Open Rate XXX%
+									// END OF CARD
+					.container
+						hr
+				.modal-card-overlay
+				.modal-card-content
+					ul#modalGoWhite
+						li.ion-checkmark-circled
+						li Whitelist
+					hr
+					ul#modalGoBlack
+						li.ion-close-circled
+						li Blacklist
+					hr
+					ul#modalGoDigest
+						li.ion-android-archive
+						li Digest
+			#pWhitelist.container
+				h4.context-title Whitelist
+			#pDigest.container
+				h4.context-title Digest
+				.col-sm-12
+					.arch-pane
+						.arch-content
+							.arch-img
+								img(src="testPic/youtube.png", alt="")
+							.arch-txt
+								ul
+									li
+										h2 Youtube | Nass just uploaded a video.
+									li Nass just shared a video after not posting for a while
+						.arch-action
+							ul
+								li.hidden-xs
+									i.ion-checkmark-circled
+								li.hidden-xs
+									i.ion-close-circled
+								li.hidden-xs
+									i.ion-android-archive
+								li#modalActionActive.visible-xs
+									i.ion-android-more-vertical
+				.col-sm-12
+					.arch-pane
+						.arch-content
+							.arch-img
+								img(src="testPic/youtube.png", alt="")
+							.arch-txt
+								ul
+									li
+										h2 Youtube | Nass just uploaded a video.
+									li Nass just shared a video after not posting for a while
+						.arch-action
+							ul
+								li
+									i.ion-checkmark-circled
+								li
+									i.ion-close-circled
+								li
+									i.ion-android-archive
+				.modal-action-overlay
+				.modal-action-content
+					ul
+						li.ion-checkmark-circled
+						li Whitelist
+					ul
+						li.ion-close-circled
+						li Blacklist
+					ul
+						li.ion-android-archive
+						li Digest
+			#pBlacklist.container
+				h4.context-title Blacklist
+		.settings-pane.card-shadow
+			h4 Settings
+			div
+				ul
+					li Do Something
+					li
+						label.form-switch
+							input(type="checkbox", checked="")
+							i
+			div
+				ul
+					li Something Else
+					li
+						label.form-switch
+							input(type="checkbox")
+							i
+			div
+				ul
+					li Allow Notification
+					li
+						label.form-switch
+							input(type="checkbox", checked="")
+							i
+			hr
+			.set-select
+				| Filter Experience
+				.select.select--white
+					span.placeholder Default
+					ul
+						li(data-value="es") Default
+						li(data-value="en") Full Control
+						li(data-value="fr") Inteligent
+						li(data-value="de") User Control
+					input(type="hidden", name="changemetoo")
+				.select.select--white
+					span.placeholder en - US
+					ul
+						li(data-value="es") en - US
+						li(data-value="en") fr - FR
+						li(data-value="fr") es - ES
+						li(data-value="de") es - AS
+					input(type="hidden", name="changemetoo")
+		.notification-pane.card-shadow
+			h4 Notification
+			.notif
+				.notif-icon
+					i.ion-speedometer
+				.notif-content
+					h5 Time Saved
+					p Congratulation, since 2017 y...
+				span 24/10/2017
+			.notif
+				.notif-icon
+					i.ion-speedometer
+				.notif-content
+					h5 Time Saved
+					p Congratulation, since 2017 y...
+				span 24/10/2017
+			.notif
+				.notif-icon
+					i.ion-speedometer
+				.notif-content
+					h5 Time Saved
+					p Congratulation, since 2017 y...
+				span 24/10/2017
+		.xs-nav
+			ul.xs-item
+				li#nNew.nav-item
+					a(href="#") Home
+				li#nBlacklist.nav-item
+					a(href="#") Blacklist
+				li#nWhitelist.nav-item
+					a(href="#") Whitelist
+				li#nDigest.nav-item
+					a(href="#") Digest
+		script(src="js/color-thief.js", charset="utf-8")
+		script(src="js/jquery.min.js", charset="utf-8")
+		script(src="js/owl.carousel.js", charset="utf-8")
+		script(src="js/revillz.js", charset="utf-8")

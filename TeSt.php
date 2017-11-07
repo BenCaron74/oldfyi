@@ -5,7 +5,7 @@ require_once __DIR__.'/lib/google.checklogin.php';
 <html>
 <head>
 <title>Test</title>
-<script src="/global/vendor/jquery/jquery.js"></script>
+<script src="js/jquery.min.js"></script>
 <script>
 /*
  page:
@@ -23,7 +23,7 @@ function fyi_getlist(listtype, sort = "", sorttype = "") {
   }
 
   $.ajax({
-    url: "/api/v1/list/" + listtype + args,
+    url: "https://freeyourinbox.com/api/v1/api/v1/list/" + listtype + args,
     context: document.body
   }).done(function(data) {
     console.log(data);
