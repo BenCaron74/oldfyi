@@ -750,9 +750,87 @@ function cardTopCol() {
   //   console.log('JSON data loading failed');
   // });
 
+function actionThumbsUp () {
+  id = $(this).parents('.item').data('id');
+  index = $(this).parents('.owl-item').index();
+  owl = $(this).parents('.pre-filtering');
+
+  $.ajax({
+    method: "POST",
+    url: "/api/v1/newsletter/" + id + "/confirm",
+    context: document.body
+  }).success(function(data) {
+
+    if (owl.children().length > 0) {
+      owl.trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
+      if (owl.find('.owl-stage').children().length == 0) {
+        owl.parents("section").remove();
+        if ( $("#pNew section").length == 0 ) {
+          $('#pNew').prepend("<section><h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3></section>");
+        }
+      }
+    }
+
+    // update list
+    if (owl.hasClass("allowed")) { refresh = "allowed"; }
+    else if (owl.hasClass("blocked")) { refresh = "blocked"; }
+    else { refresh = false; }
+
+    if (refresh) {
+      setTimeout(function(){ updateLists([refresh], false); }, 2500);
+    }
+
+  });
+}
+
+function doAction () {
+  if ($(this).parents('.arch-action').length) {
+    id = $(this).parents('.arch-action').data('id');
+    el = $(this).parents('.col-sm-12');
+  } else {
+    id = $(this).parents('.item').data('id');
+    el = false;
+    index = $(this).parents('.owl-item').index();
+    owl = $(this).parents('.pre-filtering');
+  }
+
+  if ( $(this).hasClass("fyi-action-allow") ) { action = "allow"; refresh = "allowed"; }
+  else if ( $(this).hasClass("fyi-action-digest") ) { action = "digest"; refresh = "digest"; }
+  else if ( $(this).hasClass("fyi-action-block") ) { action = "block"; refresh = "blocked"; }
+  else { return false; }
+
+  $.ajax({
+    method: "POST",
+    url: "/api/v1/newsletter/" + id + "/" + action,
+    context: document.body
+  }).success(function(data) {
+
+    if (el) {
+      // remove element
+      el.remove();
+    } else {
+      if (owl.children().length > 0) {
+        owl.trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
+        if (owl.find('.owl-stage').children().length == 0) {
+          owl.parents("section").remove();
+          if ( $("#pNew section").length == 0 ) {
+            $('#pNew').prepend("<section><h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3></section>");
+          }
+        }
+      }
+    }
+
+    // refresh list of destination
+    setTimeout(function(){ updateLists([refresh], false); }, 2500);
+
+  });
+}
+
 function updateLists (listtypes, prefilter = false, sort = "", sorttype = "") {
-    var owlItem = ["<div class='item'><div class='carde'><div class='carde-header'><div class='carde-header-title'><h3>",
-      "</h3></div><div class='carde-header-action'><i id='ionSuggest' class='ion-thumbsup'></i><i id='ionOther' class='ion-thumbsdown'></i></div></div><div class='carde-content'><img id='",
+    var owlItem = ["<div class='item' data-id='",
+      "'><div class='carde'><div class='carde-header'><div class='carde-header-title'><h3>",
+      "</h3></div><div class='carde-header-action'>",
+      "</div></div><div class='carde-content'><img id='",
       "' class='img-circle' src='",
       "' alt=''><ul><li><h4>",
       "</h4></li><li><p>",
@@ -764,7 +842,9 @@ function updateLists (listtypes, prefilter = false, sort = "", sorttype = "") {
     var listItem = ['<div class="col-sm-12"><div class="arch-pane"><div class="arch-content"><div class="arch-img"><img src="',
       '" alt=""></div><div class="arch-txt"><ul><li><h2>',
       '</h2></li><li>',
-      '</li></ul></div></div><div class="arch-action"><ul><li class="hidden-xs"><i class="ion-checkmark-circled"></i></li><li class="hidden-xs"><i class="ion-close-circled"></i></li><li class="hidden-xs"><i class="ion-android-archive"></i></li><li id="modalActionActive" class="visible-xs"><i class="ion-android-more-vertical"></i></li></ul></div></div></div>'];
+      '</li></ul></div></div><div class="arch-action" data-id="',
+      '"><ul>',
+      '<li class="visible-xs modalActionActive"><i class="ion-android-more-vertical"></i></li></ul></div></div></div>'];
 
   args = "";
   if (prefilter) {
@@ -792,34 +872,76 @@ function updateLists (listtypes, prefilter = false, sort = "", sorttype = "") {
 
       // we should empty list before adding items if we need to refresh content
       if (prefilter) {
-        //$('.pre-filtering.' + data.list).html('');
+
+        // remove list if no result
+        if (data.count == 0) {
+          owl = $('.pre-filtering.' + data.list);
+          owl.parents("section").remove();
+          if ( $("#pNew section").length == 0 ) {
+            $('#pNew').prepend("<section><h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3></section>");
+            return true;
+          }
+        }
+
+        // clear cards
+        $('.pre-filtering.' + data.list + " .item").remove();
+
+        if (data.list == "new") {
+          actions = "<i class='material-icons fyi-action-allow' title='Allow'>inbox</i><i class='material-icons fyi-action-block' title='Block'>block</i><i class='material-icons fyi-action-digest' title='Digest'>assignment</i>";
+        } else {
+          actions = "<i class='material-icons fyi-thumbsup' title='Confirm'>check_circle</i><i class='material-icons fyi-thumbsdown' title='More...'>add_circle_outline</i>";
+        }
+
       } else {
-        if (data.list == "allowed") { listID = "pWhitelist"; }
-        else if (data.list == "blocked") { listID = "pBlacklist"; }
-        else if (data.list == "digest") { listID = "pDigest"; }
-        //$("#" + listID).html('');
+        if (data.list == "allowed") { listID = "pWhitelist"; actions = '<li class="hidden-xs"><i class="fyi-action-block"></i></li><li class="hidden-xs"><i class="fyi-action-digest"></i></li>'; }
+        else if (data.list == "blocked") { listID = "pBlacklist"; actions = '<li class="hidden-xs"><i class="fyi-action-allow"></i></li><li class="hidden-xs"><i class="fyi-action-digest"></i></li>'; }
+        else if (data.list == "digest") { listID = "pDigest"; actions = '<li class="hidden-xs"><i class="fyi-action-allow"></i></li><li class="hidden-xs"><i class="fyi-action-block"></i>'; }
+        else { listID = false; }
+
+        // clear list
+        if (listID) {
+          $("#" + listID + " .col-sm-12").remove();
+        }
       }
 
       // for each card or list item
       $.each(data.results, function( key, value ) {
         if (prefilter) {
-          $('.pre-filtering.' + data.list).trigger('add.owl.carousel', [owlItem[0]+value.fromname+owlItem[1]+value.id+owlItem[2]+value.img+owlItem[3]+value.from+owlItem[4]+value.subject+owlItem[5]+value.received+owlItem[6]+value.openrate+owlItem[7]])
+          $('.pre-filtering.' + data.list).trigger('add.owl.carousel', [owlItem[0]+value.id+owlItem[1]+value.fromname+owlItem[2]+actions+owlItem[3]+value.id+owlItem[4]+value.img+owlItem[5]+value.from+owlItem[6]+value.subject+owlItem[7]+value.received+owlItem[8]+value.openrate+owlItem[9]])
            .trigger('refresh.owl.carousel');
         } else {
-           $("#" + listID).append(listItem[0]+value.img+listItem[1]+value.fromname+listItem[2]+value.subject+listItem[3]);
+           $("#" + listID).append(listItem[0]+value.img+listItem[1]+value.fromname+listItem[2]+value.subject+listItem[3]+value.id+listItem[4]+actions+listItem[5]);
         }
       });
+
+      // thumbsup
+      if (prefilter) {
+        if (data.list == "new") {
+          $('.pre-filtering.' + data.list + " .fyi-action-allow").click(doAction); // allow
+          $('.pre-filtering.' + data.list + " .fyi-action-digest").click(doAction); // digest
+          $('.pre-filtering.' + data.list + " .fyi-action-block").click(doAction); // block
+        } else {
+          $('.pre-filtering.' + data.list + " .fyi-thumbsup").click(actionThumbsUp);
+        }
+
+      } else {
+        $("#" + listID + " .fyi-action-allow").click(doAction); // allow
+        $("#" + listID + " .fyi-action-digest").click(doAction); // digest
+        $("#" + listID + " .fyi-action-block").click(doAction); // block
+      }
 
       // update cards colors
       cardTopCol();
       numColor();
-
     });
 
   });
 }
 
+// home
 updateLists(["blocked", "allowed", "new"], true);
+
+// other tabs
 updateLists(["blocked", "allowed", "digest"], false);
 
 	//Header link onepage
@@ -934,11 +1056,24 @@ updateLists(["blocked", "allowed", "digest"], false);
     }
   });
 
+  //Show user panel
+  $('#user').click(function() {
+    if ($('.user-pane').is(":visible")) {
+      $('.user-pane').fadeOut('fast');
+    } else {
+      $('.user-pane').css({
+        left: ( $(this).position().left - 260) + 'px',
+        top: $(this).position().top + 'px',
+        position: 'fixed'
+      }).stop().fadeTo('fast',1);
+    }
+  });
+
   //First progres bar and loader OTH elements
   function progress() {
     var progr = document.getElementById('progress');
     var progress = 0;
-    var id = setInterval(frame, 50);
+    var id = setInterval(frame, 80);
 
     function frame() {
       if (progress > $('#loader').width()) {
@@ -986,12 +1121,13 @@ updateLists(["blocked", "allowed", "digest"], false);
       $(this).parent().remove();
     })
   });
-  $('#modalActionActive').click(function() {
+  $('.modalActionActive').click(function() {
     $('.modal-action-overlay, .modal-action-content').fadeIn('fast');
   })
   $('.modal-action-overlay').click(function() {
     $('.modal-action-overlay, .modal-action-content').fadeOut('fast');
   })
+/*
   $('.carde-header-action .ion-thumbsdown').click(function() {
     var index = $(this).parents('.owl-item').index();
     if ($(this).parents('.allowed').length > 0) {
@@ -1004,6 +1140,7 @@ updateLists(["blocked", "allowed", "digest"], false);
   $('.modal-card-overlay').click(function() {
     $('.modal-card-overlay, .modal-card-content').fadeOut('fast');
   })
+*/
 	//Initialize Owl
   $.each(["new", "allowed", "digest", "blocked"], function( listkey, listtype ) {
 
@@ -1039,22 +1176,7 @@ updateLists(["blocked", "allowed", "digest"], false);
       'opacity': 1
     }, 300);
   });
-	//Remove card on user action
-  $('.ion-thumbsup').click(function() {
-    var index = $(this).parents('.owl-item').index()
-    if ($(this).parents('.allowed').length > 0) {
-      $(".allowed").trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
-      if ($(".allowed").find('.owl-stage').children().length <= 0) {
-        $(".allowed").find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
-      }
-    } else {
-      $(".blocked").trigger('remove.owl.carousel', [index]).trigger('refresh.owl.carousel');
-      if ($(".blocked").find('.owl-stage').children().length <= 0) {
-        $(".blocked").find('.owl-stage').html("<h3 class='noMoreContent animated fadeIn'>Congratulations, all your mails have been processed</h3>");
-      }
-    }
 
-  });
 	//Where the card should go
   function location(location) {
     console.log(location);

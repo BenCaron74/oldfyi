@@ -852,26 +852,29 @@ function analyze_email($userid, $service, $email)
     else { $email['type'] = 0; }
 
     $action = 0;
+    $confirmed = 0;
     $filtered = 0;
 
     // check if FreeYourInbox label is applied to this email
     if (in_array(get_label($userid, $service, "digest"), json_decode($email['labelIds'], true))) {
       // then set it as digest
       $action = 2;
+      $confirmed = 1;
     }
     // check if FreeYourInbox label is applied to this email
     elseif (in_array(get_label($userid, $service, "block"), json_decode($email['labelIds'], true))) {
       // then set it as unsubscribed/filtered
       $filtered = 1;
       $action = 3;
+      $confirmed = 1;
     }
 
     // do not add spam
     //if ($email['type'] != 99)
     //{
       // store newsletter
-      $sql = "INSERT INTO `newsletter`(`user_id`, `from`, `fromname`, `subject`, `listid`, `listunsubscribe`, `action`, `unsubscribed`, `msgtype`, `firstdate`, `lastdate`, `received`, `filtered`)
-      VALUES($userid, '".sanitize($email['fromemail'])."', '".sanitize($email['fromname'])."', '".sanitize($email['subject'])."', '".sanitize(json_encode($email['listid'], JSON_UNESCAPED_SLASHES))."', '".sanitize(json_encode($email['unsub'], JSON_UNESCAPED_SLASHES))."', $action, $filtered, ".$email['type'].", ".$email['date'].", ".$email['date'].", 1, $filtered)";
+      $sql = "INSERT INTO `newsletter`(`user_id`, `from`, `fromname`, `subject`, `listid`, `listunsubscribe`, `action`, `confirmed`, `unsubscribed`, `msgtype`, `firstdate`, `lastdate`, `received`, `filtered`)
+      VALUES($userid, '".sanitize($email['fromemail'])."', '".sanitize($email['fromname'])."', '".sanitize($email['subject'])."', '".sanitize(json_encode($email['listid'], JSON_UNESCAPED_SLASHES))."', '".sanitize(json_encode($email['unsub'], JSON_UNESCAPED_SLASHES))."', $action, $confirmed, $filtered, ".$email['type'].", ".$email['date'].", ".$email['date'].", 1, $filtered)";
       //echo "\nQuery: $sql \n\n";
       $res = mysqli_query($conn, $sql) or logthat($userid, "SQL Error:\n$sql\n".mysqli_error($conn));
       $newsletter_id = mysqli_insert_id($conn);
@@ -959,7 +962,7 @@ function allow_newsletter($userid, $id)
   $count = move_newsletter($userid, $service, $id, array( get_label($userid, $service, "block"), get_label($userid, $service, "digest"), "TRASH" ), array( "INBOX" ));
 
   // set as allowed in table
-  $sqlu = "UPDATE `newsletter` SET `action` = 1 WHERE `user_id` = $userid AND `id` = $id";
+  $sqlu = "UPDATE `newsletter` SET `action` = 1, `confirmed` = 1 WHERE `user_id` = $userid AND `id` = $id";
   $resu = mysqli_query($conn, $sqlu) or logthat($userid, "SQL Error:\n$sqlu\n".mysqli_error($conn));
 
   // update metanewsletter stats
@@ -1000,7 +1003,7 @@ function digest_newsletter($userid, $id)
   // add to digest table ?
 
   // set as allowed in table
-  $sqlu = "UPDATE `newsletter` SET `action` = 2 WHERE `user_id` = $userid AND `id` = $id";
+  $sqlu = "UPDATE `newsletter` SET `action` = 2, `confirmed` = 1 WHERE `user_id` = $userid AND `id` = $id";
   $resu = mysqli_query($conn, $sqlu) or logthat($userid, "SQL Error:\n$sqlu\n".mysqli_error($conn));
 
   // update metanewsletter stats
@@ -1129,7 +1132,7 @@ function unsubscribe_newsletter($userid, $id)
     if ($count !== false)
     {
       // set this newsletter as unsubscribed
-      $sqlu = "UPDATE `newsletter` SET `action` = 3, `unsubscribed` = $status, `filtered` = `filtered` + $count WHERE `user_id` = $userid AND `id` = $id";
+      $sqlu = "UPDATE `newsletter` SET `action` = 3, `confirmed` = 1, `unsubscribed` = $status, `filtered` = `filtered` + $count WHERE `user_id` = $userid AND `id` = $id";
       $resu = mysqli_query($conn, $sqlu) or logthat($userid, "SQL Error:\n$sqlu\n".mysqli_error($conn));
 
       // update meta stats
@@ -1178,7 +1181,7 @@ function block_newsletter($userid, $id)
   if ($count !== false)
   {
     // set as unblocked in table
-    $sqlu = "UPDATE `newsletter` SET `action` = 3, `unsubscribed` = 1 WHERE `user_id` = $userid AND `id` = $id";
+    $sqlu = "UPDATE `newsletter` SET `action` = 3, `confirmed` = 1, `unsubscribed` = 1 WHERE `user_id` = $userid AND `id` = $id";
     $resu = mysqli_query($conn, $sqlu) or logthat($userid, "SQL Error:\n$sqlu\n".mysqli_error($conn));
 
     // update number of filtered e-mails
@@ -1224,7 +1227,7 @@ function unblock_newsletter($userid, $id)
   if ($count !== false)
   {
     // set as unblocked in table
-    $sqlu = "UPDATE `newsletter` SET `action` = 0, `unsubscribed` = 0 WHERE `user_id` = $userid AND `id` = $id";
+    $sqlu = "UPDATE `newsletter` SET `action` = 0, `confirmed` = 1, `unsubscribed` = 0 WHERE `user_id` = $userid AND `id` = $id";
     $resu = mysqli_query($conn, $sqlu) or logthat($userid, "SQL Error:\n$sqlu\n".mysqli_error($conn));
 
     // update number of filtered e-mails

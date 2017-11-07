@@ -2562,6 +2562,16 @@ hr
 
 @media (min-width: 768px)
 {
+    .arch-content
+    {
+        white-space: nowrap;
+        overflow: hidden;
+        width: 87%;
+    }
+    .arch-txt li {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
     .container
     {
         width: 750px;
@@ -4954,7 +4964,7 @@ button
 .ion-close-round:hover {
   color: #000;
 }*/
-.ion-thumbsdown {
+.carde-header-action i {
     margin-left: 0.4em;
 }
 #loader
@@ -4992,8 +5002,12 @@ button
     background-image: -webkit-linear-gradient(left, #8aaaff, #fa8cff);
     background-image:         linear-gradient(90deg, #8aaaff, #fa8cff);
 }
+#user {
+    cursor: pointer;
+}
 .settings-pane,
-.notification-pane
+.notification-pane,
+.user-pane
 {
     position: absolute;
     z-index: 999;
@@ -5008,6 +5022,10 @@ button
     border-radius: .4em;
     background-color: #fff;
 }
+.user-pane {
+    height: auto;
+    width: 250px;
+}
 .notification-pane
 {
     padding: 1em 0;
@@ -5019,7 +5037,8 @@ button
     margin-bottom: 1em;
 }
 
-.settings-pane ul
+.settings-pane ul,
+.user-pane ul
 {
     display: flex;
 
@@ -5236,7 +5255,8 @@ button
 
     text-align: center;
 }
-.notification-pane h4
+.notification-pane h4,
+.user-pane h4
 {
     font-weight: 600;
 
@@ -5532,8 +5552,10 @@ button
 
     justify-content: space-between;
 }
+.carde-header-title {
+    max-width: calc(100% - 60px);
+}
 .carde-header-title h3 {
-    max-width: 350px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -5616,11 +5638,14 @@ button
 
 .owl-carousel .owl-item img
 {
+    width: 28px;
+    height: 28px;
+/*
     min-width: 50px;
     max-width: 70px;
     min-height: 50px;
     max-height: 70px;
-
+*/
     object-fit: cover;
 }
 
@@ -5690,6 +5715,9 @@ button
 }
 @media (max-width: 868px)
 {
+    .owl-nav {
+        display: none;
+    }
     .owl-nav .owl-prev
     {
         margin-left: 2em;
@@ -5724,8 +5752,15 @@ button
 }
 @media (max-width: 824px)
 {
-    .context-title.yolMobile
-    {
+    section:first-child h4.context-title {
+        padding-top: 6em;
+    }
+    section h4.context-title {
+        padding-top: 1em;
+    }
+    #pBlacklist h4.context-title,
+     #pWhitelist h4.context-title,
+     #pDigest h4.context-title {
         padding-top: 6em;
     }
     #loader h2
