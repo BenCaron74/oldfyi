@@ -704,11 +704,13 @@ function cardTopCol() {
   $('.carde-header').each(function() {
     var imgID = $(this).parents('.carde').find('img').attr('id');
     var img = document.getElementById(imgID);
-    var colorThief = new ColorThief();
-    var colorThiefPatern = colorThief.getPalette(img)
-    var kObj = colorThief.getColor(img);
-    var array = colorThiefPatern[4];
-    $(this).css('background', 'rgb(' + array[0] + ',' + array[1] + ',' + array[2] + ')');
+    if (img.width > 0) {
+      var colorThief = new ColorThief();
+      var colorThiefPatern = colorThief.getPalette(img)
+      var kObj = colorThief.getColor(img);
+      var array = colorThiefPatern[4];
+      $(this).css('background', 'rgb(' + array[0] + ',' + array[1] + ',' + array[2] + ')');
+    }
   });
 }
 
@@ -731,8 +733,8 @@ function cardTopCol() {
     });
     // ============================================
     // TODO: Remove when JQ AJAX /!\ IMPORTANT /!\
-    numColor();
-    cardTopCol();
+    //numColor();
+    //cardTopCol();
     // ============================================
   });
 
@@ -747,63 +749,78 @@ function cardTopCol() {
   // }).fail(function() {
   //   console.log('JSON data loading failed');
   // });
-function yolo (listtype, sort = "", sorttype = "") {
+
+function updateLists (listtypes, prefilter = false, sort = "", sorttype = "") {
     var owlItem = ["<div class='item'><div class='carde'><div class='carde-header'><div class='carde-header-title'><h3>",
       "</h3></div><div class='carde-header-action'><i id='ionSuggest' class='ion-thumbsup'></i><i id='ionOther' class='ion-thumbsdown'></i></div></div><div class='carde-content'><img id='",
-      "' class='img-circle' src='img/letters/a.png' alt=''><ul><li><h4>",
+      "' class='img-circle' src='",
+      "' alt=''><ul><li><h4>",
       "</h4></li><li><p>",
       "</p></li></ul></div><div class='carde-footer'><ul><li>Received <b>",
       "</b></li><li>Open Rate <b>",
       "%</b></li></ul></div></div></div>"
     ]
-    args = "";
-    if (sort != "") {
-      args = "?sort=" + sort;
-      if (sorttype != "") {
-        args = args + "&sorttype=" + sorttype;
-      }
+
+    var listItem = ['<div class="col-sm-12"><div class="arch-pane"><div class="arch-content"><div class="arch-img"><img src="',
+      '" alt=""></div><div class="arch-txt"><ul><li><h2>',
+      '</h2></li><li>',
+      '</li></ul></div></div><div class="arch-action"><ul><li class="hidden-xs"><i class="ion-checkmark-circled"></i></li><li class="hidden-xs"><i class="ion-close-circled"></i></li><li class="hidden-xs"><i class="ion-android-archive"></i></li><li id="modalActionActive" class="visible-xs"><i class="ion-android-more-vertical"></i></li></ul></div></div></div>'];
+
+  args = "";
+  if (prefilter) {
+    args = args + "/pre";
+  }
+  if (sort != "") {
+    args = "?sort=" + sort;
+    if (sorttype != "") {
+      args = args + "&sorttype=" + sorttype;
     }
-    $.ajax({
-      url: "https://freeyourinbox.com/api/v1/api/v1/list/" + listtype + args,
-      context: document.body
-    }).done(function(data) {
-      console.log(data);
-      //Where?
-      append = "we have analyzed " + data.stats.msgcount + " emails in " + data.stats.newscount + " newsletters<br>";
-      if (data.stats.fullsync < 100) { append = append + 'fullsync in progress (' + data.stats.fullsync + '%) please wait...<br>'; }
-      //==//
-
-      $.each(data.results, function( key, value ) {
-        console.log(value.id);
-        $('#pre-filtering.allowed').trigger('add.owl.carousel', [owlItem[0]+value.fromname+owlItem[1]+value.id+owlItem[2]+value.from+owlItem[3]+value.subject+owlItem[4]+value.received+owlItem[5]+value.openrate+owlItem[6]])
-        .trigger('refresh.owl.carousel');
-
-  /*
-   actions:
-   0 = new
-   1 = allow
-   2 = digest
-   3 = block
-  */
-        if (value.action != 1) {
-          append = append + ' <a href="javascript:fyi_action(' + value.id + ', \'allow\');">Allow</a>';
-        }
-        if (value.action != 2) {
-          append = append + ' <a href="javascript:fyi_action(' + value.id + ', \'digest\');">Digest</a>';
-        }
-        if (value.action != 3) {
-          append = append + ' <a href="javascript:fyi_action(' + value.id + ', \'filter\');">Block</a>';
-        }
-        if (value.action == 3) {
-          append = append + ' <a href="javascript:fyi_action(' + value.id + ', \'unblock\');">Unblock</a>';
-        }
-        append = append + '</div><br>';
-      });
-      $("#result").html(append);
-    });
   }
 
+  // for each listtype (allowed, blocked...)
+  $.each(listtypes, function( listkey, listtype ) {
 
+    // get list from API
+    $.ajax({
+      url: "/api/v1/list/" + listtype + args,
+      context: document.body
+    }).success(function(data) {
+
+      //stats = "we have analyzed " + data.stats.msgcount + " emails in " + data.stats.newscount + " newsletters<br>";
+      //if (data.stats.fullsync < 100) { stats = stats + 'fullsync in progress (' + data.stats.fullsync + '%) please wait...<br>'; }
+      //$("#stats").html(stats);
+
+      // we should empty list before adding items if we need to refresh content
+      if (prefilter) {
+        //$('.pre-filtering.' + data.list).html('');
+      } else {
+        if (data.list == "allowed") { listID = "pWhitelist"; }
+        else if (data.list == "blocked") { listID = "pBlacklist"; }
+        else if (data.list == "digest") { listID = "pDigest"; }
+        //$("#" + listID).html('');
+      }
+
+      // for each card or list item
+      $.each(data.results, function( key, value ) {
+        if (prefilter) {
+          $('.pre-filtering.' + data.list).trigger('add.owl.carousel', [owlItem[0]+value.fromname+owlItem[1]+value.id+owlItem[2]+value.img+owlItem[3]+value.from+owlItem[4]+value.subject+owlItem[5]+value.received+owlItem[6]+value.openrate+owlItem[7]])
+           .trigger('refresh.owl.carousel');
+        } else {
+           $("#" + listID).append(listItem[0]+value.img+listItem[1]+value.fromname+listItem[2]+value.subject+listItem[3]);
+        }
+      });
+
+      // update cards colors
+      cardTopCol();
+      numColor();
+
+    });
+
+  });
+}
+
+updateLists(["blocked", "allowed", "new"], true);
+updateLists(["blocked", "allowed", "digest"], false);
 
 	//Header link onepage
   $('a').click(function() {
@@ -861,63 +878,63 @@ function yolo (listtype, sort = "", sorttype = "") {
       });
     });
   }
-//Set color index for card info
+
+  //Set color index for card info
   function numColor() {
-    $('.card-bottom li b').each(function() {
+    $('.carde-footer li b').each(function() {
       var val = $(this);
       if (val.text().includes('%')) {
+        // openrate
         var percent = val.text().replace("%", '');
         if (percent < 33) {
-          val.css('color', '#43A047')
+          val.css('color', '#DD2C00')
         } else if (percent < 66) {
+          val.css('color', '#FFB300')
+        } else {
+          val.css('color', '#43A047')
+        }
+      } else {
+        // number of emails
+        if (val.text() < 10) {
+          val.css('color', '#43A047')
+        } else if (val.text() < 30) {
           val.css('color', '#FFB300')
         } else {
           val.css('color', '#DD2C00')
         }
-      } else if (val.text() < 33) {
-        val.css('color', '#43A047')
-      } else if (val.text() < 66) {
-        val.css('color', '#FFB300')
-      } else {
-        val.css('color', '#DD2C00')
       }
     });
   }
-	//Show settings panel
+
+  //Show settings panel
   $('#setting').click(function() {
-    var item = $(this);
-    var offset = item.offset();
     if ($('.settings-pane').is(":visible")) {
-      $('.settings-pane').fadeOut('fast')
+      $('.settings-pane').fadeOut('fast');
     } else {
-      console.log(offset.top);
-      console.log(offset.left);
+      $('.notification-pane').fadeOut('fast');
       $('.settings-pane').css({
-        left: offset.left - 310 + 'px',
-        top: offset.top + 'px',
+        left: ( $(this).position().left - 310) + 'px',
+        top: $(this).position().top + 'px',
         position: 'fixed'
-      }).fadeIn('fast');
-    }
-  });
-	//Show notification panel
-  $('#notif').click(function() {
-    var item = $(this);
-    var offset = item.offset();
-    if ($('.notification-pane').is(":visible")) {
-      $('.notification-pane').fadeOut('fast')
-    } else {
-      console.log(offset.top);
-      console.log(offset.left);
-      $('.notification-pane').css({
-        left: offset.left - 310 + 'px',
-        top: offset.top + 'px',
-        position: 'fixed'
-      });
-      $('.notification-pane').fadeIn('fast');
+      }).stop().fadeTo('fast',1);
     }
   });
 
-//First progres bar and loader OTH elements
+  //Show notification panel
+  $('#notif').click(function() {
+    if ($('.notification-pane').is(":visible")) {
+      $('.notification-pane').fadeOut('fast');
+    } else {
+      $('.settings-pane').fadeOut('fast');
+      $('.notification-pane').css({
+        left: ( $(this).position().left - 310) + 'px',
+        top: $(this).position().top + 'px',
+        position: 'fixed'
+      }).stop().fadeTo('fast',1);
+    }
+  });
+
+  //First progres bar and loader OTH elements
   function progress() {
     var progr = document.getElementById('progress');
     var progress = 0;
@@ -988,7 +1005,9 @@ function yolo (listtype, sort = "", sorttype = "") {
     $('.modal-card-overlay, .modal-card-content').fadeOut('fast');
   })
 	//Initialize Owl
-  $('#pre-filtering.blocked').owlCarousel({
+  $.each(["new", "allowed", "digest", "blocked"], function( listkey, listtype ) {
+
+  $('.pre-filtering.' + listtype).owlCarousel({
     loop: false,
     items: 3,
     margin: 0,
@@ -1012,29 +1031,6 @@ function yolo (listtype, sort = "", sorttype = "") {
       }
     }
   });
-  $('#pre-filtering.allowed').owlCarousel({
-    loop: false,
-    items: 3,
-    margin: 0,
-    autoplay: false,
-    dots: false,
-    smartSpeed: 450,
-    nav: true,
-    navText: [
-      "<i class='ion-chevron-left'></i>",
-      "<i class='ion-chevron-right'></i>"
-    ],
-    responsive: {
-      0: {
-        items: 1
-      },
-      870: {
-        items: 2
-      },
-      1280: {
-        items: 3
-      }
-    }
 
   });
 	//Owl Prev/Next button

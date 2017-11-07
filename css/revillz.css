@@ -4875,7 +4875,6 @@ button
 
     color: #fff;
     border-radius: 3em;
-    background: red;
 
     object-fit: cover;
 }
@@ -4955,6 +4954,9 @@ button
 .ion-close-round:hover {
   color: #000;
 }*/
+.ion-thumbsdown {
+    margin-left: 0.4em;
+}
 #loader
 {
     margin-top: 10%;
@@ -5530,6 +5532,12 @@ button
 
     justify-content: space-between;
 }
+.carde-header-title h3 {
+    max-width: 350px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 .carde-content
 {
     line-height: 20px;
@@ -5544,6 +5552,14 @@ button
 .carde-content p
 {
     font-size: .9em!important;
+}
+.carde-content ul {
+    overflow: hidden;
+    max-height: 62px;
+    display: block;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 .carde-footer ul
 {
@@ -5567,7 +5583,7 @@ button
 
     color: #777;
 }
-#pre-filtering .carde p
+.pre-filtering .carde p
 {
     font-family: inherit;
     font-size: 17px;
@@ -5575,7 +5591,7 @@ button
     line-height: 1.5;
 }
 
-#pre-filtering .item
+.pre-filtering .item
 {
     margin-top: 20px;
     margin-bottom: 30px;
@@ -5590,7 +5606,7 @@ button
     opacity: .2;
 }
 
-#pre-filtering .owl-item.active .item
+.pre-filtering .owl-item.active .item
 {
     -webkit-transform: scale3d(1.0, 1.0, 1);
             transform: scale3d(1.0, 1.0, 1);
@@ -5608,15 +5624,15 @@ button
     object-fit: cover;
 }
 
-#pre-filtering.owl-carousel.owl-theme .owl-dots .owl-dot.active span,
-#pre-filtering.owl-carousel.owl-theme .owl-dots .owl-dot:hover span
+.pre-filtering.owl-carousel.owl-theme .owl-dots .owl-dot.active span,
+.pre-filtering.owl-carousel.owl-theme .owl-dots .owl-dot:hover span
 {
     transform: translate3d(0px, -50%, 0px) scale(.7);
 
     background: #28cb75;
 }
 
-#pre-filtering.owl-carousel.owl-theme .owl-dots .owl-dot span
+.pre-filtering.owl-carousel.owl-theme .owl-dots .owl-dot span
 {
     display: block;
 
