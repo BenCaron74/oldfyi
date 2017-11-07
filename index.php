@@ -26,7 +26,7 @@
   <noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=s/i/m1aMp4Z3fn" style="display:none" height="1" width="1" alt="" /></noscript>
   <script src="//my.hellobar.com/bbd16035ceacd676eea303eb358372e55773fa0f.js" type="text/javascript" charset="utf-8" async="async"></script>
   <noscript><img alt="Facebook Share" height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=536462993188270&ev=PageView&noscript=1"/></noscript>
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
   <link href=css/bootstrap.css rel=stylesheet type=text/css media=all />
   <link href=css/custom.css rel=stylesheet type=text/css media=all />
   <link href=css/animate.css rel=stylesheet type=text/css media=all />
