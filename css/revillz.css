@@ -5583,6 +5583,24 @@ button
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }
+.carde-info{
+  display: flex;
+}
+.carde-menu{
+  display: none;
+  vertical-align: middle;
+  text-align: center;
+}
+.carde-menu ul {
+  color: #4d4d4d;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 30%;
+  line-height: 2em;
+  font-size: 2em;
+  font-weight: 600;
+}
+
 .carde-footer ul
 {
     display: flex;
