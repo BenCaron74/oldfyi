@@ -64,5 +64,19 @@
       "clasic": "Login with",
       "other":"Login with an other method"
     }
+  },
+  "appPage":{
+    "home":"Home",
+    "blacklist":"Blacklist",
+    "whitelist":"Whitelist",
+    "digest":"Digest"
+  },
+  "userAction":{
+    "logout":"Logout"
+  }
+  ,
+  "cardType":{
+    "blacklisted":"Blacklisted",
+    "whitelisted":"Whitelisted"
   }
 }

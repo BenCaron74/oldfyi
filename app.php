@@ -43,15 +43,16 @@ require_once __DIR__.'/lib/google.checklogin.php';
 </head>
 
 <body>
+  <template id="tpl">
   <header>
     <div class="header-brand">
       <div class="header-logo">
         <a href="#"><img class="brand-img" src="testPic/brand.png" alt=""></a>
         <ul class="header-nav">
-          <li id="nNew" class="nav-item nav-active"><a href="#">Home</a></li>
-          <li id="nBlacklist" class="nav-item"><a href="#">Blacklist</a></li>
-          <li id="nWhitelist" class="nav-item"><a href="#">Whitelist</a></li>
-          <li id="nDigest" class="nav-item"><a href="#">Digest</a></li>
+          <li id="nNew" class="nav-item nav-active"><a href="#">{{ appPage.home }}</a></li>
+          <li id="nBlacklist" class="nav-item"><a href="#">{{ appPage.blacklist }}</a></li>
+          <li id="nWhitelist" class="nav-item"><a href="#">{{ appPage.whitelist }}</a></li>
+          <li id="nDigest" class="nav-item"><a href="#">{{ appPage.digest }}</a></li>
         </ul>
       </div>
       <div class="header-user">
@@ -71,10 +72,10 @@ require_once __DIR__.'/lib/google.checklogin.php';
     </div>
     <div class="header-navbar">
       <ul class="header-nav">
-        <li id="nNew" class="nav-item nav-active"><a href="#">Home</a></li>
-        <li id="nBlacklist" class="nav-item"><a href="#">Blacklist</a></li>
-        <li id="nWhitelist" class="nav-item"><a href="#">Whitelist</a></li>
-        <li id="nDigest" class="nav-item"><a href="#">Digest</a></li>
+        <li id="nNew" class="nav-item nav-active"><a href="#">{{ appPage.home }}</a></li>
+        <li id="nBlacklist" class="nav-item"><a href="#">{{ appPage.blacklist }}</a></li>
+        <li id="nWhitelist" class="nav-item"><a href="#">{{ appPage.whitelist }}</a></li>
+        <li id="nDigest" class="nav-item"><a href="#">{{ appPage.digest }}</a></li>
       </ul>
       <!-- <div class="webflow-style-input">
         <input id="seek" class="search" type="text" placeholder="Search..."></input>
@@ -94,7 +95,7 @@ require_once __DIR__.'/lib/google.checklogin.php';
       <!-- CARDS -->
       <section class="cards-blocked">
         <div class="container">
-          <h4 class="context-title">Blacklisted</h4>
+          <h4 class="context-title">{{ cardType.blacklisted }}</h4>
         </div>
         <div class="container-fluid">
           <div class="row">
@@ -110,7 +111,7 @@ require_once __DIR__.'/lib/google.checklogin.php';
       </section>
       <section class="cards-allowed">
         <div class="container">
-          <h4 class="context-title yolMobile">Whitelisted</h4>
+          <h4 class="context-title yolMobile">{{ cardType.whitelisted }}</h4>
         </div>
         <div class="container-fluid">
           <div class="row">
@@ -158,29 +159,29 @@ require_once __DIR__.'/lib/google.checklogin.php';
     </div>
 
     <div id="pBlacklist" class="container">
-      <h4 class="context-title">Blacklist</h4>
+      <h4 class="context-title">{{ appPage.blacklist }}</h4>
     </div>
 
     <div id="pWhitelist" class="container">
-      <h4 class="context-title">Whitelist</h4>
+      <h4 class="context-title">{{ appPage.whitelist }}</h4>
     </div>
 
     <div id="pDigest" class="container">
-      <h4 class="context-title">Digest</h4>
+      <h4 class="context-title">{{ appPage.digest }}</h4>
 
       <div class="modal-action-overlay"></div>
       <div class="modal-action-content">
         <ul class="">
           <li class="ion-checkmark-circled"></li>
-          <li>Whitelist</li>
+          <li>{{ appPage.whitelist }}</li>
         </ul>
         <ul class="">
           <li class="ion-close-circled"></li>
-          <li>Blacklist</li>
+          <li>{{ appPage.blacklist }}</li>
         </ul>
         <ul class="">
           <li class="ion-ios-list"></li>
-          <li>Digest</li>
+          <li>{{ appPage.digest }}</li>
         </ul>
       </div>
 
@@ -287,19 +288,21 @@ require_once __DIR__.'/lib/google.checklogin.php';
     <h4><?php echo $_SESSION['name']; ?></h4>
     <div>
       <ul>
-        <li><a href="/logout" onClick="location.href='/logout'">Logout</a></li>
+        <li><a href="/logout" onClick="location.href='/logout'">{{ userAction.logout }}</a></li>
       </ul>
     </div>
   </div>
 
   <div class="xs-nav">
     <ul class="xs-item">
-      <li id="nNew" class="nav-item"><a href="#">Home</a></li>
-      <li id="nBlacklist" class="nav-item"><a href="#">Blacklist</a></li>
-      <li id="nWhitelist" class="nav-item"><a href="#">Whitelist</a></li>
-      <li id="nDigest" class="nav-item"><a href="#">Digest</a></li>
+      <li id="nNew" class="nav-item"><a href="#">{{ appPage.home }}</a></li>
+      <li id="nBlacklist" class="nav-item"><a href="#">{{ appPage.blacklist }}</a></li>
+      <li id="nWhitelist" class="nav-item"><a href="#">{{ appPage.whitelist }}</a></li>
+      <li id="nDigest" class="nav-item"><a href="#">{{ appPage.digest }}</a></li>
     </ul>
   </div>
+  </template>
+  <script src="js/translate.js" charset="utf-8"></script>
   <script src="js/color-thief.js" charset="utf-8"></script>
   <script src="js/jquery.min.js" charset="utf-8"></script>
   <script src="js/owl.carousel.js" charset="utf-8"></script>
