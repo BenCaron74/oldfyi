@@ -43,7 +43,7 @@ require_once __DIR__.'/lib/google.checklogin.php';
 </head>
 
 <body>
-  <template id="tpl">
+  <template id="template">
   <header>
     <div class="header-brand">
       <div class="header-logo">
@@ -302,11 +302,11 @@ require_once __DIR__.'/lib/google.checklogin.php';
     </ul>
   </div>
   </template>
+  <script src="js/jquery.min.js" charset="utf-8"></script>
+  <script src="js/revillz.js?v=<?php echo time(); ?>" charset="utf-8"></script>
   <script src="js/translate.js" charset="utf-8"></script>
   <script src="js/color-thief.js" charset="utf-8"></script>
-  <script src="js/jquery.min.js" charset="utf-8"></script>
-  <script src="js/owl.carousel.js" charset="utf-8"></script>
-  <script src="js/revillz.js?v=<?php echo time(); ?>" charset="utf-8"></script>
+  <script src="js/owl.carousel.js" charset="utf-8"></script> 
 </body>
 
 </html>
