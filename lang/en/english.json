@@ -1,4 +1,38 @@
 {
+  "menu":{
+    "home": "Home",
+    "about": "About",
+    "early": "Early Access"
+  },
+  "hero":{
+    "title": "A for ever sane inbox within a week",
+    "text": "Free Your Inbox safely learns to know you and your habits to smartly predict which emails you want to receive.",
+    "button": "Get early access?"
+  },
+  "section":{
+    "first":{
+      "title": "Unclutter your inbox effortlessly",
+      "text": "Free Your Inbox smartly and automatically filter out emails. You can modify our filtering in a single click. The more you train us the better we become. You get a saner inbox in just few clicks."
+    },
+    "second":{
+      "title": "Spend less time on emails",
+      "text": "Free Your inbox makes sure you spend less and less time on your emails. You are now on only interrupted by emails that deserve to be read, answered or kept. You focus on what matter."
+    },
+    "third":{
+      "title": "Keep your habits",
+      "text": "You don’t have to install anything nor use a new email app. We are seamlessly integrated to your favourite environment. You keep on doing things the way you like."
+    }
+  },
+  "try":{
+    "title": "Say goodbye to your newsletters",
+    "button": "Early Access"
+  },
+  "footer":{
+    "1": "Blog",
+    "2": "FAQ",
+    "3": "Press",
+    "4": "Terms of service"
+  },
   "early":{
     "title": "Early Access",
     "subtitle":"Subscribe to the beta test program!",
@@ -29,40 +63,6 @@
     "method":{
       "clasic": "Login with",
       "other":"Login with an other method"
-    }
-  },
-  "appPage":{
-    "home":"Home",
-    "blacklist":"Blacklist",
-    "whitelist":"Whitelist",
-    "digest":"Digest"
-  },
-  "userAction":{
-    "logout":"Logout"
-  },
-  "landingNav":{
-    "home":"Home",
-    "early":"Early access",
-    "features":"Features",
-    "get":"Get it now",
-    "learn":"See how it works"
-  },
-  "section":{
-    "first":{
-      "title": "A clean (and smart) inbox",
-      "paragraph": "Free Your Inbox safely learns your habits to smartly predict which emails you want to receive."
-    },
-    "second":{
-      "title": "Unclutter your inbox effortless",
-      "paragraph": "Free Your Inbox smartly and automatically filter out emails for you. It only takes you 1 clic to confirm our filtering. The more you train us the better we become. In less than 1 week, your inbox is sane for ever."
-    },
-    "third":{
-      "title": "Reduce the time you spend on emails",
-      "paragraph": "Free Your inbox makes sure you spend less and less time on your emails. You are now on only interrupted by emails that deserve to be read, answered or kept. Any other type of emails will stay out of your inbox. You focus on what matter."
-    },
-    "fourth":{
-      "title": "It's time to Free Your Inbox",
-      "paragraph": "get early access"
     }
   }
 }

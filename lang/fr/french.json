@@ -1,68 +1,68 @@
 {
-  "early":{
-    "title": "Encore un peu de patience !",
-    "subtitle":"Nous n’avons besoin que de votre email pour vous donner accès en exclusivité à Free Your Inbox.",
-    "rip":"Désolé !",
-    "wip":"Nous testons l'application actuellement avec Gmail",
-    "question":"Voulez-vous être notifier lorsque vous serez éligible ?",
-    "y":"Oui",
-    "n":"Non",
-    "goOther":"Souscrire avec",
-    "label":"Votre adresse email :",
-    "notice":"* Nous ne vous spammerons pas, promis !",
-    "shareTitle":"Partagez sur l'un de ces réseaux sociaux et soyez mieux placer dans la liste d'attante",
-    "userInDB":"Votre position actuelle :",
-    "share":"Partager",
-    "with":"Avec:",
-    "backTo":"Retour à",
-    "linkHome":" l'Accueil",
-    "alert":{
-      "availableInfo": "Beta uniquement disponible avec Gmail"
-    }
+  "menu":{
+    "home": "Accueil",
+    "about": "A propos",
+    "early": "Early Access"
   },
-  "login":{
-    "title": "Félicitation,",
-    "subtitle":"Vous pouvez désormais rejoindre l'application",
-    "alert":{
-      "availableInfo": "Beta uniquement disponible avec Gmail"
-    },
-    "method":{
-      "clasic": "Se connecter avec",
-      "other":"Se connecter via une autre méthode"
-    }
-  },
-  "appPage":{
-    "home":"Accueil",
-    "blacklist":"Blacklist",
-    "whitelist":"Whitelist",
-    "digest":"Digest"
-  },
-  "userAction":{
-    "logout":"Se déconnecter"
-  },
-  "landingNav":{
-    "home":"Accueil",
-    "early":"Essayer",
-    "features":"Fonctionnalités",
-    "get":"Essayez gratuitement",
-    "learn":"En savoir plus"
+  "hero":{
+    "title": "Une boite de réception saine pour toujours en une semaine",
+    "text": "Free Your Inbox safely learns to know you and your habits to smartly predict which emails you want to receive.",
+    "button": "How to get that ?"
   },
   "section":{
     "first":{
-      "title": "Une boîte mail saine (et intelligente)",
-      "paragraph": "Free Your Inbox safely learns your habits to smartly predict which emails you want to receive."
+      "title": "Nettoyez votre boîte mail sans effort",
+      "text": "Free Your Inbox filtre intelligement et automatiquement vos emails. Vous modifiez notre filtage en 1 clic. Nous devenons meilleur jour après jour. Vous reprenez le contrôle de votre boîte mails en quelques instants."
     },
     "second":{
-      "title": "Nettoyez votre boîte mail sans effort",
-      "paragraph": "Free Your Inbox filtre automatiquement et intelligemment vos emails. Vous n’avez qu’1 clic à faire pour confirmer notre filtrage. Nous devenons meilleurs jour après jour. En moins d’une semaine votre boîte mail est saine pour toujours."
+      "title": "Passez moins de temps à gérer vos emails",
+      "text": "Avec Free Your inbox vous passez de moins en de temps à gérer vos emails. Seuls les emails qui méritent d'être traités interompent vos journées.Vous vous concentrez sur l'essentiel."
     },
     "third":{
-      "title": "Passez moins de temps à gérer vos emails",
-      "paragraph": "Vous passez chaque jour moins de temps à gérer vos emails. Désormais seuls les emails qui méritent d’être lus vous interrompent. Tous les autres emails restent en dehors de votre boîte mail. Vous vous concentrez sur l’essentiel"
+      "title": "Vous gardez vos habitudes",
+      "text": "Vous n'avez aucun logiciel à installer. Nous ne vous demandons pas d'abandonner votre application mail préférée. Nous nous intégrons à votre environnement préféré. Vous continuez de gérer vos emails comme vous aimez."
+    }
+  },
+  "try":{
+    "title": "Say goodbye to your newsletters",
+    "button": "Early Access"
+  },
+  "footer":{
+    "1": "Blog",
+    "2": "FAQ",
+    "3": "Presse",
+    "4": "Mentions légales"
+  },
+  "early":{
+    "title": "Early Access",
+    "subtitle":"Subscribe to the beta test program!",
+    "rip":"Sorry for now!",
+    "wip":"We're actualy testing the app only with Gmail",
+    "question":"Want to be notified when it's will be ready for you?",
+    "y":"Yes",
+    "n":"No",
+    "goOther":"Subscribe with",
+    "label":"Email address:",
+    "notice":"* You will not receive any newsletter",
+    "shareTitle":"Share on one of these social media and be better placed on the waiting list",
+    "userInDB":"Your actual place:",
+    "share":"Share",
+    "with":"with:",
+    "backTo":"Back to",
+    "linkHome":" Home",
+    "alert":{
+      "availableInfo": "Beta only available with Gmail"
+    }
+  },
+  "login":{
+    "title": "Congratulations,",
+    "subtitle":"You can now join our beta test program!",
+    "alert":{
+      "availableInfo": "Beta only available with Gmail"
     },
-    "fourth":{
-      "title": "L’heure est venue de libérer votre boîte mail",
-      "paragraph": "Essayez gratuitement"
+    "method":{
+      "clasic": "Login with",
+      "other":"Login with an other method"
     }
   }
 }

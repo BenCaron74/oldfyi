@@ -2,7 +2,7 @@
  switch (userLang) {
    case 'fr':
      //var transFile = "lang/fr/french.json";
-     var transFile = "lang/fr/french.json";
+     var transFile = "lang/en/english.json";
      loadTxt(transFile);
      break;
    case 'en':
